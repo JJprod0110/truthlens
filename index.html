@@ -1060,24 +1060,77 @@ function openAuthModal(mode) {
 function toggleAuthMode() {
   openAuthModal(appState.authMode === 'signup' ? 'signin' : 'signup');
 }
-function submitAuth() {
+/* ── SUPABASE AUTH ── */
+const SUPABASE_URL = 'https://teiqxbapfjbnsaifbspa.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlaXF4YmFwZmpibnNhaWZic3BhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MTU0ODQsImV4cCI6MjA5MDE5MTQ4NH0.PkaTX9NB7BojxAm1X29foW8IhrWN6vgN3FtYu5D3Xjw';
+
+async function supabaseFetch(endpoint, options = {}) {
+  const res = await fetch(`${SUPABASE_URL}/auth/v1${endpoint}`, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      ...options.headers
+    }
+  });
+  return res.json();
+}
+
+async function submitAuth() {
   const email = document.getElementById('authEmail').value.trim();
+  const password = document.getElementById('authPassword').value;
   const name = appState.authMode === 'signup' ? document.getElementById('authName').value.trim() : email.split('@')[0];
-  if (!email) { alert('Please enter your email.'); return; }
-  loginUser(name || email.split('@')[0], email, 'free');
-  closeModal('authOverlay');
+  if (!email || !password) { showToast('Please enter your email and password.'); return; }
+
+  const btn = document.getElementById('authSubmitBtn');
+  btn.textContent = 'Please wait...'; btn.disabled = true;
+
+  try {
+    if (appState.authMode === 'signup') {
+      const data = await supabaseFetch('/signup', {
+        method: 'POST',
+        body: JSON.stringify({ email, password, data: { full_name: name } })
+      });
+      if (data.error) { showToast(data.error.message || 'Signup failed'); }
+      else { showToast('Check your email to confirm your account! 📧'); closeModal('authOverlay'); }
+    } else {
+      const data = await supabaseFetch('/token?grant_type=password', {
+        method: 'POST',
+        body: JSON.stringify({ email, password })
+      });
+      if (data.error) { showToast(data.error.message || 'Login failed'); }
+      else {
+        const userName = data.user?.user_metadata?.full_name || email.split('@')[0];
+        loginUser(userName, email, 'free', data.access_token);
+        closeModal('authOverlay');
+      }
+    }
+  } catch(e) {
+    showToast('Connection error. Please try again.');
+  }
+  btn.textContent = appState.authMode === 'signup' ? 'Create free account →' : 'Sign in →';
+  btn.disabled = false;
 }
-function socialLogin(provider) {
-  loginUser(provider + ' User', provider.toLowerCase() + '@demo.com', 'free');
-  closeModal('authOverlay');
+
+async function socialLogin(provider) {
+  showToast(`${provider} login coming soon! Use email for now.`);
 }
-function loginUser(name, email, plan) {
-  appState.user = { name, email };
+
+function loginUser(name, email, plan, token) {
+  appState.user = { name, email, token };
   appState.plan = plan;
   renderTopbar();
   showToast(`Welcome, ${name}! 👋`);
   renderHistory();
+  try { localStorage.setItem('tl_user', JSON.stringify({ name, email, plan })); } catch(e) {}
 }
+
+// Auto-login from localStorage
+try {
+  const saved = JSON.parse(localStorage.getItem('tl_user'));
+  if (saved) loginUser(saved.name, saved.email, saved.plan || 'free');
+} catch(e) {}
 
 /* ── TOPBAR ── */
 function renderTopbar() {
