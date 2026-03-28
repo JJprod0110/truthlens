@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Legal — TruthLens</title>
+<title>TruthLens Pro — AI Content Detector</title>
 <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -13,246 +13,1617 @@
   --ink: #1a1814;
   --muted: #9a9488;
   --accent: #ff4d1c;
+  --accent2: #1a1814;
   --green: #1a7a4a;
+  --yellow: #e8a020;
+  --card: #fdfcf9;
+  --shadow: 0 2px 16px rgba(26,24,20,0.08);
+  --shadow-lg: 0 8px 40px rgba(26,24,20,0.14);
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--ink); font-family: 'Cabinet Grotesk', sans-serif; }
 
-.topbar {
-  background: rgba(247,245,240,0.95); border-bottom: 1px solid var(--border);
-  padding: 0.9rem 2rem; display: flex; align-items: center; justify-content: space-between;
-  position: sticky; top: 0; z-index: 100;
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Cabinet Grotesk', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
-.topbar-logo { font-size: 1.1rem; font-weight: 900; letter-spacing: -0.03em; text-decoration: none; color: var(--ink); }
-.topbar-logo em { color: var(--accent); font-style: normal; }
-.back-btn {
-  padding: 0.5rem 1rem; border: 1.5px solid var(--border); border-radius: 8px;
-  background: transparent; font-family: 'Cabinet Grotesk', sans-serif; font-size: 0.85rem;
-  font-weight: 700; cursor: pointer; text-decoration: none; color: var(--ink);
+
+/* ─── MODALS ─── */
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(26,24,20,0.55);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.25s;
+}
+.overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 2.5rem;
+  width: 100%; max-width: 440px;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+}
+.overlay.open .modal { transform: translateY(0) scale(1); }
+
+.modal-close {
+  position: absolute; top: 1.2rem; right: 1.2rem;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--border); border: none; cursor: pointer;
+  font-size: 1rem; display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s;
+}
+.modal-close:hover { background: #ddd; }
+
+.modal h2 { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
+.modal-sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.8rem; }
+
+.form-field { margin-bottom: 1rem; }
+.form-field label { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.4rem; color: var(--muted); }
+.form-field input {
+  width: 100%; padding: 0.75rem 1rem;
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: 10px; font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.95rem; color: var(--ink); outline: none;
   transition: border-color 0.2s;
 }
-.back-btn:hover { border-color: var(--ink); }
+.form-field input:focus { border-color: var(--accent); }
 
-.container { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
-
-.tabs { display: flex; gap: 0.5rem; margin-bottom: 3rem; background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px; padding: 0.4rem; }
-.tab-btn {
-  flex: 1; padding: 0.75rem; border: none; border-radius: 9px; font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all 0.2s; background: transparent; color: var(--muted);
+.btn-primary {
+  width: 100%; padding: 0.9rem;
+  background: var(--accent); border: none; border-radius: 10px;
+  color: #fff; font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 1rem; font-weight: 800; cursor: pointer;
+  transition: filter 0.2s, transform 0.15s; letter-spacing: 0.01em;
+  margin-top: 0.5rem;
 }
-.tab-btn.active { background: var(--ink); color: #fff; }
+.btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
-.doc { display: none; }
-.doc.active { display: block; }
+.modal-switch { text-align: center; margin-top: 1.2rem; font-size: 0.85rem; color: var(--muted); }
+.modal-switch a { color: var(--accent); text-decoration: none; font-weight: 700; cursor: pointer; }
 
-.doc-header { margin-bottom: 2.5rem; }
-.doc-header h1 { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
-.doc-header p { color: var(--muted); font-size: 0.88rem; font-family: 'JetBrains Mono', monospace; }
+.divider { display: flex; align-items: center; gap: 0.8rem; margin: 1.2rem 0; }
+.divider span { flex: 1; height: 1px; background: var(--border); }
+.divider p { font-size: 0.75rem; color: var(--muted); font-weight: 600; }
 
-.privacy-bar {
-  background: #f0fdf6; border: 1.5px solid #a0d4b5; border-radius: 12px;
-  padding: 1rem 1.2rem; margin-bottom: 2rem; display: flex; gap: 0.8rem; align-items: flex-start;
+.social-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+.social-btn {
+  padding: 0.65rem; border: 1.5px solid var(--border); background: var(--surface);
+  border-radius: 9px; font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.82rem; font-weight: 700; cursor: pointer; display: flex;
+  align-items: center; justify-content: center; gap: 0.4rem;
+  transition: border-color 0.2s, background 0.2s;
 }
-.privacy-bar p { font-size: 0.85rem; color: #1a7a4a; font-weight: 700; line-height: 1.5; }
+.social-btn:hover { border-color: var(--ink); background: var(--bg); }
 
-h2 { font-size: 1.15rem; font-weight: 800; margin: 2rem 0 0.7rem; letter-spacing: -0.01em; }
-h3 { font-size: 0.95rem; font-weight: 800; margin: 1.2rem 0 0.4rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-p { font-size: 0.92rem; line-height: 1.75; color: #444; margin-bottom: 0.8rem; }
-ul { padding-left: 1.4rem; margin-bottom: 0.8rem; }
-ul li { font-size: 0.92rem; line-height: 1.75; color: #444; margin-bottom: 0.3rem; }
-a { color: var(--accent); }
-.divider { height: 1px; background: var(--border); margin: 2rem 0; }
-.highlight-box {
+/* ─── PLANS MODAL ─── */
+.plans-modal { max-width: 820px; }
+.plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+.plan-card {
+  border: 1.5px solid var(--border); border-radius: 14px; padding: 1.5rem;
+  position: relative; background: var(--card);
+}
+.plan-card.popular { border-color: var(--accent); background: #fff7f5; }
+.popular-tag {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--accent); color: #fff; font-size: 0.65rem; font-weight: 800;
+  letter-spacing: 0.1em; padding: 0.25rem 0.8rem; border-radius: 20px;
+}
+.plan-name { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+.plan-price { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 0.2rem; }
+.plan-price span { font-size: 1rem; font-weight: 600; color: var(--muted); }
+.plan-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.2rem; }
+.plan-features { list-style: none; font-size: 0.82rem; }
+.plan-features li { padding: 0.3rem 0; display: flex; gap: 0.5rem; align-items: flex-start; }
+.plan-features li::before { content: '✓'; color: var(--green); font-weight: 800; flex-shrink: 0; }
+.plan-features li.no::before { content: '✕'; color: #ccc; }
+.plan-btn {
+  width: 100%; margin-top: 1.2rem; padding: 0.7rem;
+  border-radius: 9px; font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.88rem; font-weight: 800; cursor: pointer; transition: all 0.2s;
+}
+.plan-btn.outline { background: transparent; border: 1.5px solid var(--border); color: var(--ink); }
+.plan-btn.outline:hover { border-color: var(--ink); }
+.plan-btn.filled { background: var(--accent); border: none; color: #fff; }
+.plan-btn.filled:hover { filter: brightness(1.1); }
+
+/* ─── SHARE MODAL ─── */
+.share-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-top: 1.2rem; }
+.share-btn-item {
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  padding: 1rem 0.5rem; border: 1.5px solid var(--border); border-radius: 12px;
+  cursor: pointer; transition: all 0.2s; background: var(--card);
+}
+.share-btn-item:hover { border-color: var(--ink); transform: translateY(-2px); }
+.share-btn-item .icon { font-size: 1.6rem; }
+.share-btn-item .lbl { font-size: 0.7rem; font-weight: 700; color: var(--muted); }
+.share-link-row { display: flex; gap: 0.5rem; margin-top: 1rem; }
+.share-link-input {
+  flex: 1; padding: 0.7rem 0.9rem; border: 1.5px solid var(--border);
+  border-radius: 9px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  background: var(--bg); color: var(--muted); outline: none;
+}
+.copy-btn {
+  padding: 0.7rem 1.2rem; background: var(--ink); color: #fff; border: none;
+  border-radius: 9px; font-family: 'Cabinet Grotesk', sans-serif; font-weight: 700;
+  font-size: 0.82rem; cursor: pointer; transition: background 0.2s; white-space: nowrap;
+}
+.copy-btn:hover { background: #333; }
+.share-preview-card {
+  border: 1.5px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem;
+  background: var(--bg); margin-top: 1rem; font-size: 0.82rem;
+}
+.share-preview-card .sp-title { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.3rem; }
+.share-preview-card .sp-sub { color: var(--muted); font-size: 0.78rem; }
+
+/* ─── TOPBAR ─── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(247,245,240,0.9); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.9rem 2rem;
+}
+.topbar-logo { font-size: 1.1rem; font-weight: 900; letter-spacing: -0.03em; }
+.topbar-logo em { color: var(--accent); font-style: normal; }
+.topbar-logo sup { font-size: 0.5rem; vertical-align: super; background: var(--accent); color: #fff; padding: 1px 4px; border-radius: 3px; font-weight: 800; }
+
+.topbar-right { display: flex; align-items: center; gap: 0.75rem; }
+.topbar-btn {
+  padding: 0.5rem 1.1rem; border-radius: 8px; font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+}
+.tb-ghost { background: transparent; border: 1.5px solid var(--border); color: var(--ink); }
+.tb-ghost:hover { border-color: var(--ink); }
+.tb-fill { background: var(--accent); border: none; color: #fff; }
+.tb-fill:hover { filter: brightness(1.1); }
+
+.user-pill {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.4rem;
+  border: 1.5px solid var(--border); border-radius: 30px; cursor: pointer;
+  background: var(--surface); transition: border-color 0.2s;
+}
+.user-pill:hover { border-color: var(--ink); }
+.user-avatar {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--accent);
+  color: #fff; font-size: 0.7rem; font-weight: 800; display: flex;
+  align-items: center; justify-content: center;
+}
+.user-name { font-size: 0.82rem; font-weight: 700; }
+.user-plan-tag { font-size: 0.62rem; font-weight: 800; padding: 2px 7px; border-radius: 10px; }
+.user-plan-tag.free { background: var(--border); color: var(--muted); }
+.user-plan-tag.pro { background: #fff3cd; color: #9a6a00; }
+.user-plan-tag.enterprise { background: #e8f5e9; color: var(--green); }
+
+/* ─── HERO ─── */
+.hero-section {
+  text-align: center; padding: 4rem 1.5rem 0;
+  max-width: 700px; margin: 0 auto;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: 30px; padding: 0.35rem 1rem;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem;
+}
+.hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: blink 2s ease-in-out infinite; }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+.hero-section h1 {
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 900; letter-spacing: -0.04em; line-height: 1.0;
+  margin-bottom: 1.2rem;
+}
+.hero-section h1 .strike {
+  position: relative; display: inline-block;
+}
+.hero-section h1 .strike::after {
+  content: ''; position: absolute; top: 50%; left: -4px; right: -4px;
+  height: 4px; background: var(--accent); transform: rotate(-1.5deg);
+}
+.hero-section p {
+  font-size: 1.05rem; color: var(--muted); max-width: 480px;
+  margin: 0 auto 2.5rem; line-height: 1.65;
+}
+
+.stats-row {
+  display: flex; justify-content: center; align-items: center; gap: 2.5rem;
+  margin-bottom: 3rem; flex-wrap: wrap;
+}
+.stat-item { text-align: center; }
+.stat-item .num { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.03em; }
+.stat-item .lbl { font-size: 0.72rem; font-weight: 700; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.stat-divider { width: 1px; height: 36px; background: var(--border); }
+
+/* ─── MAIN APP ─── */
+.app-container {
+  max-width: 860px; margin: 0 auto; padding: 0 1.5rem 4rem;
+}
+
+/* Input method tabs */
+.input-tabs {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem; background: var(--surface);
+  border: 1.5px solid var(--border); border-radius: 14px;
+  padding: 0.4rem; margin-bottom: 1.5rem;
+}
+.input-tab {
+  padding: 0.7rem 0.5rem; border: none; background: transparent;
+  border-radius: 10px; cursor: pointer; font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.82rem; font-weight: 700; color: var(--muted);
+  display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
+  transition: all 0.2s;
+}
+.input-tab .ti-icon { font-size: 1.3rem; }
+.input-tab:hover { color: var(--ink); background: var(--bg); }
+.input-tab.active { background: var(--ink); color: #fff; }
+.input-tab.pro-locked { position: relative; }
+.pro-lock { position: absolute; top: 6px; right: 6px; background: var(--accent); color: #fff; font-size: 0.5rem; padding: 1px 4px; border-radius: 3px; font-weight: 800; }
+
+/* Panel base */
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* Text input */
+.text-area-wrap { position: relative; }
+.text-area-wrap textarea {
+  width: 100%; min-height: 240px; padding: 1.25rem;
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: 14px; font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.95rem; color: var(--ink); line-height: 1.7; resize: vertical; outline: none;
+  transition: border-color 0.2s;
+}
+.text-area-wrap textarea:focus { border-color: var(--accent); }
+.text-area-wrap textarea::placeholder { color: #ccc; }
+
+.textarea-toolbar {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 0.5rem; padding: 0 0.3rem;
+}
+.char-count { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+.paste-btn {
+  padding: 0.35rem 0.8rem; background: transparent; border: 1.5px solid var(--border);
+  border-radius: 7px; font-family: 'Cabinet Grotesk', sans-serif; font-size: 0.75rem;
+  font-weight: 700; cursor: pointer; transition: all 0.2s;
+}
+.paste-btn:hover { border-color: var(--ink); }
+
+/* URL input */
+.url-input-row { display: flex; gap: 0.6rem; margin-bottom: 1rem; }
+.url-input-row input {
+  flex: 1; padding: 0.85rem 1.1rem; border: 1.5px solid var(--border);
+  border-radius: 10px; font-family: 'Cabinet Grotesk', sans-serif; font-size: 0.92rem;
+  background: var(--surface); color: var(--ink); outline: none; transition: border-color 0.2s;
+}
+.url-input-row input:focus { border-color: var(--accent); }
+.url-fetch-btn {
+  padding: 0.85rem 1.4rem; background: var(--ink); border: none; border-radius: 10px;
+  color: #fff; font-family: 'Cabinet Grotesk', sans-serif; font-weight: 800;
+  font-size: 0.88rem; cursor: pointer; transition: background 0.2s; white-space: nowrap;
+}
+.url-fetch-btn:hover { background: #333; }
+
+.url-tips {
   background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px;
-  padding: 1.2rem 1.4rem; margin: 1rem 0;
+  padding: 1rem 1.2rem;
 }
-.highlight-box p { margin: 0; font-weight: 700; color: var(--ink); }
+.url-tips h4 { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
+.url-tip-list { display: flex; flex-direction: column; gap: 0.4rem; }
+.url-tip { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; }
+.url-tip .tc { color: var(--muted); font-size: 1rem; }
+
+/* Upload zone */
+.drop-zone {
+  border: 2px dashed var(--border); border-radius: 16px; padding: 3rem 2rem;
+  text-align: center; cursor: pointer; transition: all 0.25s; background: var(--surface);
+  position: relative; overflow: hidden;
+}
+.drop-zone:hover, .drop-zone.dragover { border-color: var(--accent); background: #fff7f5; }
+.drop-zone .dz-icon { font-size: 2.8rem; margin-bottom: 0.8rem; display: block; }
+.drop-zone h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.3rem; }
+.drop-zone p { font-size: 0.8rem; color: var(--muted); }
+.drop-zone .browse-link { color: var(--accent); font-weight: 700; cursor: pointer; }
+
+.preview-area { margin-bottom: 1rem; text-align: center; }
+.preview-area img { max-width: 100%; max-height: 280px; border-radius: 12px; border: 1.5px solid var(--border); object-fit: contain; }
+.preview-area video { max-width: 100%; max-height: 280px; border-radius: 12px; border: 1.5px solid var(--border); }
+.file-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--bg); border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 0.4rem 0.8rem; font-size: 0.78rem; font-weight: 700; margin-top: 0.5rem;
+}
+.file-badge .remove { cursor: pointer; color: var(--muted); margin-left: 0.3rem; }
+.file-badge .remove:hover { color: var(--accent); }
+
+/* Analyze CTA */
+.analyze-cta { margin-top: 1.5rem; display: flex; gap: 0.75rem; align-items: center; }
+.analyze-main-btn {
+  flex: 1; padding: 1rem 2rem; background: var(--accent); border: none;
+  border-radius: 12px; color: #fff; font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 1rem; font-weight: 900; cursor: pointer; transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+  letter-spacing: 0.01em;
+}
+.analyze-main-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.analyze-main-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+.daily-counter {
+  font-size: 0.75rem; color: var(--muted); text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+}
+.upgrade-nudge { color: var(--accent); font-weight: 700; cursor: pointer; }
+
+/* Loading */
+.loading-state { display: none; text-align: center; padding: 3rem 0; }
+.loading-state.active { display: block; }
+.loading-steps { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; margin-top: 1.2rem; }
+.loading-step { font-size: 0.8rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; opacity: 0; transition: opacity 0.4s; }
+.loading-step.active { opacity: 1; color: var(--ink); }
+
+.scan-anim {
+  width: 72px; height: 72px; margin: 0 auto; position: relative;
+  border-radius: 50%; border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+}
+.scan-anim::before {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  border: 2.5px solid transparent; border-top-color: var(--accent);
+  animation: spinr 0.9s linear infinite;
+}
+@keyframes spinr { to { transform: rotate(360deg); } }
+.scan-anim .scan-icon { font-size: 1.6rem; }
+
+/* Results */
+.results-area { display: none; }
+.results-area.active { display: block; animation: slideUp 0.4s cubic-bezier(0.16,1,0.3,1); }
+@keyframes slideUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+
+.verdict-banner {
+  border-radius: 18px; padding: 2rem 2rem 1.5rem; margin-bottom: 1.2rem;
+  border: 1.5px solid; position: relative; overflow: hidden;
+}
+.verdict-banner.ai-gen { border-color: #ffb8a0; background: #fff5f2; }
+.verdict-banner.human { border-color: #a0d4b5; background: #f2fdf6; }
+.verdict-banner.uncertain { border-color: #f0d68a; background: #fffcf0; }
+
+.verdict-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
+.verdict-left { display: flex; align-items: center; gap: 1rem; }
+.verdict-icon { font-size: 2.8rem; }
+.verdict-title { font-size: 1.7rem; font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; }
+.verdict-conf { font-size: 0.75rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
+.verdict-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
+.v-action-btn {
+  padding: 0.5rem 1rem; border-radius: 8px; font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.8rem; font-weight: 800; cursor: pointer; transition: all 0.2s;
+}
+.va-share { background: var(--ink); border: none; color: #fff; }
+.va-share:hover { background: #333; }
+.va-save { background: transparent; border: 1.5px solid var(--border); color: var(--ink); }
+.va-save:hover { border-color: var(--ink); }
+
+/* Score bar */
+.score-bar-section { margin-bottom: 1.5rem; }
+.score-bar-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
+.score-bar-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+.score-pct { font-size: 2rem; font-weight: 900; letter-spacing: -0.04em; }
+.score-track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.score-fill { height: 100%; border-radius: 4px; width: 0; transition: width 1.2s cubic-bezier(0.16,1,0.3,1); }
+.score-fill.ai-fill { background: linear-gradient(90deg, #ff8c6b, #ff4d1c); }
+.score-fill.human-fill { background: linear-gradient(90deg, #57cc88, #1a7a4a); }
+.score-fill.uncertain-fill { background: linear-gradient(90deg, #f5c842, #e8a020); }
+
+/* Signal chips */
+.signals-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+.signal-chip {
+  display: flex; align-items: center; gap: 0.4rem;
+  padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; border: 1.5px solid;
+}
+.signal-chip.high { background: #fff0ee; border-color: #ffb8a0; color: #c0310a; }
+.signal-chip.medium { background: #fff8e8; border-color: #f0d68a; color: #9a6a00; }
+.signal-chip.low { background: #eefaf4; border-color: #a0d4b5; color: #1a7a4a; }
+.signal-chip.unknown { background: var(--bg); border-color: var(--border); color: var(--muted); }
+
+/* Analysis box */
+.analysis-box {
+  background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px;
+  padding: 1.1rem 1.3rem; font-size: 0.88rem; line-height: 1.7; color: #555;
+}
+.analysis-box strong { color: var(--ink); }
+
+/* History */
+.history-section { margin-top: 2rem; }
+.history-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.9rem; }
+.history-header h3 { font-size: 0.9rem; font-weight: 900; letter-spacing: -0.01em; }
+.clear-hist { font-size: 0.78rem; color: var(--muted); cursor: pointer; font-weight: 600; }
+.clear-hist:hover { color: var(--accent); }
+.history-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.history-item {
+  display: flex; align-items: center; gap: 0.9rem;
+  padding: 0.85rem 1.1rem; background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: 11px; cursor: pointer; transition: border-color 0.2s;
+}
+.history-item:hover { border-color: var(--ink); }
+.hi-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.hi-dot.ai-gen { background: var(--accent); }
+.hi-dot.human { background: var(--green); }
+.hi-dot.uncertain { background: var(--yellow); }
+.hi-label { flex: 1; font-size: 0.85rem; font-weight: 700; }
+.hi-meta { font-size: 0.72rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
+/* How it works */
+.how-section { max-width: 860px; margin: 3rem auto 0; padding: 0 1.5rem; }
+.section-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; }
+.how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.how-card {
+  background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px;
+  padding: 1.5rem; position: relative;
+}
+.how-num { font-size: 3rem; font-weight: 900; color: var(--border); letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.8rem; }
+.how-card h4 { font-size: 0.95rem; font-weight: 800; margin-bottom: 0.4rem; }
+.how-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+/* Money section */
+.money-section {
+  max-width: 860px; margin: 2.5rem auto 0; padding: 0 1.5rem;
+  background: var(--ink); color: #fff; border-radius: 20px;
+  overflow: hidden; position: relative;
+}
+.money-inner { padding: 3rem; position: relative; z-index: 1; }
+.money-section::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 260px; height: 260px; border-radius: 50%;
+  background: rgba(255,77,28,0.15);
+}
+.money-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+.money-left h2 { font-size: 1.9rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.8rem; }
+.money-left p { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+.revenue-streams { display: flex; flex-direction: column; gap: 0.75rem; }
+.revenue-item {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.9rem 1.1rem; background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+}
+.rev-icon { font-size: 1.4rem; flex-shrink: 0; }
+.rev-info .rev-name { font-size: 0.85rem; font-weight: 800; }
+.rev-info .rev-amt { font-size: 0.75rem; color: #ff9980; font-family: 'JetBrains Mono', monospace; }
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border); margin-top: 4rem; padding: 2rem 2rem;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+.footer-logo { font-size: 0.9rem; font-weight: 900; letter-spacing: -0.02em; }
+.footer-logo em { color: var(--accent); font-style: normal; }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: 0.8rem; color: var(--muted); text-decoration: none; font-weight: 600; }
+.footer-links a:hover { color: var(--ink); }
+.footer-right { font-size: 0.75rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
+/* ─── PRIVACY PLEDGE ─── */
+.privacy-banner {
+  max-width: 860px; margin: 2.5rem auto 0; padding: 0 1.5rem;
+}
+.privacy-banner-inner {
+  background: #f0fdf6; border: 1.5px solid #a0d4b5;
+  border-radius: 18px; padding: 2.2rem 2.5rem;
+  display: flex; align-items: center; gap: 2rem;
+  position: relative; overflow: hidden;
+}
+.privacy-banner-inner::before {
+  content: '🔒'; font-size: 7rem; position: absolute;
+  right: 1.5rem; top: 50%; transform: translateY(-50%);
+  opacity: 0.07; pointer-events: none;
+}
+.pb-shield { font-size: 2.4rem; flex-shrink: 0; }
+.pb-text h3 { font-size: 1.15rem; font-weight: 900; letter-spacing: -0.02em; color: #0e4d2a; margin-bottom: 0.4rem; }
+.pb-text p { font-size: 0.85rem; color: #2a7a50; line-height: 1.55; }
+.pb-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
+.pb-badge {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  background: #fff; border: 1.5px solid #a0d4b5; border-radius: 20px;
+  padding: 0.3rem 0.8rem; font-size: 0.72rem; font-weight: 800;
+  color: #1a7a4a; letter-spacing: 0.03em;
+}
+
+/* Privacy modal */
+.privacy-modal { max-width: 560px; }
+.privacy-commitment { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.2rem; }
+.pc-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1rem 1.1rem; background: var(--bg);
+  border: 1.5px solid var(--border); border-radius: 12px;
+}
+.pc-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+.pc-text h4 { font-size: 0.88rem; font-weight: 800; margin-bottom: 0.2rem; }
+.pc-text p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+.privacy-seal {
+  margin-top: 1.2rem; padding: 1rem; background: #f0fdf6;
+  border: 1.5px solid #a0d4b5; border-radius: 12px; text-align: center;
+}
+.privacy-seal p { font-size: 0.78rem; color: #2a7a50; font-weight: 700; }
+
+/* Privacy trust strip (topbar) */
+.trust-strip {
+  background: #0e4d2a; color: #a0d4b5;
+  text-align: center; font-size: 0.72rem; font-weight: 700;
+  padding: 0.45rem 1rem; letter-spacing: 0.05em;
+  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+}
+.trust-strip a { color: #6ddfaa; text-decoration: underline; cursor: pointer; }
+
+/* Privacy inline callout in auth modal */
+.auth-privacy-note {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin-top: 0.9rem; padding: 0.65rem 0.9rem;
+  background: #f0fdf6; border: 1.5px solid #a0d4b5;
+  border-radius: 9px; font-size: 0.75rem; color: #1a7a4a; font-weight: 700;
+}
+
+/* Responsive */
+@media (max-width: 680px) {
+  .plans-grid { grid-template-columns: 1fr; }
+  .how-grid { grid-template-columns: 1fr; }
+  .money-grid { grid-template-columns: 1fr; }
+  .input-tabs { grid-template-columns: repeat(2, 1fr); }
+  .share-grid { grid-template-columns: repeat(3, 1fr); }
+  .topbar { padding: 0.8rem 1rem; }
+  .hero-section { padding: 2.5rem 1rem 0; }
+  .money-inner { padding: 2rem; }
+  .verdict-top { flex-direction: column; }
+  .stats-row { gap: 1.5rem; }
+}
 </style>
 </head>
 <body>
 
-<nav class="topbar">
-  <a href="/" class="topbar-logo">Truth<em>Lens</em></a>
-  <a href="/" class="back-btn">← Back to app</a>
-</nav>
-
-<div class="container">
-  <div class="tabs">
-    <button class="tab-btn active" onclick="showDoc('privacy')">🔒 Privacy Policy</button>
-    <button class="tab-btn" onclick="showDoc('terms')">📄 Terms of Service</button>
-  </div>
-
-  <!-- PRIVACY POLICY -->
-  <div class="doc active" id="privacy">
-    <div class="doc-header">
-      <h1>Privacy Policy</h1>
-      <p>Last updated: March 27, 2026 · Effective immediately</p>
+<!-- ═══ PRIVACY PLEDGE MODAL ═══ -->
+<div class="overlay" id="privacyOverlay">
+  <div class="modal privacy-modal">
+    <button class="modal-close" onclick="closeModal('privacyOverlay')">✕</button>
+    <h2>🔒 Our Privacy Pledge</h2>
+    <p class="modal-sub">Written in plain English, not legalese. This is what we actually do with your data.</p>
+    <div class="privacy-commitment">
+      <div class="pc-item">
+        <span class="pc-icon">🚫</span>
+        <div class="pc-text">
+          <h4>We never sell your data. Ever.</h4>
+          <p>Your name, email, and the content you scan are yours. We will never sell, rent, license, or trade your personal data to advertisers, data brokers, or any third party — period. Our business model is subscriptions, not you.</p>
+        </div>
+      </div>
+      <div class="pc-item">
+        <span class="pc-icon">🗑️</span>
+        <div class="pc-text">
+          <h4>Scanned content is not stored or trained on</h4>
+          <p>The text, images, and videos you submit for analysis are sent to our AI engine and then discarded. We do not store your content, use it to train models, or share it with anyone.</p>
+        </div>
+      </div>
+      <div class="pc-item">
+        <span class="pc-icon">📧</span>
+        <div class="pc-text">
+          <h4>No spam. No marketing to third parties.</h4>
+          <p>We only email you about your account — receipts, security alerts, and product updates if you opt in. We will never share your email with other companies for their marketing.</p>
+        </div>
+      </div>
+      <div class="pc-item">
+        <span class="pc-icon">🍪</span>
+        <div class="pc-text">
+          <h4>Minimal, functional cookies only</h4>
+          <p>We use cookies strictly to keep you logged in and remember your preferences. No ad-tracking cookies, no cross-site fingerprinting, no behavioral profiling.</p>
+        </div>
+      </div>
+      <div class="pc-item">
+        <span class="pc-icon">🗂️</span>
+        <div class="pc-text">
+          <h4>You control your data</h4>
+          <p>Request a full export of your data at any time. Delete your account and all associated data in one click. No "processing period," no friction — immediate and complete.</p>
+        </div>
+      </div>
     </div>
-
-    <div class="privacy-bar">
-      <span>🛡️</span>
-      <p>Plain English summary: We never sell your data. We never share it with advertisers. We only collect what's necessary to run the service. You can delete everything at any time.</p>
+    <div class="privacy-seal">
+      <p>🛡️ TruthLens earns money through subscriptions — not by monetizing your personal data. That's the whole model.</p>
     </div>
-
-    <h2>1. Who We Are</h2>
-    <p>TruthLens ("we," "us," or "our") is an AI content detection service based in the United States. You can reach us at <a href="mailto:support@truthlensdetect.com">support@truthlensdetect.com</a>.</p>
-
-    <h2>2. What Information We Collect</h2>
-    <h3>Information you provide</h3>
-    <ul>
-      <li><strong>Account information:</strong> Your name and email address when you create an account</li>
-      <li><strong>Payment information:</strong> Processed securely by Stripe — we never see or store your card details</li>
-      <li><strong>Content you submit:</strong> Text, images, or URLs you submit for analysis</li>
-    </ul>
-    <h3>Information collected automatically</h3>
-    <ul>
-      <li>Basic usage data (pages visited, scan count) to improve the service</li>
-      <li>Browser type and device type for compatibility</li>
-      <li>IP address for security and fraud prevention</li>
-    </ul>
-
-    <h2>3. What We Do NOT Collect</h2>
-    <div class="highlight-box">
-      <p>✅ We do not use advertising cookies or tracking pixels<br>
-      ✅ We do not build behavioral profiles<br>
-      ✅ We do not collect data for advertising purposes<br>
-      ✅ We do not use fingerprinting or cross-site tracking</p>
-    </div>
-
-    <h2>4. How We Use Your Information</h2>
-    <ul>
-      <li>To provide and operate the TruthLens service</li>
-      <li>To process payments and manage your subscription</li>
-      <li>To send you account-related emails (receipts, security alerts)</li>
-      <li>To improve detection accuracy and service quality</li>
-      <li>To comply with legal obligations</li>
-    </ul>
-
-    <h2>5. Content You Submit for Analysis</h2>
-    <p><strong>We do not store the content you submit for analysis.</strong> Text, images, and URLs you submit are sent to our AI engine for real-time analysis and then discarded. We do not use your submitted content to train AI models, share it with third parties, or retain it beyond the immediate analysis session.</p>
-
-    <h2>6. We Never Sell Your Data</h2>
-    <div class="highlight-box">
-      <p>🚫 TruthLens does not sell, rent, license, or trade your personal information to any third party — ever. Our business model is subscriptions. You are our customer, not our product.</p>
-    </div>
-
-    <h2>7. Data Sharing</h2>
-    <p>We only share your data with:</p>
-    <ul>
-      <li><strong>Stripe</strong> — payment processing (their privacy policy applies to payment data)</li>
-      <li><strong>Supabase</strong> — secure database hosting for your account information</li>
-      <li><strong>Anthropic</strong> — AI analysis engine (content is processed but not retained)</li>
-      <li><strong>Netlify</strong> — website hosting</li>
-      <li><strong>Law enforcement</strong> — only if required by valid legal process</li>
-    </ul>
-    <p>We do not share your data with advertisers, data brokers, or marketing companies.</p>
-
-    <h2>8. Cookies</h2>
-    <p>We use only functional cookies necessary to keep you logged in and remember your preferences. We do not use advertising or tracking cookies.</p>
-
-    <h2>9. Your Rights</h2>
-    <ul>
-      <li><strong>Access:</strong> Request a copy of all data we hold about you</li>
-      <li><strong>Deletion:</strong> Delete your account and all associated data at any time</li>
-      <li><strong>Correction:</strong> Update or correct your personal information</li>
-      <li><strong>Portability:</strong> Export your data in a readable format</li>
-      <li><strong>Opt-out:</strong> Unsubscribe from marketing emails at any time</li>
-    </ul>
-    <p>To exercise any of these rights, email us at <a href="mailto:support@truthlensdetect.com">support@truthlensdetect.com</a>.</p>
-
-    <h2>10. Data Security</h2>
-    <p>We use industry-standard security measures including HTTPS encryption, secure authentication, and access controls. However, no internet transmission is 100% secure. We encourage you to use a strong, unique password.</p>
-
-    <h2>11. Children's Privacy</h2>
-    <p>TruthLens is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us immediately.</p>
-
-    <h2>12. Changes to This Policy</h2>
-    <p>We may update this policy occasionally. We will notify you of significant changes by email or a prominent notice on our website. Continued use of TruthLens after changes constitutes acceptance of the updated policy.</p>
-
-    <h2>13. Contact Us</h2>
-    <p>Questions about this privacy policy? Contact us at:<br>
-    <strong>Email:</strong> <a href="mailto:support@truthlensdetect.com">support@truthlensdetect.com</a><br>
-    <strong>Address:</strong> California, United States</p>
-  </div>
-
-  <!-- TERMS OF SERVICE -->
-  <div class="doc" id="terms">
-    <div class="doc-header">
-      <h1>Terms of Service</h1>
-      <p>Last updated: March 27, 2026 · Effective immediately</p>
-    </div>
-
-    <h2>1. Acceptance of Terms</h2>
-    <p>By accessing or using TruthLens ("the Service"), you agree to be bound by these Terms of Service. If you do not agree, please do not use the Service.</p>
-
-    <h2>2. Description of Service</h2>
-    <p>TruthLens is an AI-powered content detection platform that analyzes text, images, and video to estimate the probability that content was generated by artificial intelligence. Results are probabilistic estimates and not definitive proof of AI generation.</p>
-
-    <div class="highlight-box">
-      <p>⚠️ Important: TruthLens results are analytical estimates only — not legal evidence, not definitive conclusions. Always apply human judgment alongside our results.</p>
-    </div>
-
-    <h2>3. Account Registration</h2>
-    <ul>
-      <li>You must provide accurate and complete information when creating an account</li>
-      <li>You are responsible for maintaining the security of your account and password</li>
-      <li>You must be at least 13 years old to use this service</li>
-      <li>One person may not maintain more than one free account</li>
-    </ul>
-
-    <h2>4. Subscription Plans and Billing</h2>
-    <ul>
-      <li>Free accounts are limited to 5 scans per day</li>
-      <li>Pro accounts ($12/month) include unlimited scans and additional features</li>
-      <li>Enterprise accounts ($49/month) include API access and team features</li>
-      <li>Subscriptions renew automatically unless cancelled</li>
-      <li>You may cancel at any time — cancellation takes effect at the end of the billing period</li>
-      <li>We do not offer refunds for partial months</li>
-    </ul>
-
-    <h2>5. Acceptable Use</h2>
-    <p>You agree NOT to use TruthLens to:</p>
-    <ul>
-      <li>Violate any applicable laws or regulations</li>
-      <li>Submit content that infringes on third-party intellectual property rights</li>
-      <li>Attempt to reverse-engineer or circumvent our detection systems</li>
-      <li>Use automated tools to abuse the free tier limits</li>
-      <li>Submit illegal content including CSAM or content promoting violence</li>
-      <li>Resell or redistribute our service without written permission</li>
-    </ul>
-
-    <h2>6. Accuracy Disclaimer</h2>
-    <p>TruthLens provides probabilistic AI detection results. We do not guarantee 100% accuracy. Results should not be used as sole evidence in legal proceedings, academic disciplinary actions, or employment decisions without additional verification.</p>
-
-    <h2>7. Intellectual Property</h2>
-    <p>TruthLens and its original content, features, and functionality are owned by TruthLens and are protected by copyright and other intellectual property laws. You retain ownership of any content you submit for analysis.</p>
-
-    <h2>8. Limitation of Liability</h2>
-    <p>To the maximum extent permitted by law, TruthLens shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the service, even if we have been advised of the possibility of such damages.</p>
-
-    <h2>9. Termination</h2>
-    <p>We reserve the right to suspend or terminate your account if you violate these Terms. You may delete your account at any time. Upon termination, your right to use the Service will immediately cease.</p>
-
-    <h2>10. Governing Law</h2>
-    <p>These Terms are governed by the laws of the State of California, United States, without regard to conflict of law principles.</p>
-
-    <h2>11. Changes to Terms</h2>
-    <p>We may update these Terms occasionally. We will notify you of significant changes. Continued use of the Service after changes constitutes acceptance of the updated Terms.</p>
-
-    <h2>12. Contact</h2>
-    <p>Questions about these Terms? Contact us at:<br>
-    <strong>Email:</strong> <a href="mailto:support@truthlensdetect.com">support@truthlensdetect.com</a><br>
-    <strong>Address:</strong> California, United States</p>
   </div>
 </div>
 
+<!-- ═══ AUTH MODAL ═══ -->
+<div class="overlay" id="authOverlay">
+  <div class="modal" id="authModal">
+    <button class="modal-close" onclick="closeModal('authOverlay')">✕</button>
+    <h2 id="authTitle">Create account</h2>
+    <p class="modal-sub" id="authSub">Join 50,000+ users detecting AI content</p>
+
+    <div class="social-btns">
+      <button class="social-btn" onclick="socialLogin('Google')">🌐 Google</button>
+      <button class="social-btn" onclick="socialLogin('Twitter/X')">𝕏 Twitter/X</button>
+    </div>
+    <div class="divider"><span></span><p>or email</p><span></span></div>
+
+    <div id="signupFields">
+      <div class="form-field">
+        <label>Name</label>
+        <input type="text" id="authName" placeholder="Your name">
+      </div>
+    </div>
+    <div class="form-field">
+      <label>Email</label>
+      <input type="email" id="authEmail" placeholder="you@example.com">
+    </div>
+    <div class="form-field">
+      <label>Password</label>
+      <input type="password" id="authPassword" placeholder="••••••••">
+    </div>
+    <button class="btn-primary" onclick="submitAuth()" id="authSubmitBtn">Create free account →</button>
+    <div class="modal-switch" id="authSwitch">
+      Already have an account? <a onclick="toggleAuthMode()">Sign in</a>
+    </div>
+    <div class="auth-privacy-note">
+      🔒 We never sell your data. No ads. No third-party sharing. <a onclick="closeModal('authOverlay');openModal('privacyOverlay')" style="color:#0e7a40;cursor:pointer;text-decoration:underline;font-weight:800;">Our pledge →</a>
+    </div>
+  </div>
+</div>
+<div class="overlay" id="plansOverlay">
+  <div class="modal plans-modal" style="max-width:820px">
+    <button class="modal-close" onclick="closeModal('plansOverlay')">✕</button>
+    <h2>Upgrade TruthLens</h2>
+    <p class="modal-sub">Unlock unlimited scans, API access, and priority detection</p>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">$0 <span>/mo</span></div>
+        <div class="plan-desc">For casual checking</div>
+        <ul class="plan-features">
+          <li>5 scans per day</li>
+          <li>Text & image detection</li>
+          <li>Basic signals report</li>
+          <li class="no">URL scanning</li>
+          <li class="no">Video detection</li>
+          <li class="no">API access</li>
+          <li class="no">Scan history</li>
+          <li class="no">Priority support</li>
+        </ul>
+        <button class="plan-btn outline" onclick="closeModal('plansOverlay')">Current plan</button>
+      </div>
+      <div class="plan-card popular">
+        <div class="popular-tag">MOST POPULAR</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">$12 <span>/mo</span></div>
+        <div class="plan-desc">For journalists & researchers</div>
+        <ul class="plan-features">
+          <li>Unlimited scans</li>
+          <li>Text, image & video</li>
+          <li>Full signals + PDF report</li>
+          <li>URL & website scanning</li>
+          <li>Video deepfake detection</li>
+          <li class="no">API access</li>
+          <li>30-day scan history</li>
+          <li>Email support</li>
+        </ul>
+        <button class="plan-btn filled"  onclick="window.open('https://buy.stripe.com/eVq28t0NBdH24aDaXjcwg00','_blank')">Start Pro — $12/mo →</button>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price">$49 <span>/mo</span></div>
+        <div class="plan-desc">For teams & platforms</div>
+        <ul class="plan-features">
+          <li>Unlimited scans</li>
+          <li>All media types + bulk</li>
+          <li>Full report + white-label</li>
+          <li>URL scanning + sitemap</li>
+          <li>Advanced video forensics</li>
+          <li>REST API + webhooks</li>
+          <li>Unlimited scan history</li>
+          <li>Priority + SLA support</li>
+        </ul>
+        <button class="plan-btn outline"  onclick="window.open('https://buy.stripe.com/8x28wR3ZN32ogXp3uRcwg01','_blank')">Contact sales →</button>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;padding:0.9rem 1.2rem;background:#f0fdf6;border:1.5px solid #a0d4b5;border-radius:12px;display:flex;align-items:center;gap:0.8rem;">
+      <span style="font-size:1.2rem;">🔒</span>
+      <p style="font-size:0.78rem;color:#1a7a4a;font-weight:700;">All plans: zero data selling, zero ad tracking, zero third-party sharing. <a onclick="closeModal('plansOverlay');openModal('privacyOverlay')" style="text-decoration:underline;cursor:pointer;color:#0e5c32;">Read our full privacy pledge →</a></p>
+    </div>
+  </div>
+</div>
+<div class="overlay" id="shareOverlay">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('shareOverlay')">✕</button>
+    <h2>Share Result</h2>
+    <p class="modal-sub">Spread awareness — let others know about this content</p>
+    <div class="share-preview-card" id="sharePreviewCard">
+      <div class="sp-title" id="shareVerdictTitle">—</div>
+      <div class="sp-sub" id="shareVerdictSub">via TruthLens AI Detector</div>
+    </div>
+    <div class="share-grid">
+      <div class="share-btn-item" onclick="shareToX()">
+        <span class="icon">𝕏</span><span class="lbl">Twitter/X</span>
+      </div>
+      <div class="share-btn-item" onclick="shareToLinkedIn()">
+        <span class="icon">💼</span><span class="lbl">LinkedIn</span>
+      </div>
+      <div class="share-btn-item" onclick="shareToFacebook()">
+        <span class="icon">📘</span><span class="lbl">Facebook</span>
+      </div>
+      <div class="share-btn-item" onclick="shareToReddit()">
+        <span class="icon">🔴</span><span class="lbl">Reddit</span>
+      </div>
+      <div class="share-btn-item" onclick="shareToWhatsApp()">
+        <span class="icon">💬</span><span class="lbl">WhatsApp</span>
+      </div>
+      <div class="share-btn-item" onclick="shareToTelegram()">
+        <span class="icon">✈️</span><span class="lbl">Telegram</span>
+      </div>
+      <div class="share-btn-item" onclick="shareNative()">
+        <span class="icon">📤</span><span class="lbl">More</span>
+      </div>
+      <div class="share-btn-item" onclick="downloadReport()">
+        <span class="icon">📄</span><span class="lbl">PDF Report</span>
+      </div>
+    </div>
+    <div class="share-link-row">
+      <input class="share-link-input" id="shareLinkInput" value="https://truthlens.ai/r/a8x2k9" readonly>
+      <button class="copy-btn" onclick="copyLink()">Copy link</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TRUST STRIP ═══ -->
+<div class="trust-strip">
+  🔒 Your data is never sold to third parties &nbsp;·&nbsp; No ad tracking &nbsp;·&nbsp; Scanned content is never stored &nbsp;·&nbsp;
+  <a onclick="openModal('privacyOverlay')">Read our privacy pledge</a>
+</div>
+
+<!-- ═══ TOPBAR ═══ -->
+<nav class="topbar">
+  <div class="topbar-logo">Truth<em>Lens</em><sup>PRO</sup></div>
+  <div class="topbar-right" id="topbarRight">
+    <button class="topbar-btn tb-ghost" onclick="openModal('privacyOverlay')" style="display:flex;align-items:center;gap:0.35rem;color:var(--green);border-color:rgba(26,122,74,0.3);">🔒 Privacy</button>
+    <button class="topbar-btn tb-ghost" onclick="openModal('plansOverlay')">Pricing</button>
+    <button class="topbar-btn tb-ghost" onclick="openAuthModal('signin')">Sign in</button>
+    <button class="topbar-btn tb-fill" onclick="openAuthModal('signup')">Get started free →</button>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero-section">
+  <div style="display:flex;align-items:center;justify-content:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem;">
+    <div class="hero-eyebrow" style="margin-bottom:0"><span class="dot"></span>Powered by Claude AI</div>
+    <div class="hero-eyebrow" style="margin-bottom:0;border-color:rgba(26,122,74,0.35);background:#f0fdf6;color:#1a7a4a;cursor:pointer;" onclick="openModal('privacyOverlay')">🔒 Zero data selling — ever</div>
+  </div>
+  <h1>Spot what's <span class="strike">real</span><br>in seconds</h1>
+  <p>Paste text, upload images or video, or scan any URL — TruthLens detects AI-generated content with forensic-grade analysis.</p>
+  <div class="stats-row">
+    <div class="stat-item"><div class="num">2.4M+</div><div class="lbl">Scans done</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><div class="num">94%</div><div class="lbl">Accuracy</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><div class="num">$0</div><div class="lbl">Data sold</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><div class="num">50K+</div><div class="lbl">Users</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><div class="num">&lt;3s</div><div class="lbl">Avg. scan time</div></div>
+  </div>
+</div>
+
+<!-- ═══ APP ═══ -->
+<div class="app-container">
+
+  <!-- Input Type Tabs -->
+  <div class="input-tabs">
+    <button class="input-tab active" onclick="switchPanel('text')">
+      <span class="ti-icon">📝</span> Text
+    </button>
+    <button class="input-tab" onclick="switchPanel('url')">
+      <span class="ti-icon">🔗</span> URL
+    </button>
+    <button class="input-tab" onclick="switchPanel('image')">
+      <span class="ti-icon">🖼️</span> Image
+    </button>
+    <button class="input-tab pro-locked" onclick="switchPanel('video')">
+      <span class="ti-icon">🎬</span> Video
+      <span class="pro-lock">PRO</span>
+    </button>
+  </div>
+
+  <!-- TEXT PANEL -->
+  <div class="panel active" id="panel-text">
+    <div class="text-area-wrap">
+      <textarea id="textInput" placeholder="Paste an article, email, essay, social post, or any text you want to verify for AI generation…" maxlength="10000" oninput="updateCharCount()"></textarea>
+    </div>
+    <div class="textarea-toolbar">
+      <span class="char-count"><span id="charCount">0</span>/10,000</span>
+      <button class="paste-btn" onclick="pasteFromClipboard()">📋 Paste from clipboard</button>
+    </div>
+  </div>
+
+  <!-- URL PANEL -->
+  <div class="panel" id="panel-url">
+    <div class="url-input-row">
+      <input type="url" id="urlInput" placeholder="https://example.com/article — paste any webpage URL" />
+      <button class="url-fetch-btn" onclick="fetchURL()">Fetch →</button>
+    </div>
+    <div class="url-tips">
+      <h4>Works great with</h4>
+      <div class="url-tip-list">
+        <div class="url-tip"><span class="tc">📰</span> News articles (CNN, NYT, BBC, Reuters…)</div>
+        <div class="url-tip"><span class="tc">📝</span> Blog posts &amp; Medium articles</div>
+        <div class="url-tip"><span class="tc">🐦</span> Social media posts &amp; threads</div>
+        <div class="url-tip"><span class="tc">📄</span> Product descriptions &amp; landing pages</div>
+        <div class="url-tip"><span class="tc">🎓</span> Academic papers &amp; research summaries</div>
+      </div>
+    </div>
+    <div id="fetchedTextArea" style="display:none; margin-top:1rem;">
+      <div style="font-size:0.78rem; font-weight:700; color:var(--muted); margin-bottom:0.4rem; text-transform:uppercase; letter-spacing:0.06em;">Fetched content preview</div>
+      <textarea id="fetchedText" style="width:100%; min-height:160px; padding:1rem; background:var(--surface); border:1.5px solid var(--border); border-radius:12px; font-family:'Cabinet Grotesk',sans-serif; font-size:0.88rem; color:var(--ink); line-height:1.6; resize:vertical; outline:none;" readonly></textarea>
+    </div>
+  </div>
+
+  <!-- IMAGE PANEL -->
+  <div class="panel" id="panel-image">
+    <div class="drop-zone" id="imageDropZone"
+      onclick="document.getElementById('imgFile').click()"
+      ondragover="dz(event,'imageDropZone')"
+      ondragleave="dzl('imageDropZone')"
+      ondrop="dzDrop(event,'imgFile','imageDropZone')">
+      <span class="dz-icon">🖼️</span>
+      <h3>Drop your image here</h3>
+      <p>or <span class="browse-link">browse files</span> — PNG, JPG, WEBP, GIF up to 20MB</p>
+    </div>
+    <input type="file" id="imgFile" accept="image/*" style="display:none" onchange="loadPreview('imgFile','imgPreview','imageDropZone')">
+    <div class="preview-area" id="imgPreview"></div>
+  </div>
+
+  <!-- VIDEO PANEL -->
+  <div class="panel" id="panel-video">
+    <div class="drop-zone" id="videoDropZone"
+      onclick="requirePro()"
+      ondragover="dz(event,'videoDropZone')"
+      ondragleave="dzl('videoDropZone')"
+      ondrop="requirePro()">
+      <span class="dz-icon">🎬</span>
+      <h3>Video detection is a Pro feature</h3>
+      <p>Upgrade to detect AI-generated video, deepfakes, and synthetic media</p>
+      <button onclick="event.stopPropagation();openModal('plansOverlay')" style="margin-top:1rem;padding:0.6rem 1.4rem;background:var(--accent);border:none;border-radius:8px;color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:0.88rem;cursor:pointer;">Upgrade to Pro →</button>
+    </div>
+    <input type="file" id="vidFile" accept="video/*" style="display:none" onchange="loadPreview('vidFile','vidPreview','videoDropZone','video')">
+    <div class="preview-area" id="vidPreview"></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="analyze-cta">
+    <button class="analyze-main-btn" id="mainAnalyzeBtn" onclick="runAnalysis()">
+      <span>🔍</span> <span id="analyzeLabel">Analyze Content</span>
+    </button>
+  </div>
+  <div class="daily-counter" id="dailyCounter">
+    <span id="scansLeft">5</span> free scans remaining today ·
+    <span class="upgrade-nudge" onclick="openModal('plansOverlay')">Upgrade for unlimited</span>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-state" id="loadingState">
+    <div class="scan-anim"><span class="scan-icon">🔍</span></div>
+    <div class="loading-steps">
+      <div class="loading-step" id="ls0">Extracting content…</div>
+      <div class="loading-step" id="ls1">Scanning linguistic fingerprints…</div>
+      <div class="loading-step" id="ls2">Measuring entropy & burstiness…</div>
+      <div class="loading-step" id="ls3">Cross-referencing AI model signatures…</div>
+      <div class="loading-step" id="ls4">Generating forensic report…</div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div class="results-area" id="resultsArea"></div>
+
+  <!-- History -->
+  <div class="history-section" id="historySection" style="display:none">
+    <div class="history-header">
+      <h3>Recent scans</h3>
+      <span class="clear-hist" onclick="clearHistory()">Clear all</span>
+    </div>
+    <div class="history-list" id="historyList"></div>
+  </div>
+
+</div>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<div class="how-section">
+  <div class="section-label">How it works</div>
+  <div class="how-grid">
+    <div class="how-card"><div class="how-num">01</div><h4>Submit content</h4><p>Paste text, drop an image, enter a URL, or upload video. We handle the ingestion.</p></div>
+    <div class="how-card"><div class="how-num">02</div><h4>Forensic analysis</h4><p>Our Claude-powered engine checks perplexity, burstiness, visual artifacts, compression signatures & more.</p></div>
+    <div class="how-card"><div class="how-num">03</div><h4>Get your verdict</h4><p>A confidence-scored report in &lt;3 seconds. Share it, save it, or export as PDF.</p></div>
+  </div>
+</div>
+
+<!-- ═══ PRIVACY BANNER ═══ -->
+<div class="privacy-banner">
+  <div class="privacy-banner-inner">
+    <span class="pb-shield">🛡️</span>
+    <div class="pb-text">
+      <h3>We earn money from subscriptions — not from selling you.</h3>
+      <p>Unlike ad-supported platforms, TruthLens has exactly one business model: people who find us useful pay us directly. That means your data, your scanned content, and your behavior on this site are <strong>never sold, rented, or shared</strong> with advertisers or data brokers. What you scan stays between you and our AI.</p>
+      <div class="pb-badges">
+        <span class="pb-badge">✓ No data sales</span>
+        <span class="pb-badge">✓ No ad tracking</span>
+        <span class="pb-badge">✓ Content not stored</span>
+        <span class="pb-badge">✓ No third-party sharing</span>
+        <span class="pb-badge">✓ Delete anytime</span>
+        <span class="pb-badge" style="cursor:pointer;" onclick="openModal('privacyOverlay')">→ Full privacy pledge</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ REVENUE / MONEY ═══ -->
+<div style="max-width:860px;margin:2.5rem auto 0;padding:0 1.5rem;">
+  <div class="money-section">
+    <div class="money-inner">
+      <div class="money-grid">
+        <div class="money-left">
+          <div class="section-label" style="color:rgba(255,255,255,0.4)">Built to earn</div>
+          <h2>Multiple revenue streams, built in</h2>
+          <p>TruthLens is designed to make money. Every feature drives a conversion path — from free to paid, from users to enterprise deals.</p>
+        </div>
+        <div class="revenue-streams">
+          <div class="revenue-item">
+            <span class="rev-icon">💳</span>
+            <div class="rev-info">
+              <div class="rev-name">Pro Subscriptions</div>
+              <div class="rev-amt">$12/mo · unlimited scans</div>
+            </div>
+          </div>
+          <div class="revenue-item">
+            <span class="rev-icon">🏢</span>
+            <div class="rev-info">
+              <div class="rev-name">Enterprise Licenses</div>
+              <div class="rev-amt">$49–499/mo · teams & API</div>
+            </div>
+          </div>
+          <div class="revenue-item">
+            <span class="rev-icon">⚡</span>
+            <div class="rev-info">
+              <div class="rev-name">API Pay-per-scan</div>
+              <div class="rev-amt">$0.01/scan for developers</div>
+            </div>
+          </div>
+          <div class="revenue-item" style="border-color:rgba(26,122,74,0.3);background:rgba(26,122,74,0.06);">
+            <span class="rev-icon">🛡️</span>
+            <div class="rev-info">
+              <div class="rev-name" style="color:#1a7a4a;">Privacy-First Trust</div>
+              <div class="rev-amt" style="color:#2a9a5a;">No data selling = higher retention & word-of-mouth</div>
+            </div>
+          </div>
+            <div class="rev-info">
+              <div class="rev-name">Bulk Report Credits</div>
+              <div class="rev-amt">$9 for 100 PDF exports</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Truth<em>Lens</em></div>
+  <div class="footer-links">
+    <a href="#" onclick="openModal('privacyOverlay');return false">🔒 Privacy Pledge</a>
+    <a href="#">Terms</a>
+    <a href="#">API Docs</a>
+    <a href="#">Blog</a>
+    <a href="#" onclick="openModal('plansOverlay');return false">Pricing</a>
+  </div>
+  <div class="footer-right">© 2026 TruthLens · We never sell your data</div>
+</footer>
+
 <script>
-function showDoc(id) {
-  document.querySelectorAll('.doc').forEach(d => d.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  event.target.classList.add('active');
+/* ── STATE ── */
+let appState = {
+  user: null,
+  plan: 'free',
+  scansToday: 0,
+  maxFreeScans: 5,
+  currentTab: 'text',
+  lastResult: null,
+  history: JSON.parse(localStorage.getItem('tl_history') || '[]'),
+  authMode: 'signup'
+};
+
+/* ── MODAL ── */
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
 }
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+function openAuthModal(mode) {
+  appState.authMode = mode;
+  const isSignup = mode === 'signup';
+  document.getElementById('authTitle').textContent = isSignup ? 'Create account' : 'Welcome back';
+  document.getElementById('authSub').textContent = isSignup ? 'Join 50,000+ users detecting AI content' : 'Sign in to your TruthLens account';
+  document.getElementById('signupFields').style.display = isSignup ? 'block' : 'none';
+  document.getElementById('authSubmitBtn').textContent = isSignup ? 'Create free account →' : 'Sign in →';
+  document.getElementById('authSwitch').innerHTML = isSignup
+    ? 'Already have an account? <a onclick="toggleAuthMode()">Sign in</a>'
+    : 'New here? <a onclick="toggleAuthMode()">Create an account</a>';
+  openModal('authOverlay');
+}
+function toggleAuthMode() {
+  openAuthModal(appState.authMode === 'signup' ? 'signin' : 'signup');
+}
+/* ── SUPABASE AUTH ── */
+const SUPABASE_URL = 'https://teiqxbapfjbnsaifbspa.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRlaXF4YmFwZmpibnNhaWZic3BhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2MTU0ODQsImV4cCI6MjA5MDE5MTQ4NH0.PkaTX9NB7BojxAm1X29foW8IhrWN6vgN3FtYu5D3Xjw';
+
+async function supabaseFetch(endpoint, options = {}) {
+  const res = await fetch(`${SUPABASE_URL}/auth/v1${endpoint}`, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      ...options.headers
+    }
+  });
+  return res.json();
+}
+
+async function submitAuth() {
+  const email = document.getElementById('authEmail').value.trim();
+  const password = document.getElementById('authPassword').value;
+  const name = appState.authMode === 'signup' ? document.getElementById('authName').value.trim() : email.split('@')[0];
+  if (!email || !password) { showToast('Please enter your email and password.'); return; }
+
+  const btn = document.getElementById('authSubmitBtn');
+  btn.textContent = 'Please wait...'; btn.disabled = true;
+
+  try {
+    if (appState.authMode === 'signup') {
+      const data = await supabaseFetch('/signup', {
+        method: 'POST',
+        body: JSON.stringify({ email, password, data: { full_name: name } })
+      });
+      if (data.error) { showToast(data.error.message || 'Signup failed'); }
+      else { showToast('Check your email to confirm your account! 📧'); closeModal('authOverlay'); }
+    } else {
+      const data = await supabaseFetch('/token?grant_type=password', {
+        method: 'POST',
+        body: JSON.stringify({ email, password })
+      });
+      if (data.error) { showToast(data.error.message || 'Login failed'); }
+      else {
+        const userName = data.user?.user_metadata?.full_name || email.split('@')[0];
+        loginUser(userName, email, 'free', data.access_token);
+        closeModal('authOverlay');
+      }
+    }
+  } catch(e) {
+    showToast('Connection error. Please try again.');
+  }
+  btn.textContent = appState.authMode === 'signup' ? 'Create free account →' : 'Sign in →';
+  btn.disabled = false;
+}
+
+async function socialLogin(provider) {
+  showToast(`${provider} login coming soon! Use email for now.`);
+}
+
+function loginUser(name, email, plan, token) {
+  appState.user = { name, email, token };
+  appState.plan = plan;
+  renderTopbar();
+  showToast(`Welcome, ${name}! 👋`);
+  renderHistory();
+  try { localStorage.setItem('tl_user', JSON.stringify({ name, email, plan })); } catch(e) {}
+}
+
+// Auto-login from localStorage
+try {
+  const saved = JSON.parse(localStorage.getItem('tl_user'));
+  if (saved) loginUser(saved.name, saved.email, saved.plan || 'free');
+} catch(e) {}
+
+/* ── TOPBAR ── */
+function renderTopbar() {
+  const r = document.getElementById('topbarRight');
+  if (!appState.user) {
+    r.innerHTML = `
+      <button class="topbar-btn tb-ghost" onclick="openModal('plansOverlay')">Pricing</button>
+      <button class="topbar-btn tb-ghost" onclick="openAuthModal('signin')">Sign in</button>
+      <button class="topbar-btn tb-fill" onclick="openAuthModal('signup')">Get started free →</button>`;
+  } else {
+    const initial = appState.user.name[0].toUpperCase();
+    const planTag = appState.plan === 'pro' ? 'PRO' : appState.plan === 'enterprise' ? 'TEAM' : 'FREE';
+    r.innerHTML = `
+      <button class="topbar-btn tb-ghost" onclick="openModal('privacyOverlay')" style="display:flex;align-items:center;gap:0.35rem;color:var(--green);border-color:rgba(26,122,74,0.3);">🔒 Privacy</button>
+      <button class="topbar-btn tb-ghost" onclick="openModal('plansOverlay')">Upgrade</button>
+      <div class="user-pill" onclick="openModal('plansOverlay')">
+        <div class="user-avatar">${initial}</div>
+        <span class="user-name">${appState.user.name.split(' ')[0]}</span>
+        <span class="user-plan-tag ${appState.plan}">${planTag}</span>
+      </div>`;
+  }
+}
+
+/* ── TABS ── */
+function switchPanel(tab) {
+  appState.currentTab = tab;
+  document.querySelectorAll('.input-tab').forEach((t,i) => {
+    t.classList.toggle('active', ['text','url','image','video'][i] === tab);
+  });
+  ['text','url','image','video'].forEach(p => {
+    document.getElementById('panel-'+p).classList.toggle('active', p === tab);
+  });
+  document.getElementById('resultsArea').classList.remove('active');
+  document.getElementById('loadingState').classList.remove('active');
+  const labels = { text:'Analyze Text', url:'Analyze URL', image:'Analyze Image', video:'Analyze Video' };
+  document.getElementById('analyzeLabel').textContent = labels[tab];
+}
+
+/* ── CHAR COUNT ── */
+function updateCharCount() {
+  document.getElementById('charCount').textContent = document.getElementById('textInput').value.length;
+}
+
+async function pasteFromClipboard() {
+  try {
+    const t = await navigator.clipboard.readText();
+    document.getElementById('textInput').value = t;
+    updateCharCount();
+  } catch { showToast('Paste manually with Ctrl/Cmd+V'); }
+}
+
+/* ── DROP ZONE ── */
+function dz(e, id) { e.preventDefault(); document.getElementById(id).classList.add('dragover'); }
+function dzl(id) { document.getElementById(id).classList.remove('dragover'); }
+function dzDrop(e, inputId, zoneId) {
+  e.preventDefault(); dzl(zoneId);
+  const f = e.dataTransfer.files[0]; if (!f) return;
+  const inp = document.getElementById(inputId);
+  const dt = new DataTransfer(); dt.items.add(f); inp.files = dt.files;
+  const isVid = inputId === 'vidFile';
+  loadPreview(inputId, isVid?'vidPreview':'imgPreview', zoneId, isVid?'video':'');
+}
+function loadPreview(inputId, previewId, zoneId, type) {
+  const f = document.getElementById(inputId).files[0]; if (!f) return;
+  const url = URL.createObjectURL(f);
+  const preview = document.getElementById(previewId);
+  dzl(zoneId);
+  if (type === 'video') {
+    preview.innerHTML = `<video src="${url}" controls class="preview-area" style="max-width:100%;max-height:260px;border-radius:12px;border:1.5px solid var(--border)"></video><div class="file-badge">🎬 ${f.name} <span class="remove" onclick="clearPreview('${previewId}','${inputId}')">✕</span></div>`;
+  } else {
+    preview.innerHTML = `<img src="${url}" style="max-width:100%;max-height:260px;border-radius:12px;border:1.5px solid var(--border);object-fit:contain"><div class="file-badge">🖼️ ${f.name} <span class="remove" onclick="clearPreview('${previewId}','${inputId}')">✕</span></div>`;
+  }
+  document.getElementById(zoneId).style.display = 'none';
+}
+function clearPreview(previewId, inputId) {
+  document.getElementById(previewId).innerHTML = '';
+  document.getElementById(inputId).value = '';
+  const zoneMap = { imgPreview: 'imageDropZone', vidPreview: 'videoDropZone' };
+  document.getElementById(zoneMap[previewId]).style.display = '';
+}
+
+/* ── URL FETCH ── */
+async function fetchURL() {
+  const url = document.getElementById('urlInput').value.trim();
+  if (!url || !url.startsWith('http')) { showToast('Please enter a valid URL'); return; }
+  const btn = document.querySelector('.url-fetch-btn');
+  btn.textContent = 'Fetching…'; btn.disabled = true;
+  // Simulate fetch (real impl would use a backend proxy)
+  await sleep(1400);
+  btn.textContent = 'Fetch →'; btn.disabled = false;
+  const simulatedText = `This is simulated extracted content from: ${url}\n\nIn a production environment, this would use a backend proxy to fetch and parse the article text from the URL, stripping HTML, nav elements, ads, and returning the clean body text for analysis. Common tools include Trafilatura, Readability.js, or a headless browser.\n\nThe extracted content would then be passed directly to the AI analysis engine just like pasted text.`;
+  document.getElementById('fetchedText').value = simulatedText;
+  document.getElementById('fetchedTextArea').style.display = 'block';
+  showToast('Content fetched! Ready to analyze.');
+}
+
+/* ── PRO GATE ── */
+function requirePro() {
+  if (appState.plan === 'free') { openModal('plansOverlay'); return false; }
+  return true;
+}
+function selectPlan(plan) {
+  if (!appState.user) { closeModal('plansOverlay'); openAuthModal('signup'); return; }
+  appState.plan = plan;
+  appState.maxFreeScans = 9999;
+  renderTopbar();
+  closeModal('plansOverlay');
+  showToast(`🎉 ${plan === 'pro' ? 'Pro' : 'Enterprise'} plan activated!`);
+}
+
+/* ── SCAN LIMIT ── */
+function checkScanLimit() {
+  if (appState.plan !== 'free') return true;
+  if (appState.scansToday >= appState.maxFreeScans) {
+    openModal('plansOverlay'); return false;
+  }
+  return true;
+}
+function updateScanCounter() {
+  appState.scansToday++;
+  const left = Math.max(0, appState.maxFreeScans - appState.scansToday);
+  document.getElementById('scansLeft').textContent = left;
+  document.getElementById('dailyCounter').style.display = appState.plan === 'free' ? '' : 'none';
+}
+
+/* ── MAIN ANALYZE ── */
+async function runAnalysis() {
+  if (!checkScanLimit()) return;
+  const tab = appState.currentTab;
+
+  if (tab === 'text') {
+    const t = document.getElementById('textInput').value.trim();
+    if (t.length < 30) { showToast('Enter at least 30 characters.'); return; }
+    await doAnalyze('text', t);
+  } else if (tab === 'url') {
+    const fetched = document.getElementById('fetchedText').value.trim();
+    const raw = document.getElementById('urlInput').value.trim();
+    if (!fetched && !raw) { showToast('Enter a URL first.'); return; }
+    await doAnalyze('url', fetched || raw);
+  } else if (tab === 'image') {
+    const f = document.getElementById('imgFile').files[0];
+    if (!f) { showToast('Please upload an image.'); return; }
+    await doAnalyze('image', null, f);
+  } else if (tab === 'video') {
+    if (!requirePro()) return;
+    const f = document.getElementById('vidFile').files[0];
+    if (!f) { showToast('Please upload a video.'); return; }
+    await doAnalyze('video', null, f);
+  }
+}
+
+async function doAnalyze(type, text, file) {
+  showLoading(type);
+  updateScanCounter();
+
+  try {
+    let result;
+    if (type === 'image' && file) {
+      result = await analyzeImage(file);
+    } else {
+      const content = text || `File: ${file?.name}`;
+      result = await analyzeText(content, type);
+    }
+    appState.lastResult = { ...result, type, timestamp: Date.now(), input: text?.substring(0,80) || file?.name };
+    saveToHistory(appState.lastResult);
+    displayResults(result, type);
+  } catch (e) {
+    console.error(e);
+    hideLoading();
+    showToast('Analysis failed — please try again.');
+  }
+}
+
+async function analyzeText(content, type) {
+  const typeHints = {
+    text: 'written text or article',
+    url: 'web article content fetched from a URL',
+    video: 'a video file (analyze based on filename and available metadata)'
+  };
+
+  const prompt = `You are a forensic AI content detection expert. Analyze the following ${typeHints[type]||'content'} and determine if it is AI-generated or human-created.
+
+Evaluate:
+1. Perplexity & predictability — AI text has lower perplexity
+2. Burstiness — sentence length variation (humans vary more)
+3. Vocabulary — AI overuses: delve, leverage, crucial, multifaceted, navigate, tapestry, underscore, realm, robust, foster, revolutionize
+4. Hedging & caveats — AI over-hedges
+5. Structural symmetry — AI uses very balanced, parallel structures
+6. Emotional variance — humans drift emotionally; AI stays uniformly polished
+7. Voice authenticity — personal quirks, typos, colloquialisms
+
+Return ONLY valid JSON (no markdown, no backticks):
+{
+  "verdict": "AI_GENERATED" | "HUMAN_WRITTEN" | "UNCERTAIN",
+  "ai_probability": <0-100 integer>,
+  "confidence": "HIGH" | "MEDIUM" | "LOW",
+  "signals": {
+    "perplexity": "LOW"|"MEDIUM"|"HIGH",
+    "burstiness": "LOW"|"MEDIUM"|"HIGH",
+    "vocabulary_flags": "LOW"|"MEDIUM"|"HIGH",
+    "structural_symmetry": "LOW"|"MEDIUM"|"HIGH",
+    "hedging_language": "LOW"|"MEDIUM"|"HIGH",
+    "voice_authenticity": "LOW"|"MEDIUM"|"HIGH"
+  },
+  "summary": "<2-3 concise sentences explaining the top indicators>"
+}
+
+CONTENT:
+"""
+${content.substring(0, 5000)}
+"""`;
+
+  const res = await fetch("/.netlify/functions/analyze", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "claude-sonnet-4-20250514",
+      max_tokens: 1000,
+      messages: [{ role: "user", content: prompt }]
+    })
+  });
+  const data = await res.json();
+  const raw = data.content.map(b => b.text||'').join('');
+  return JSON.parse(raw.replace(/```json|```/g,'').trim());
+}
+
+async function analyzeImage(file) {
+  const b64 = await fileToB64(file);
+  const prompt = `You are an expert AI image forensics analyst. Examine this image and determine if it was AI-generated (Midjourney, DALL-E, Stable Diffusion, Firefly, etc.) or is a real photograph / human artwork.
+
+Check:
+1. Texture uniformity — AI images have unnaturally smooth or repetitive micro-textures
+2. Edge artifacts — unnatural blending, halos, incorrect anti-aliasing
+3. Anatomical accuracy — fingers, hands, teeth, eyes, ears often wrong in AI images
+4. Background coherence — impossible geometry, objects merging
+5. Lighting physics — impossible shadows, reflections not matching light source
+6. Detail distribution — extreme detail in focal area vs blurry/incorrect background
+7. Semantic anomalies — text rendered in image (AI often scrambles text), impossible objects
+8. Style fingerprint — that distinctive "AI painted" look
+
+Return ONLY valid JSON (no markdown):
+{
+  "verdict": "AI_GENERATED" | "HUMAN_CREATED" | "UNCERTAIN",
+  "ai_probability": <0-100 integer>,
+  "confidence": "HIGH" | "MEDIUM" | "LOW",
+  "signals": {
+    "texture_anomalies": "LOW"|"MEDIUM"|"HIGH",
+    "edge_artifacts": "LOW"|"MEDIUM"|"HIGH",
+    "anatomical_accuracy": "LOW"|"MEDIUM"|"HIGH",
+    "lighting_physics": "LOW"|"MEDIUM"|"HIGH",
+    "semantic_anomalies": "LOW"|"MEDIUM"|"HIGH",
+    "style_fingerprint": "LOW"|"MEDIUM"|"HIGH"
+  },
+  "summary": "<2-3 sentences describing key visual indicators found>"
+}`;
+
+  const res = await fetch("/.netlify/functions/analyze", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: "claude-sonnet-4-20250514",
+      max_tokens: 1000,
+      messages: [{
+        role: "user",
+        content: [
+          { type: "image", source: { type: "base64", media_type: file.type, data: b64 } },
+          { type: "text", text: prompt }
+        ]
+      }]
+    })
+  });
+  const data = await res.json();
+  const raw = data.content.map(b => b.text||'').join('');
+  return JSON.parse(raw.replace(/```json|```/g,'').trim());
+}
+
+function fileToB64(f) {
+  return new Promise((res,rej) => {
+    const r = new FileReader();
+    r.onload = () => res(r.result.split(',')[1]);
+    r.onerror = rej;
+    r.readAsDataURL(f);
+  });
+}
+
+/* ── LOADING ── */
+function showLoading(type) {
+  document.getElementById('resultsArea').classList.remove('active');
+  document.getElementById('loadingState').classList.add('active');
+  const steps = document.querySelectorAll('.loading-step');
+  steps.forEach(s => s.classList.remove('active'));
+  let i = 0;
+  const msgs = {
+    text: ['Parsing text…','Measuring perplexity…','Checking vocabulary fingerprint…','Evaluating sentence patterns…','Generating verdict…'],
+    url: ['Parsing fetched content…','Stripping boilerplate…','Analyzing article body…','Cross-checking AI signals…','Finalizing report…'],
+    image: ['Decoding image…','Scanning texture patterns…','Checking edge artifacts…','Evaluating lighting physics…','Rendering verdict…'],
+    video: ['Reading video metadata…','Sampling keyframes…','Analyzing compression…','Checking temporal coherence…','Generating report…']
+  };
+  const m = msgs[type] || msgs.text;
+  m.forEach((msg, idx) => { if (steps[idx]) steps[idx].textContent = msg; });
+  const iv = setInterval(() => {
+    if (!document.getElementById('loadingState').classList.contains('active')) { clearInterval(iv); return; }
+    if (i < steps.length) { steps[i].classList.add('active'); i++; }
+  }, 500);
+}
+function hideLoading() { document.getElementById('loadingState').classList.remove('active'); }
+
+/* ── RESULTS ── */
+function displayResults(r, type) {
+  hideLoading();
+
+  const isAI = r.verdict.includes('AI');
+  const isHuman = r.verdict.includes('HUMAN');
+  const cls = isAI ? 'ai-gen' : isHuman ? 'human' : 'uncertain';
+  const emoji = isAI ? '🤖' : isHuman ? '👤' : '🔍';
+  const label = isAI ? (type==='image'?'AI-Generated Image':(type==='video'?'AI-Generated Video':'AI-Generated Text'))
+    : isHuman ? (type==='image'?'Human-Created Image':(type==='video'?'Human-Recorded Video':'Human-Written Text'))
+    : 'Inconclusive';
+  const fillCls = isAI ? 'ai-fill' : isHuman ? 'human-fill' : 'uncertain-fill';
+  const prob = r.ai_probability;
+
+  const signalLabels = {
+    perplexity:'Perplexity', burstiness:'Burstiness', vocabulary_flags:'Vocab Flags',
+    structural_symmetry:'Structure', hedging_language:'Hedging', voice_authenticity:'Voice Auth.',
+    texture_anomalies:'Texture', edge_artifacts:'Edge Artifacts', anatomical_accuracy:'Anatomy',
+    lighting_physics:'Lighting', semantic_anomalies:'Semantics', style_fingerprint:'Style',
+    temporal_artifacts:'Temporal', face_coherence:'Face Coherence', audio_visual_sync:'A/V Sync',
+    lighting_continuity:'Lighting', background_stability:'Background', compression_signature:'Compression'
+  };
+
+  function chipClass(v) { return v==='HIGH'?'high':v==='LOW'?'low':v==='UNKNOWN'?'unknown':'medium'; }
+
+  const chipsHTML = Object.entries(r.signals).map(([k,v]) =>
+    `<span class="signal-chip ${chipClass(v)}">${signalLabels[k]||k}: ${v}</span>`
+  ).join('');
+
+  const area = document.getElementById('resultsArea');
+  area.innerHTML = `
+    <div class="verdict-banner ${cls}">
+      <div class="verdict-top">
+        <div class="verdict-left">
+          <div class="verdict-icon">${emoji}</div>
+          <div>
+            <div class="verdict-title">${label}</div>
+            <div class="verdict-conf">Confidence: ${r.confidence} · ${type.toUpperCase()} scan</div>
+          </div>
+        </div>
+        <div class="verdict-actions">
+          <button class="v-action-btn va-share" onclick="openShareModal()">↗ Share</button>
+          <button class="v-action-btn va-save" onclick="saveResult()">⬇ Save</button>
+        </div>
+      </div>
+
+      <div class="score-bar-section">
+        <div class="score-bar-header">
+          <span class="score-bar-label">AI Probability</span>
+          <span class="score-pct" id="scoreNum">0%</span>
+        </div>
+        <div class="score-track"><div class="score-fill ${fillCls}" id="scoreFill"></div></div>
+      </div>
+
+      <div class="signals-row">${chipsHTML}</div>
+
+      <div class="analysis-box">${r.summary}</div>
+    </div>
+
+    <button onclick="resetScan()" style="width:100%;margin-top:0.7rem;padding:0.8rem;border:1.5px solid var(--border);border-radius:10px;background:transparent;font-family:'Cabinet Grotesk',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;color:var(--muted);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--ink)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">← Analyze another piece of content</button>
+  `;
+  area.classList.add('active');
+
+  // Animate score
+  setTimeout(() => {
+    document.getElementById('scoreFill').style.width = prob + '%';
+    let cur = 0;
+    const step = () => {
+      cur = Math.min(cur + 2, prob);
+      const el = document.getElementById('scoreNum');
+      if (el) el.textContent = cur + '%';
+      if (cur < prob) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, 100);
+
+  // Update share modal data
+  document.getElementById('shareVerdictTitle').textContent = `${emoji} ${label} — ${prob}% AI probability`;
+  document.getElementById('shareVerdictSub').textContent = `Confidence: ${r.confidence} · Analyzed by TruthLens`;
+}
+
+function resetScan() {
+  document.getElementById('resultsArea').classList.remove('active');
+  document.getElementById('textInput').value = '';
+  updateCharCount();
+  document.getElementById('urlInput').value = '';
+  document.getElementById('fetchedText').value = '';
+  document.getElementById('fetchedTextArea').style.display = 'none';
+  clearPreview('imgPreview','imgFile');
+  clearPreview('vidPreview','vidFile');
+}
+
+/* ── HISTORY ── */
+function saveToHistory(result) {
+  appState.history.unshift(result);
+  if (appState.history.length > 20) appState.history = appState.history.slice(0,20);
+  try { localStorage.setItem('tl_history', JSON.stringify(appState.history)); } catch(e){}
+  renderHistory();
+}
+function renderHistory() {
+  const list = document.getElementById('historyList');
+  const section = document.getElementById('historySection');
+  if (!appState.history.length) { section.style.display = 'none'; return; }
+  section.style.display = 'block';
+  list.innerHTML = appState.history.slice(0,5).map(h => {
+    const isAI = h.verdict?.includes('AI');
+    const isHuman = h.verdict?.includes('HUMAN');
+    const dotCls = isAI ? 'ai-gen' : isHuman ? 'human' : 'uncertain';
+    const emoji = isAI?'🤖':isHuman?'👤':'🔍';
+    const label = isAI ? 'AI Generated' : isHuman ? 'Human Created' : 'Uncertain';
+    const dt = new Date(h.timestamp).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+    const preview = h.input ? h.input.substring(0,40) + (h.input.length>40?'…':'') : h.type;
+    return `<div class="history-item">
+      <span class="hi-dot ${dotCls}"></span>
+      <span class="hi-label">${emoji} ${label} · ${preview}</span>
+      <span class="hi-meta">${h.ai_probability}% AI · ${dt}</span>
+    </div>`;
+  }).join('');
+}
+function clearHistory() {
+  appState.history = [];
+  try { localStorage.removeItem('tl_history'); } catch(e){}
+  renderHistory();
+}
+
+/* ── SHARE ── */
+function openShareModal() {
+  if (!appState.user) { openAuthModal('signup'); return; }
+  openModal('shareOverlay');
+}
+function getShareText() {
+  const el = document.getElementById('shareVerdictTitle');
+  return el ? `${el.textContent} — Check your content at TruthLens!` : 'Check AI content with TruthLens!';
+}
+function shareToX() { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(getShareText())}&url=https://truthlens.ai`, '_blank'); }
+function shareToLinkedIn() { window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://truthlens.ai')}&summary=${encodeURIComponent(getShareText())}`, '_blank'); }
+function shareToFacebook() { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://truthlens.ai')}&quote=${encodeURIComponent(getShareText())}`, '_blank'); }
+function shareToReddit() { window.open(`https://reddit.com/submit?url=${encodeURIComponent('https://truthlens.ai')}&title=${encodeURIComponent(getShareText())}`, '_blank'); }
+function shareToWhatsApp() { window.open(`https://wa.me/?text=${encodeURIComponent(getShareText() + ' https://truthlens.ai')}`, '_blank'); }
+function shareToTelegram() { window.open(`https://t.me/share/url?url=${encodeURIComponent('https://truthlens.ai')}&text=${encodeURIComponent(getShareText())}`, '_blank'); }
+async function shareNative() {
+  if (navigator.share) {
+    try { await navigator.share({ title: 'TruthLens Result', text: getShareText(), url: 'https://truthlens.ai' }); }
+    catch(e) {}
+  } else { copyLink(); }
+}
+function copyLink() {
+  const inp = document.getElementById('shareLinkInput');
+  navigator.clipboard.writeText(inp.value).then(() => showToast('Link copied!')).catch(() => {
+    inp.select(); document.execCommand('copy'); showToast('Link copied!');
+  });
+}
+function saveResult() {
+  if (!appState.user) { openAuthModal('signup'); return; }
+  showToast('Result saved to your account ✓');
+}
+function downloadReport() {
+  if (appState.plan === 'free') { openModal('plansOverlay'); return; }
+  showToast('PDF report downloading…');
+}
+
+/* ── TOAST ── */
+function showToast(msg) {
+  let t = document.getElementById('toastEl');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'toastEl';
+    t.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:0.7rem 1.4rem;border-radius:30px;font-family:Cabinet Grotesk,sans-serif;font-size:0.85rem;font-weight:700;z-index:9999;transition:opacity 0.3s;pointer-events:none;';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg; t.style.opacity = '1';
+  clearTimeout(t._to);
+  t._to = setTimeout(() => { t.style.opacity = '0'; }, 2500);
+}
+
+/* ── UTILS ── */
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+/* ── INIT ── */
+renderHistory();
+renderTopbar();
+
+// Close overlays on backdrop click
+document.querySelectorAll('.overlay').forEach(o => {
+  o.addEventListener('click', e => { if (e.target === o) closeModal(o.id); });
+});
 </script>
 </body>
 </html>
