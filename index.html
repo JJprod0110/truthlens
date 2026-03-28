@@ -569,8 +569,105 @@ footer {
   border-radius: 9px; font-size: 0.75rem; color: #1a7a4a; font-weight: 700;
 }
 
-/* Responsive */
-@media (max-width: 680px) {
+/* ─── SUPPORT BOT ─── */
+.chat-bubble {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--accent); border: none; cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255,77,28,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; transition: all 0.2s; color: #fff;
+}
+.chat-bubble:hover { transform: scale(1.08); filter: brightness(1.1); }
+.chat-bubble .notif {
+  position: absolute; top: -4px; right: -4px; width: 18px; height: 18px;
+  background: var(--green); border-radius: 50%; border: 2px solid var(--bg);
+  font-size: 0.55rem; font-weight: 800; display: flex; align-items: center; justify-content: center;
+}
+
+.chat-window {
+  position: fixed; bottom: 6rem; right: 2rem; z-index: 999;
+  width: 360px; max-height: 520px; background: var(--surface);
+  border: 1.5px solid var(--border); border-radius: 20px;
+  box-shadow: var(--shadow-lg); display: flex; flex-direction: column;
+  transform: scale(0.9) translateY(20px); opacity: 0; pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
+  overflow: hidden;
+}
+.chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+
+.chat-header {
+  padding: 1rem 1.2rem; background: var(--ink); color: #fff;
+  display: flex; align-items: center; gap: 0.7rem;
+}
+.chat-header .bot-avatar {
+  width: 34px; height: 34px; border-radius: 50%; background: var(--accent);
+  display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+}
+.chat-header .bot-info .bot-name { font-size: 0.88rem; font-weight: 800; }
+.chat-header .bot-info .bot-status { font-size: 0.7rem; color: #6ddfaa; font-weight: 600; }
+.chat-header .close-chat {
+  margin-left: auto; background: transparent; border: none; color: #fff;
+  cursor: pointer; font-size: 1.1rem; opacity: 0.7; transition: opacity 0.2s;
+}
+.chat-header .close-chat:hover { opacity: 1; }
+
+.chat-messages {
+  flex: 1; overflow-y: auto; padding: 1rem; display: flex;
+  flex-direction: column; gap: 0.7rem;
+}
+.chat-msg {
+  max-width: 85%; padding: 0.65rem 0.9rem; border-radius: 14px;
+  font-size: 0.82rem; line-height: 1.5;
+}
+.chat-msg.bot {
+  background: var(--bg); border: 1.5px solid var(--border);
+  color: var(--ink); align-self: flex-start; border-bottom-left-radius: 4px;
+}
+.chat-msg.user {
+  background: var(--accent); color: #fff;
+  align-self: flex-end; border-bottom-right-radius: 4px;
+}
+.chat-msg.typing { padding: 0.8rem 1rem; }
+.typing-dots { display: flex; gap: 4px; align-items: center; }
+.typing-dots span {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--muted);
+  animation: typingBounce 1.2s ease-in-out infinite;
+}
+.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingBounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+
+.chat-input-row {
+  padding: 0.8rem; border-top: 1.5px solid var(--border);
+  display: flex; gap: 0.5rem;
+}
+.chat-input {
+  flex: 1; padding: 0.6rem 0.9rem; border: 1.5px solid var(--border);
+  border-radius: 20px; font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.82rem; outline: none; background: var(--bg); color: var(--ink);
+  transition: border-color 0.2s;
+}
+.chat-input:focus { border-color: var(--accent); }
+.chat-send {
+  width: 36px; height: 36px; border-radius: 50%; background: var(--accent);
+  border: none; color: #fff; cursor: pointer; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: filter 0.2s; flex-shrink: 0;
+}
+.chat-send:hover { filter: brightness(1.1); }
+
+.chat-suggestions { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0 1rem 0.6rem; }
+.chat-suggestion {
+  padding: 0.3rem 0.7rem; background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: 20px; font-size: 0.72rem; font-weight: 700; cursor: pointer;
+  transition: all 0.15s; color: var(--ink);
+}
+.chat-suggestion:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 420px) {
+  .chat-window { width: calc(100vw - 2rem); right: 1rem; }
+}
   .plans-grid { grid-template-columns: 1fr; }
   .how-grid { grid-template-columns: 1fr; }
   .money-grid { grid-template-columns: 1fr; }
@@ -1013,11 +1110,39 @@ footer {
   </div>
 </div>
 
+<!-- ═══ SUPPORT BOT ═══ -->
+<button class="chat-bubble" onclick="toggleChat()" id="chatBubble">
+  💬
+  <span class="notif">1</span>
+</button>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="bot-avatar">🤖</div>
+    <div class="bot-info">
+      <div class="bot-name">TruthLens Support</div>
+      <div class="bot-status">● Online — AI powered</div>
+    </div>
+    <button class="close-chat" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="chat-suggestions" id="chatSuggestions">
+    <span class="chat-suggestion" onclick="sendSuggestion(this)">How accurate is it?</span>
+    <span class="chat-suggestion" onclick="sendSuggestion(this)">What's in Pro?</span>
+    <span class="chat-suggestion" onclick="sendSuggestion(this)">How do I cancel?</span>
+    <span class="chat-suggestion" onclick="sendSuggestion(this)">Is my data safe?</span>
+  </div>
+  <div class="chat-input-row">
+    <input class="chat-input" id="chatInput" placeholder="Ask anything…" onkeydown="if(event.key==='Enter')sendChat()">
+    <button class="chat-send" onclick="sendChat()">→</button>
+  </div>
+</div>
+
 <footer>
   <div class="footer-logo">Truth<em>Lens</em></div>
   <div class="footer-links">
-    <a href="#" onclick="openModal('privacyOverlay');return false">🔒 Privacy Pledge</a>
-    <a href="#">Terms</a>
+    <a href="/legal.html" onclick="">🔒 Privacy Pledge</a>
+    <a href="/legal.html#terms">Terms</a>
     <a href="#">API Docs</a>
     <a href="#">Blog</a>
     <a href="#" onclick="openModal('plansOverlay');return false">Pricing</a>
@@ -1613,8 +1738,113 @@ function showToast(msg) {
   t._to = setTimeout(() => { t.style.opacity = '0'; }, 2500);
 }
 
-/* ── UTILS ── */
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+/* ── SUPPORT BOT ── */
+let chatOpen = false;
+let chatHistory = [];
+let chatInitialized = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('chatWindow').classList.toggle('open', chatOpen);
+  document.getElementById('chatBubble').innerHTML = chatOpen ? '✕' : '💬';
+  if (chatOpen && !chatInitialized) {
+    chatInitialized = true;
+    document.querySelector('.chat-bubble .notif')?.remove();
+    addBotMessage("Hi! 👋 I'm the TruthLens support bot. I can help with questions about how the tool works, pricing, your account, or anything else. What can I help you with?");
+  }
+  if (chatOpen) setTimeout(() => document.getElementById('chatInput').focus(), 300);
+}
+
+function addBotMessage(text) {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg bot';
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function addUserMessage(text) {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg user';
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping() {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg bot typing';
+  div.id = 'typingIndicator';
+  div.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function hideTyping() {
+  document.getElementById('typingIndicator')?.remove();
+}
+
+function sendSuggestion(el) {
+  const text = el.textContent;
+  document.getElementById('chatSuggestions').style.display = 'none';
+  processChat(text);
+}
+
+function sendChat() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  document.getElementById('chatSuggestions').style.display = 'none';
+  processChat(text);
+}
+
+async function processChat(userText) {
+  addUserMessage(userText);
+  chatHistory.push({ role: 'user', content: userText });
+  showTyping();
+
+  const systemPrompt = `You are a friendly, helpful support agent for TruthLens — an AI content detection platform at truthlensdetect.com. 
+
+Key facts:
+- TruthLens detects AI-generated text, images, and video
+- Free plan: 5 scans/day, text & image only
+- Pro plan: $12/month — unlimited scans, video, URL scanning, PDF reports
+- Enterprise plan: $49/month — API access, bulk scanning, white-label
+- We NEVER sell user data. No ads. No third-party data sharing.
+- Scanned content is NOT stored or used to train AI
+- Users can delete their account anytime
+- Powered by Claude AI (Anthropic)
+- For billing issues or refunds, direct users to support@truthlensdetect.com
+- Accuracy is approximately 94% but results are probabilistic, not definitive proof
+- Legal page: truthlensdetect.com/legal.html
+
+Be warm, concise, and helpful. If you can't resolve something, offer to escalate to support@truthlensdetect.com. Keep responses under 3 sentences when possible.`;
+
+  try {
+    const response = await fetch('/.netlify/functions/analyze', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 300,
+        system: systemPrompt,
+        messages: chatHistory
+      })
+    });
+    const data = await response.json();
+    const reply = data.content?.map(b => b.text || '').join('') || "I'm having trouble connecting right now. Please email support@truthlensdetect.com for help!";
+    hideTyping();
+    addBotMessage(reply);
+    chatHistory.push({ role: 'assistant', content: reply });
+  } catch(e) {
+    hideTyping();
+    addBotMessage("Sorry, I'm having trouble right now. Please email support@truthlensdetect.com and we'll get back to you shortly!");
+  }
+}
 
 /* ── INIT ── */
 renderHistory();
