@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TruthLens Pro — AI Content Detector</title>
+<meta name="description" content="Detect AI-generated text, images, and video in seconds. TruthLens uses forensic-grade AI analysis. Free to start.">
+    <meta property="og:title" content="TruthLens Pro — AI Content Detector">
+    <meta property="og:description" content="Detect AI-generated text, images &amp; video in seconds. Forensic-grade accuracy, <title>TruthLens Pro data sold.">
+    <meta property="og:image" content="https://truthlensdetect.com/og-preview.png">
+    <meta property="og:url" content="https://truthlensdetect.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://truthlensdetect.com">
+    <title>TruthLens Pro — AI Content Detector</title>
 <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -1143,8 +1151,8 @@ footer {
   <div class="footer-links">
     <a href="/legal.html" onclick="">🔒 Privacy Pledge</a>
     <a href="/legal.html#terms">Terms</a>
-    <a href="#">API Docs</a>
-    <a href="#">Blog</a>
+    <span style="opacity:0.4;cursor:default">API Docs</span>
+    <span style="opacity:0.4;cursor:default">Blog</span>
     <a href="#" onclick="openModal('plansOverlay');return false">Pricing</a>
   </div>
   <div class="footer-right">© 2026 TruthLens · We never sell your data</div>
@@ -1338,7 +1346,9 @@ function clearPreview(previewId, inputId) {
 }
 
 /* ── URL FETCH ── */
-async function fetchURL() {
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+    async function fetchURL() {
   const url = document.getElementById('urlInput').value.trim();
   if (!url || !url.startsWith('http')) { showToast('Please enter a valid URL'); return; }
   const btn = document.querySelector('.url-fetch-btn');
