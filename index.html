@@ -1156,7 +1156,7 @@ let appState = {
   user: null,
   plan: 'free',
   scansToday: 0,
-  maxFreeScans: 5,
+  maxFreeScans: 5,    freeTrialsUsed: JSON.parse(localStorage.getItem('tl_trials') || '{}'),
   currentTab: 'text',
   lastResult: null,
   history: JSON.parse(localStorage.getItem('tl_history') || '[]'),
@@ -1369,17 +1369,32 @@ function selectPlan(plan) {
 /* ── SCAN LIMIT ── */
 function checkScanLimit() {
   if (appState.plan !== 'free') return true;
-  if (appState.scansToday >= appState.maxFreeScans) {
-    openModal('plansOverlay'); return false;
-  }
+    if (!appState.user) {
+          if (appState.freeTrialsUsed[appState.currentTab]) {
+                  openAuthModal('signup'); return false;
+                        }
+                            } else if (appState.scansToday >= appState.maxFreeScans) {
+                                  openModal('plansOverlay'); return false;
+                                      }
   return true;
+                                    }
 }
 function updateScanCounter() {
   appState.scansToday++;
-  const left = Math.max(0, appState.maxFreeScans - appState.scansToday);
-  document.getElementById('scansLeft').textContent = left;
-  document.getElementById('dailyCounter').style.display = appState.plan === 'free' ? '' : 'none';
-}
+    if (!appState.user) {
+        const tab = appState.currentTab;
+            appState.freeTrialsUsed[tab] = true;
+                localStorage.setItem('tl_trials', JSON.stringify(appState.freeTrialsUsed));
+                    const allTabs = ['text', 'url', 'image', 'video'];
+                        const left = allTabs.filter(t => !appState.freeTrialsUsed[t]).length;
+                            document.getElementById('scansLeft').textContent = left;
+                                document.getElementById('dailyCounter').style.display = appState.plan === 'free' ? 'block' : 'none';
+                                  } else {
+                                      const left = Math.max(0, appState.maxFreeScans - appState.scansToday);
+                                          document.getElementById('scansLeft').textContent = left;
+                                              document.getElementById('dailyCounter').style.display = appState.plan === 'free' ? 'block' : 'none';
+                                                }
+                                                }
 
 /* ── MAIN ANALYZE ── */
 async function runAnalysis() {
