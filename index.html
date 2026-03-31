@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Detect AI-generated text, images, and video in seconds. TruthLens uses forensic-grade AI analysis. Free to start.">
     <meta property="og:title" content="TruthLens Pro — AI Content Detector">
@@ -673,9 +674,7 @@ footer {
 }
 .chat-suggestion:hover { border-color: var(--accent); color: var(--accent); }
 
-@media (max-width: 420px) {
-  .chat-window { width: calc(100vw - 2rem); right: 1rem; }
-}
+@media (max-width: 768px) {
   .plans-grid { grid-template-columns: 1fr; }
   .how-grid { grid-template-columns: 1fr; }
   .money-grid { grid-template-columns: 1fr; }
@@ -686,6 +685,10 @@ footer {
   .money-inner { padding: 2rem; }
   .verdict-top { flex-direction: column; }
   .stats-row { gap: 1.5rem; }
+}
+@media (max-width: 420px) {
+  .chat-window { width: calc(100vw - 2rem); right: 1rem; }
+  .input-tabs { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -887,6 +890,7 @@ footer {
 </div>
 
 <!-- ═══ TOPBAR ═══ -->
+<header role="banner">
 <nav class="topbar">
   <div class="topbar-logo">Truth<em>Lens</em><sup>PRO</sup></div>
   <div class="topbar-right" id="topbarRight">
@@ -896,6 +900,8 @@ footer {
     <button class="topbar-btn tb-fill" onclick="openAuthModal('signup')">Get started free →</button>
   </div>
 </nav>
+</header>
+<main id="main-content" role="main">
 
 <!-- ═══ HERO ═══ -->
 <div class="hero-section">
@@ -956,7 +962,7 @@ footer {
       <button class="url-fetch-btn" onclick="fetchURL()">Fetch →</button>
     </div>
     <div class="url-tips">
-      <h4>Works great with</h4>
+      <h3>Works great with</h3>
       <div class="url-tip-list">
         <div class="url-tip"><span class="tc">📰</span> News articles (CNN, NYT, BBC, Reuters…)</div>
         <div class="url-tip"><span class="tc">📝</span> Blog posts &amp; Medium articles</div>
@@ -1041,7 +1047,7 @@ footer {
 
 <!-- ═══ HOW IT WORKS ═══ -->
 <div class="how-section">
-  <div class="section-label">How it works</div>
+  <div class="section-label" role="heading" aria-level="2">How it works</div>
   <div class="how-grid">
     <div class="how-card"><div class="how-num">01</div><h4>Submit content</h4><p>Paste text, drop an image, enter a URL, or upload video. We handle the ingestion.</p></div>
     <div class="how-card"><div class="how-num">02</div><h4>Forensic analysis</h4><p>Our Claude-powered engine checks perplexity, burstiness, visual artifacts, compression signatures & more.</p></div>
@@ -1146,14 +1152,15 @@ footer {
   </div>
 </div>
 
+</main>
 <footer>
   <div class="footer-logo">Truth<em>Lens</em></div>
   <div class="footer-links">
     <a href="/legal.html" onclick="">🔒 Privacy Pledge</a>
     <a href="/legal.html#terms">Terms</a>
-    <span style="opacity:0.4;cursor:default">API Docs</span>
-    <span style="opacity:0.4;cursor:default">Blog</span>
-    <a href="#" onclick="openModal('plansOverlay');return false">Pricing</a>
+    <a href="/api" style="opacity:0.6;color:inherit;text-decoration:none">API Docs</a>
+    <a href="/blog" style="opacity:0.6;color:inherit;text-decoration:none">Blog</a>
+    <a href="javascript:void(0)" onclick="openModal('plansOverlay');return false">Pricing</a>
   </div>
   <div class="footer-right">© 2026 TruthLens · We never sell your data</div>
 </footer>
@@ -1164,7 +1171,7 @@ let appState = {
   user: null,
   plan: 'free',
   scansToday: 0,
-  maxFreeScans: 5,    freeTrialsUsed: JSON.parse(localStorage.getItem('tl_trials') || '{}'),
+  maxFreeScans: 50,    freeTrialsUsed: JSON.parse(localStorage.getItem('tl_trials') || '{}'),
   currentTab: 'text',
   lastResult: null,
   history: JSON.parse(localStorage.getItem('tl_history') || '[]'),
@@ -1353,13 +1360,23 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
   if (!url || !url.startsWith('http')) { showToast('Please enter a valid URL'); return; }
   const btn = document.querySelector('.url-fetch-btn');
   btn.textContent = 'Fetching…'; btn.disabled = true;
-  // Simulate fetch (real impl would use a backend proxy)
-  await sleep(1400);
-  btn.textContent = 'Fetch →'; btn.disabled = false;
-  const simulatedText = `This is simulated extracted content from: ${url}\n\nIn a production environment, this would use a backend proxy to fetch and parse the article text from the URL, stripping HTML, nav elements, ads, and returning the clean body text for analysis. Common tools include Trafilatura, Readability.js, or a headless browser.\n\nThe extracted content would then be passed directly to the AI analysis engine just like pasted text.`;
-  document.getElementById('fetchedText').value = simulatedText;
-  document.getElementById('fetchedTextArea').style.display = 'block';
-  showToast('Content fetched! Ready to analyze.');
+    try {
+    const res = await fetch('/.netlify/functions/fetch-url', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url })
+    });
+    if (!res.ok) throw new Error('Server error (' + res.status + ')');
+    const data = await res.json();
+    if (!data.text || data.text.length < 20) throw new Error('No text could be extracted from this URL');
+    document.getElementById('fetchedText').value = data.text;
+    document.getElementById('fetchedTextArea').style.display = 'block';
+    showToast('Content fetched! Ready to analyze.');
+  } catch (e) {
+    showToast('Could not fetch URL: ' + e.message);
+  } finally {
+    btn.textContent = 'Fetch →'; btn.disabled = false;
+  }
 }
 
 /* ── PRO GATE ── */
@@ -1493,7 +1510,7 @@ ${content.substring(0, 5000)}
 
   const res = await fetch("/.netlify/functions/analyze", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "Authorization": "Bearer " + (appState.user && appState.user.token || "") },
     body: JSON.stringify({
       model: "claude-sonnet-4-20250514",
       max_tokens: 1000,
@@ -1537,7 +1554,7 @@ Return ONLY valid JSON (no markdown):
 
   const res = await fetch("/.netlify/functions/analyze", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", "Authorization": "Bearer " + (appState.user && appState.user.token || "") },
     body: JSON.stringify({
       model: "claude-sonnet-4-20250514",
       max_tokens: 1000,
