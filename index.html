@@ -1407,8 +1407,7 @@ function updateScanCounter() {
 
 /* ── MAIN ANALYZE ── */
 async function runAnalysis() {
-  if (!checkScanLimit()) return;
-  const tab = appState.currentTab;
+  if (!checkScanLimit()) return; const tab = appState.currentTab;
 
   if (tab === 'text') {
     const t = document.getElementById('textInput').value.trim();
