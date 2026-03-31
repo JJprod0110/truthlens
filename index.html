@@ -874,7 +874,7 @@ footer {
       </div>
     </div>
     <div class="share-link-row">
-      <input class="share-link-input" id="shareLinkInput" value="https://truthlens.ai/r/a8x2k9" readonly>
+      <input class="share-link-input" id="shareLinkInput" value="https://truthlensdetect.com/r/a8x2k9" readonly>
       <button class="copy-btn" onclick="copyLink()">Copy link</button>
     </div>
   </div>
@@ -1247,7 +1247,7 @@ async function submitAuth() {
 }
 
 async function socialLogin(provider) {
-  showToast(`${provider} login coming soon! Use email for now.`);
+  showToast(`${provider} login coming soon! Sign up with email below.`);
 }
 
 function loginUser(name, email, plan, token) {
@@ -1721,15 +1721,15 @@ function getShareText() {
   const el = document.getElementById('shareVerdictTitle');
   return el ? `${el.textContent} — Check your content at TruthLens!` : 'Check AI content with TruthLens!';
 }
-function shareToX() { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(getShareText())}&url=https://truthlens.ai`, '_blank'); }
-function shareToLinkedIn() { window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://truthlens.ai')}&summary=${encodeURIComponent(getShareText())}`, '_blank'); }
-function shareToFacebook() { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://truthlens.ai')}&quote=${encodeURIComponent(getShareText())}`, '_blank'); }
-function shareToReddit() { window.open(`https://reddit.com/submit?url=${encodeURIComponent('https://truthlens.ai')}&title=${encodeURIComponent(getShareText())}`, '_blank'); }
-function shareToWhatsApp() { window.open(`https://wa.me/?text=${encodeURIComponent(getShareText() + ' https://truthlens.ai')}`, '_blank'); }
-function shareToTelegram() { window.open(`https://t.me/share/url?url=${encodeURIComponent('https://truthlens.ai')}&text=${encodeURIComponent(getShareText())}`, '_blank'); }
+function shareToX() { window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(getShareText())}&url=https://truthlensdetect.com`, '_blank'); }
+function shareToLinkedIn() { window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://truthlensdetect.com')}&summary=${encodeURIComponent(getShareText())}`, '_blank'); }
+function shareToFacebook() { window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://truthlensdetect.com')}&quote=${encodeURIComponent(getShareText())}`, '_blank'); }
+function shareToReddit() { window.open(`https://reddit.com/submit?url=${encodeURIComponent('https://truthlensdetect.com')}&title=${encodeURIComponent(getShareText())}`, '_blank'); }
+function shareToWhatsApp() { window.open(`https://wa.me/?text=${encodeURIComponent(getShareText() + ' https://truthlensdetect.com')}`, '_blank'); }
+function shareToTelegram() { window.open(`https://t.me/share/url?url=${encodeURIComponent('https://truthlensdetect.com')}&text=${encodeURIComponent(getShareText())}`, '_blank'); }
 async function shareNative() {
   if (navigator.share) {
-    try { await navigator.share({ title: 'TruthLens Result', text: getShareText(), url: 'https://truthlens.ai' }); }
+    try { await navigator.share({ title: 'TruthLens Result', text: getShareText(), url: 'https://truthlensdetect.com' }); }
     catch(e) {}
   } else { copyLink(); }
 }
