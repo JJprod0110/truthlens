@@ -1,8 +1,2 @@
-[[headers]]
-  for = "/*"
-    [headers.values]
-        Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.anthropic.com;"
-            X-Frame-Options = "DENY"
-                X-Content-Type-Options = "nosniff"
-                    Referrer-Policy = "strict-origin-when-cross-origin"
-                        Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+# HTTP response headers are managed by the _headers file in the repo root.
+# Do not add a [[headers]] section here — it would override _headers and may conflict.
