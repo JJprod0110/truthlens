@@ -1409,7 +1409,7 @@ function requirePro() {
 function selectPlan(plan) {
   if (!appState.user) { closeModal('plansOverlay'); openAuthModal('signup'); return; }
   appState.plan = plan;
-  appState.maxFreeScans = 9999;
+  appState.maxFreeScans = 9999; if (plan === 'pro') { gtag('event', 'conversion', {'send_to': 'AW-18052567284/hbvFCJWhtJMcEPShkaBD', 'value': 12.0, 'currency': 'USD'}); }
   renderTopbar();
   closeModal('plansOverlay');
   showToast(`🎉 ${plan === 'pro' ? 'Pro' : 'Enterprise'} plan activated!`);
