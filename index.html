@@ -1255,7 +1255,7 @@ async function submitAuth() {
         body: JSON.stringify({ email, password, data: { full_name: name } })
       });
       if (data.error) { showToast(data.error.message || 'Signup failed'); }
-      else { showToast('Check your email to confirm your account! 📧'); closeModal('authOverlay'); }
+      else { gtag('event', 'conversion', {'send_to': 'AW-18052567284/N63uCKnkqJMcEPShkaBD', 'value': 1.0, 'currency': 'USD'}); showToast('Check your email to confirm your account! 📧'); closeModal('authOverlay'); }
     } else {
       const data = await supabaseFetch('/token?grant_type=password', {
         method: 'POST',
