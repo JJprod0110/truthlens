@@ -15,7 +15,7 @@
     <title>TruthLens Pro — AI Content Detector</title>
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json"
-  {
+  
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "TruthLens Pro",
@@ -1736,7 +1736,7 @@ function renderHistory() {
     const dotCls = isAI ? 'ai-gen' : isHuman ? 'human' : 'uncertain';
     const emoji = isAI?'🤖':isHuman?'👤':'🔍';
     const label = isAI ? 'AI Generated' : isHuman ? 'Human Created' : 'Uncertain';
-    const dt = new Date(h.timestamp).toLocaleTimeString([], {hour:'2-digit',minute:'2-igit'});    const preview = h.input ? h.input.substring(0,40) + (h.input.length>40?'…':'') : h.type;
+    const dt = new Date(h.timestamp).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});    const preview = h.input ? h.input.substring(0,40) + (h.input.length>40?'…':'') : h.type;
     return `<div class="history-item">
       <span class="hi-dot ${dotCls}"></span>
       <span class="hi-label">${emoji} ${label} · ${preview}</span>
