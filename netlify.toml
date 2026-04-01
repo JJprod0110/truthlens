@@ -1,2 +1,20 @@
 # HTTP response headers are managed by the _headers file in the repo root.
 # Do not add a [[headers]] section here — it would override _headers and may conflict.
+
+# www -> non-www canonical redirect
+[[redirects]]
+  from = "https://www.truthlensdetect.com/*"
+    to = "https://truthlensdetect.com/:splat"
+      status = 301
+        force = true
+
+        # /privacy and /terms -> /legal.html
+        [[redirects]]
+          from = "/privacy"
+            to = "/legal.html"
+              status = 301
+
+              [[redirects]]
+                from = "/terms"
+                  to = "/legal.html"
+                    status = 301
