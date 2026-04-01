@@ -25,7 +25,7 @@ exports.handler = async (event) => {
     return {
       statusCode: 200,
       headers: {
-        'Access-Control-Allow-Origin': 'https://www.truthlensdetect.com',
+        'Access-Control-Allow-Origin': 'https://truthlensdetect.com',
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Content-Type, Authorization',
       },
@@ -56,7 +56,7 @@ exports.handler = async (event) => {
     // Block private/internal URLs
     const parsed = new URL(url);
     const hostname = parsed.hostname;
-    if (/^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[01])\.)/.test(hostname)) {
+    if (/^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[01])\.|169\.254\.|0\.0\.0\.0)/.test(hostname) || hostname === '::1') {
       return { statusCode: 400, body: JSON.stringify({ error: 'Private URLs not allowed' }) };
     }
 
@@ -65,7 +65,7 @@ exports.handler = async (event) => {
       statusCode: 200,
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://www.truthlensdetect.com',
+        'Access-Control-Allow-Origin': 'https://truthlensdetect.com',
       },
       body: JSON.stringify({ text }),
     };

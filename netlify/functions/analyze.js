@@ -91,8 +91,8 @@ exports.handler = async function (event) {
     const token = rawAuth.slice(7);
     try {
       const supabaseUrl =
-        process.env.SUPABASE_URL || 'https://teiqxbapfjbnsaifbspa.supabase.co';
-      const supabaseKey = process.env.SUPABASE_ANON_KEY || '';
+        process.env.SUPABASE_URL;
+      const supabaseKey = process.env.SUPABASE_ANON_KEY; if (!supabaseUrl || !supabaseKey) throw new Error('Supabase env vars not set');
 
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 3000);
