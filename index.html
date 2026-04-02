@@ -1094,7 +1094,7 @@ footer {
       <h2>Drop your image here</h2>
       <p>or <span class="browse-link">browse files</span> — PNG, JPG, WEBP, GIF up to 20MB</p>
     </div>
-    <input type="file" id="imgFile" accept="image/*" style="display:none" onchange="loadPreview('imgFile','imgPreview','imageDropZone')">
+    <input type="file" id="imgFile" accept="image/*" style="display:none" aria-label="Upload image for analysis" onchange="loadPreview('imgFile','imgPreview','imageDropZone')">
     <div class="preview-area" id="imgPreview"></div>
   </div>
 
@@ -1110,7 +1110,7 @@ footer {
       <p>Upgrade to detect AI-generated video, deepfakes, and synthetic media</p>
       <button onclick="event.stopPropagation();openModal('plansOverlay')" style="margin-top:1rem;padding:0.6rem 1.4rem;background:var(--accent);border:none;border-radius:8px;color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:0.88rem;cursor:pointer;">Upgrade to Pro →</button>
     </div>
-    <input type="file" id="vidFile" accept="video/*" style="display:none" onchange="loadPreview('vidFile','vidPreview','videoDropZone','video')">
+    <input type="file" id="vidFile" accept="video/*" style="display:none" aria-label="Upload video for analysis" onchange="loadPreview('vidFile','vidPreview','videoDropZone','video')">
     <div class="preview-area" id="vidPreview"></div>
   </div>
 
