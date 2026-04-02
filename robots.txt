@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Sitemap: https://truthlensdetect.com/sitemap.xml
+
+# AI / TDM crawl policy
+User-agent: *
+Allow: /
 
 Sitemap: https://truthlensdetect.com/sitemap.xml
