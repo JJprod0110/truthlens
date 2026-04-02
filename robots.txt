@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.truthlensdetect.com/sitemap.xml
+Sitemap: https://truthlensdetect.com/sitemap.xml
