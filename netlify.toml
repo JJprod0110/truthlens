@@ -1,26 +1,26 @@
 # HTTP response headers are managed by the _headers file in the repo root.
-# Do not add a [[headers]] section here — it would override _headers and may conflict.
+# Do not add a [[headers]] section here -- it would override _headers and may conflict.
 
 # www -> non-www canonical redirect
 [[redirects]]
-  from = "https://www.truthlensdetect.com/*"
-    to = "https://truthlensdetect.com/:splat"
-      status = 301
-        force = true
+from = "https://www.truthlensdetect.com/*"
+to = "https://truthlensdetect.com/:splat"
+status = 301
+force = true
 
-        # /privacy and /terms -> /legal.html
-        [[redirects]]
-          from = "/privacy"
-            to = "/legal.html"
-              status = 301
+# /privacy and /terms -> /legal.html
+[[redirects]]
+from = "/privacy"
+to = "/legal.html"
+status = 301
 
-              [[redirects]]
-                from = "/terms"
-                  to = "/legal.html"
-                    status = 301
+[[redirects]]
+from = "/terms"
+to = "/legal.html"
+status = 301
 
-                    # SPA catch-all — serve index.html for any unmatched path (must be last)
-                    [[redirects]]
-                      from = "/*"
-                        to = "/index.html"
-                          status = 200
+# 404 catch-all -- serve branded 404 page for any unmatched path (must be last)
+[[redirects]]
+from = "/*"
+to = "/404.html"
+status = 404
