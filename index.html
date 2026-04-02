@@ -866,7 +866,7 @@ footer {
     </div>
     <div class="form-field">
       <label>Password</label>
-      <input type="password" id="authPassword" placeholder="••••••••" aria-label="••••••••">
+      <input type="password" id="authPassword" placeholder="••••••••" aria-label="Password">
     </div>
     <button class="btn-primary" onclick="submitAuth()" id="authSubmitBtn">Create free account →</button>
     <div class="modal-switch" id="authSwitch">
@@ -1078,7 +1078,7 @@ footer {
     </div>
     <div id="fetchedTextArea" style="display:none; margin-top:1rem;">
       <div style="font-size:0.78rem; font-weight:700; color:var(--muted); margin-bottom:0.4rem; text-transform:uppercase; letter-spacing:0.06em;">Fetched content preview</div>
-      <textarea id="fetchedText" style="width:100%; min-height:160px; padding:1rem; background:var(--surface); border:1.5px solid var(--border); border-radius:12px; font-family:'Cabinet Grotesk',sans-serif; font-size:0.88rem; color:var(--ink); line-height:1.6; resize:vertical; outline:none;" readonly></textarea>
+      <textarea id="fetchedText" aria-label="Fetched URL content" style="width:100%; min-height:160px; padding:1rem; background:var(--surface); border:1.5px solid var(--border); border-radius:12px; font-family:'Cabinet Grotesk',sans-serif; font-size:0.88rem; color:var(--ink); line-height:1.6; resize:vertical; outline:none;" readonly></textarea>
     </div>
   </div>
 
@@ -1446,7 +1446,7 @@ function loadPreview(inputId, previewId, zoneId, type) {
   if (type === 'video') {
     preview.innerHTML = `<video src="${url}" controls class="preview-area" style="max-width:100%;max-height:260px;border-radius:12px;border:1.5px solid var(--border)"></video><div class="file-badge">🎬 ${f.name} <span class="remove" onclick="clearPreview('${previewId}','${inputId}')">✕</span></div>`;
   } else {
-    preview.innerHTML = `<img src="${url}" style="max-width:100%;max-height:260px;border-radius:12px;border:1.5px solid var(--border);object-fit:contain"><div class="file-badge">🖼️ ${f.name} <span class="remove" onclick="clearPreview('${previewId}','${inputId}')">✕</span></div>`;
+    preview.innerHTML = `<img src="${url}" alt="" style="max-width:100%;max-height:260px;border-radius:12px;border:1.5px solid var(--border);object-fit:contain"><div class="file-badge">🖼️ ${f.name} <span class="remove" onclick="clearPreview('${previewId}','${inputId}')">✕</span></div>`;
   }
   document.getElementById(zoneId).style.display = 'none';
 }
