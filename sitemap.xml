@@ -1,21 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-          <loc>https://truthlensdetect.com/</loc>
-          <lastmod>2026-04-01</lastmod>
-          <changefreq>weekly</changefreq>
-          <priority>1.0</priority>
+        <loc>https://truthlensdetect.com/</loc>
+        <lastmod>2026-04-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
     </url>
     <url>
-          <loc>https://truthlensdetect.com/legal.html</loc>
-          <lastmod>2026-04-01</lastmod>
-          <changefreq>monthly</changefreq>
-          <priority>0.5</priority>
-    </url>    
+        <loc>https://truthlensdetect.com/legal/</loc>
+        <lastmod>2026-04-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
     <url>
-          <loc>https://truthlensdetect.com/blog/</loc>
-          <lastmod>2026-04-01</lastmod>
-          <changefreq>weekly</changefreq>
-          <priority>0.7</priority>
-    </url>    
+        <loc>https://truthlensdetect.com/privacy/</loc>
+        <lastmod>2026-04-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://truthlensdetect.com/terms/</loc>
+        <lastmod>2026-04-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://truthlensdetect.com/blog/</loc>
+        <lastmod>2026-04-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://truthlensdetect.com/api/</loc>
+        <lastmod>2026-04-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
 </urlset>
