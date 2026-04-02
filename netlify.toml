@@ -18,3 +18,9 @@
                 from = "/terms"
                   to = "/legal.html"
                     status = 301
+
+                    # SPA catch-all — serve index.html for any unmatched path (must be last)
+                    [[redirects]]
+                      from = "/*"
+                        to = "/index.html"
+                          status = 200
