@@ -7,3 +7,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://truthlensdetect.com/sitemap.xml
+
