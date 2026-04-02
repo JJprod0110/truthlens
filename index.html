@@ -239,6 +239,32 @@ body {
 .topbar-logo sup { font-size: 0.5rem; vertical-align: super; background: var(--accent); color: #fff; padding: 1px 4px; border-radius: 3px; font-weight: 800; }
 
 .topbar-right { display: flex; align-items: center; gap: 0.75rem; }
+/* ── Mobile hamburger nav ── */
+.hamburger-btn {
+  display: none; background: none; border: none; cursor: pointer;
+  padding: 6px; flex-direction: column; gap: 5px; z-index: 1001;
+  align-items: center; justify-content: center;
+}
+.hamburger-btn span {
+  display: block; width: 24px; height: 2px; background: #fff;
+  border-radius: 2px; transition: transform 0.25s, opacity 0.25s;
+}
+.hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger-btn.open span:nth-child(2) { opacity: 0; }
+.hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-nav-drawer {
+  display: none; position: fixed; inset: 0;
+  background: rgba(10,10,30,0.97); z-index: 1000;
+  flex-direction: column; align-items: center; justify-content: center;
+  gap: 1.5rem; padding: 2rem;
+}
+.mobile-nav-drawer.open { display: flex; }
+.mobile-nav-drawer .topbar-btn { width: 100%; max-width: 280px; text-align: center; font-size: 1.1rem; padding: 0.9rem 1.5rem; }
+@media (max-width: 640px) {
+  .hamburger-btn { display: flex; }
+  .topbar-right > .topbar-btn,
+  .topbar-right > a.topbar-btn { display: none !important; }
+}
 .topbar-btn {
   padding: 0.5rem 1.1rem; border-radius: 8px; font-family: 'Cabinet Grotesk', sans-serif;
   font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
@@ -962,11 +988,17 @@ footer {
 <header role="banner">
 <nav class="topbar">
   <div class="topbar-logo">Truth<em>Lens</em><sup>PRO</sup></div>
-  <div class="topbar-right" id="topbarRight">
+  <div class="topbar-right" id="topbarRight"><button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
     <button class="topbar-btn tb-ghost" onclick="openModal('privacyOverlay')" style="display:flex;align-items:center;gap:0.35rem;color:var(--green);border-color:rgba(26,122,74,0.3);">🔒 Privacy</button>
     <button class="topbar-btn tb-ghost" onclick="openModal('plansOverlay')">Pricing</button>
     <button class="topbar-btn tb-ghost" onclick="openAuthModal('signin')">Sign in</button>
     <button class="topbar-btn tb-fill" onclick="openAuthModal('signup')">Get started free →</button>
+  </div>
+
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <a href="/pricing" class="topbar-btn tb-ghost">Pricing</a>
+    <button type="button" class="topbar-btn tb-ghost" onclick="openAuthModal('signin');toggleMobileNav()">Sign in</button>
+    <button type="button" class="topbar-btn tb-primary" onclick="openAuthModal('signup');toggleMobileNav()">Get started free →</button>
   </div>
 </nav>
 </header>
@@ -1987,6 +2019,22 @@ document.querySelectorAll('.overlay').forEach(o => {
     function ckAccept(){localStorage.setItem('ck_consent','accepted');document.getElementById('ck-banner').style.display='none';loadGA();}
     function ckDecline(){localStorage.setItem('ck_consent','declined');document.getElementById('ck-banner').style.display='none';}
     function loadGA(){if(window._gaLoaded)return;window._gaLoaded=true;var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id=G-BJHMNT7NCM';s.async=true;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','G-BJHMNT7NCM');}
-  </script>
+  
+function toggleMobileNav() {
+  var btn = document.getElementById('hamburgerBtn');
+  var drawer = document.getElementById('mobileNavDrawer');
+  if (!btn || !drawer) return;
+  var isOpen = btn.classList.toggle('open');
+  drawer.classList.toggle('open', isOpen);
+  btn.setAttribute('aria-expanded', String(isOpen));
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var btn = document.getElementById('hamburgerBtn');
+    if (btn && btn.classList.contains('open')) toggleMobileNav();
+  }
+});
+</script>
 </body>
 </html>
