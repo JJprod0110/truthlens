@@ -12,7 +12,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="TruthLens Pro — AI Content Detector">
-    <meta name="twitter:description" content="Detect AI-generated text, images &amp; video in seconds. Free to start.">
+    <meta name="twitter:description" content="Detect AI-generated text, images &amp; video in seconds. Zero data selling — ever.">
     <meta name="twitter:image" content="https://truthlensdetect.com/og-preview.png">
     <link rel="canonical" href="https://truthlensdetect.com/">
     <title>TruthLens Pro — AI Content Detector</title>
@@ -31,13 +31,16 @@
   }
   </script>
   <!-- Google Analytics GA4 - replace G-BJHMNT7NCM with your ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJHMNT7NCM"></script>
+  <!-- GA loaded by loadGA() after consent -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-BJHMNT7NCM');
-    gtag('config', 'AW-18052567284');
+    // GA + Ads loaded only after consent — see loadGA()
+    if(typeof localStorage!=='undefined' && localStorage.getItem('ga-consent')==='accepted'){
+      gtag('js', new Date());
+      gtag('config', 'G-BJHMNT7NCM');
+      gtag('config', 'AW-18052567284');
+    }
 
     // Google Ads conversion helpers
     window.fireSignupConversion = function() {
@@ -993,10 +996,11 @@ footer {
     <button class="topbar-btn tb-ghost" onclick="openModal('plansOverlay')">Pricing</button>
     <button class="topbar-btn tb-ghost" onclick="openAuthModal('signin')">Sign in</button>
     <button class="topbar-btn tb-fill" onclick="openAuthModal('signup')">Get started free →</button>
+      <button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
   </div>
 
   <div class="mobile-nav-drawer" id="mobileNavDrawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
-    <a href="/pricing" class="topbar-btn tb-ghost">Pricing</a>
+    <button type="button" class="topbar-btn tb-ghost" onclick="openModal('plansOverlay');toggleMobileNav()">Pricing</button>
     <button type="button" class="topbar-btn tb-ghost" onclick="openAuthModal('signin');toggleMobileNav()">Sign in</button>
     <button type="button" class="topbar-btn tb-primary" onclick="openAuthModal('signup');toggleMobileNav()">Get started free →</button>
   </div>
