@@ -32,7 +32,8 @@
   </script>
   <!-- Google Analytics GA4 - replace G-BJHMNT7NCM with your ID -->
   <!-- GA loaded by loadGA() after consent -->
-  <script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJHMNT7NCM"></script>
+<script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     // GA + Ads loaded only after consent — see loadGA()
@@ -873,7 +874,7 @@ footer {
       Already have an account? <button type="button" class="link-btn" onclick="toggleAuthMode()">Sign in</button>
     </div>
     <div class="auth-privacy-note">
-      🔒 We never sell your data. No ads. No third-party sharing. <a onclick="closeModal('authOverlay');openModal('privacyOverlay')" style="color:#0e7a40;cursor:pointer;text-decoration:underline;font-weight:800;">Our pledge →</a>
+      🔒 We never sell your data. No ads. No third-party sharing. <a href="/legal" onclick="closeModal('authOverlay');openModal('privacyOverlay')" style="color:#0e7a40;cursor:pointer;text-decoration:underline;font-weight:800;">Our pledge →</a>
     </div>
   </div>
 </div>
@@ -935,7 +936,7 @@ footer {
     </div>
     <div style="margin-top:1.5rem;padding:0.9rem 1.2rem;background:#f0fdf6;border:1.5px solid #a0d4b5;border-radius:12px;display:flex;align-items:center;gap:0.8rem;">
       <span style="font-size:1.2rem;">🔒</span>
-      <p style="font-size:0.78rem;color:#1a7a4a;font-weight:700;">All plans: zero data selling, zero ad tracking, zero third-party sharing. <a onclick="closeModal('plansOverlay');openModal('privacyOverlay')" style="text-decoration:underline;cursor:pointer;color:#0e5c32;">Read our full privacy pledge →</a></p>
+      <p style="font-size:0.78rem;color:#1a7a4a;font-weight:700;">All plans: zero data selling, zero ad tracking, zero third-party sharing. <a href="/legal" onclick="closeModal('plansOverlay');openModal('privacyOverlay')" style="text-decoration:underline;cursor:pointer;color:#0e5c32;">Read our full privacy pledge →</a></p>
     </div>
   </div>
 </div>
