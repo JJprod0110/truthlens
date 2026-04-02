@@ -26,8 +26,8 @@
     "url": "https://truthlensdetect.com",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "Any",
-    "offers": [{"@type":"Offer","price":"0","priceCurrency":"USD","name":"Free"},{"@type":"Offer","price":"9.99","priceCurrency":"USD","name":"Pro"}],
-    "creator": {"@type":"Organization","name":"TruthLens","url":"https://truthlensdetect.com"}
+    "offers": [{"@type":"Offer","price":"0","priceCurrency":"USD","name":"Free"},{"@type":"Offer","price":"12","priceCurrency":"USD","name":"Pro"}],
+    "creator": {"@type":"Organization","name":"TruthLens","url":"https://truthlensdetect.com/"}
   }
   </script>
   <!-- Google Analytics GA4 - replace G-BJHMNT7NCM with your ID -->
@@ -789,12 +789,14 @@ footer {
   button.link-btn:hover { opacity: 0.75; }
   button.link-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 2px; }
 </style>
+  <meta name="theme-color" content="#0f172a">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
 <body>
   <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:#1a1a2e;color:#fff;padding:8px 16px;border-radius:4px;text-decoration:none;font-weight:600" onfocus="this.style.cssText=this.style.cssText.replace('left:-9999px','left:16px');this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-9999px';this.style.width='1px';this.style.height='1px'">Skip to main content</a>
 
 <!-- ═══ PRIVACY PLEDGE MODAL ═══ -->
-<div class="overlay" id="privacyOverlay">
+<div class="overlay" id="privacyOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Our Privacy Pledge">
   <div class="modal privacy-modal">
     <button class="modal-close" aria-label="Close" onclick="closeModal('privacyOverlay')">✕</button>
     <h2>🔒 Our Privacy Pledge</h2>
@@ -844,7 +846,7 @@ footer {
 
 <!-- ═══ AUTH MODAL ═══ -->
 <div class="overlay" id="authOverlay">
-  <div class="modal" id="authModal">
+  <div class="modal" id="authModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Create account">
     <button class="modal-close" aria-label="Close" onclick="closeModal('authOverlay')">✕</button>
     <h2 id="authTitle">Create account</h2>
     <p class="modal-sub" id="authSub">Join 50,000+ users detecting AI content</p>
@@ -878,7 +880,7 @@ footer {
     </div>
   </div>
 </div>
-<div class="overlay" id="plansOverlay">
+<div class="overlay" id="plansOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Upgrade TruthLens">
   <div class="modal plans-modal" style="max-width:820px">
     <button class="modal-close" aria-label="Close" onclick="closeModal('plansOverlay')">✕</button>
     <h2>Upgrade TruthLens</h2>
@@ -940,7 +942,7 @@ footer {
     </div>
   </div>
 </div>
-<div class="overlay" id="shareOverlay">
+<div class="overlay" id="shareOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Share Result">
   <div class="modal">
     <button class="modal-close" aria-label="Close" onclick="closeModal('shareOverlay')">✕</button>
     <h2>Share Result</h2>
@@ -990,7 +992,7 @@ footer {
 
 <!-- ═══ TOPBAR ═══ -->
 <header role="banner">
-<nav class="topbar">
+<nav class="topbar" aria-label="Main navigation">
   <div class="topbar-logo">Truth<em>Lens</em><sup>PRO</sup></div>
   <div class="topbar-right" id="topbarRight"><button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
     <button class="topbar-btn tb-ghost" onclick="openModal('privacyOverlay')" style="display:flex;align-items:center;gap:0.35rem;color:var(--green);border-color:rgba(26,122,74,0.3);">🔒 Privacy</button>
@@ -1287,9 +1289,11 @@ let appState = {
 /* ── MODAL ── */
 function openModal(id) {
   document.getElementById(id).classList.add('open');
+  document.getElementById(id).setAttribute('aria-hidden', 'false');
 }
 function closeModal(id) {
   document.getElementById(id).classList.remove('open');
+  document.getElementById(id).setAttribute('aria-hidden', 'true');
 }
 function openAuthModal(mode) {
   appState.authMode = mode;
