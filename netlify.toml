@@ -71,6 +71,16 @@ from = "/favicon-16x16.png"
 to = "https://raw.githubusercontent.com/JJprod0110/truthlens/main/apple-touch-icon.png"
 status = 200
 
+[[redirects]]
+from = "/pricing"
+to = "/#pricing"
+status = 301
+
+[[redirects]]
+from = "/pricing/"
+to = "/#pricing"
+status = 301
+
 # 404 catch-all -- serve branded 404 page for any unmatched path (must be last)
 [[redirects]]
 from = "/*"
