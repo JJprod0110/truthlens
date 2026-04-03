@@ -23,7 +23,7 @@
 <meta name="robots" content="index, follow">
 <link rel="alternate" type="application/rss+xml" title="TruthLens Pro Blog" href="/feed.xml">
 <link rel="manifest" href="/manifest.json">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"TruthLens Editorial Team","url":"https://truthlensdetect.com/blog/"},"headline":"AI Detection Accuracy: How TruthLens Pro Compares","datePublished":"2025-02-10","dateModified":"2025-02-10","author":{"@type":"Organization","name":"TruthLens Team","url":"https://truthlensdetect.com"},"publisher":{"@type":"Organization","name":"TruthLens Pro","url":"https://truthlensdetect.com"},"url":"https://truthlensdetect.com/blog/ai-detection-accuracy/","description":"We benchmarked TruthLens Pro against leading AI detection tools using a dataset of 10,000 human and AI-generated samples."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"TruthLens Editorial Team","url":"https://truthlensdetect.com/blog/"},"headline":"AI Detection Accuracy: How TruthLens Pro Compares","datePublished":"2025-02-10","dateModified":"2026-04-03","author":{"@type":"Organization","name":"TruthLens Team","url":"https://truthlensdetect.com"},"publisher":{"@type":"Organization","name":"TruthLens Pro","url":"https://truthlensdetect.com"},"url":"https://truthlensdetect.com/blog/ai-detection-accuracy/","description":"We benchmarked TruthLens Pro against leading AI detection tools using a dataset of 10,000 human and AI-generated samples."}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://truthlensdetect.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://truthlensdetect.com/blog/"},{"@type":"ListItem","position":3,"name":"AI Detection Accuracy: How TruthLens Compares","item":"https://truthlensdetect.com/blog/ai-detection-accuracy/"}]}</script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -113,6 +113,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <li style="color:#ccc;" aria-current="page">AI Detection Accuracy</li>
   </ol>
 </nav>
+<nav class="article-toc" aria-label="Table of contents" style="background:#f8f9fa;border:1px solid #e8e8e8;border-radius:8px;padding:1.2rem 1.5rem;margin:1.5rem auto 2rem;max-width:700px;">
+  <p style="font-weight:600;margin:0 0 .6rem;font-size:.9rem;color:#444;">In this article</p>
+  <ol style="margin:0;padding-left:1.2rem;font-size:.9rem;line-height:1.9;">
+    <li><a href="#how-we-built-the-benchmark" style="color:#e85d26;text-decoration:none;">How We Built the Benchmark</a></li>
+    <li><a href="#text-detection-results" style="color:#e85d26;text-decoration:none;">Text Detection Results</a></li>
+    <li><a href="#image-detection-results" style="color:#e85d26;text-decoration:none;">Image Detection Results</a></li>
+    <li><a href="#where-we-still-struggle" style="color:#e85d26;text-decoration:none;">Where We Still Struggle</a></li>
+    <li><a href="#how-we-keep-accuracy-high" style="color:#e85d26;text-decoration:none;">How We Keep Accuracy High</a></li>
+    <li><a href="#independent-third-party-validation" style="color:#e85d26;text-decoration:none;">Independent Third-Party Validation</a></li>
+    <li><a href="#how-accuracy-varies-by-content-type" style="color:#e85d26;text-decoration:none;">How Accuracy Varies by Content Type</a></li>
+    <li><a href="#our-commitment-to-transparency" style="color:#e85d26;text-decoration:none;">Our Commitment to Transparency</a></li>
+  </ol>
+</nav>
+
     <article class="article-body" itemscope itemtype="https://schema.org/BlogPosting">
       <meta itemprop="datePublished" content="2025-02-10">
       <meta itemprop="author" content="TruthLens Team">
@@ -126,7 +140,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div class="stat-card"><span class="num">7</span><span class="lbl">AI models tested against</span></div>
       </div>
 
-      <h2>How We Built the Benchmark</h2>
+      <h2 id="how-we-built-the-benchmark">How We Built the Benchmark</h2>
       <p>Good benchmarks are hard. The most common mistake in AI detection evaluation is testing on data that is too similar to training data—a form of data leakage that produces inflated accuracy numbers that collapse in the real world.</p>
       <p>Our benchmark was designed with three constraints:</p>
       <ol>
@@ -135,7 +149,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <li><strong>Adversarial samples.</strong> 15% of AI-generated samples were processed through paraphrasers or lightly edited by humans before testing, to simulate evasion attempts.</li>
       </ol>
 
-      <h2>Text Detection Results</h2>
+      <h2 id="text-detection-results">Text Detection Results</h2>
 
       <table class="bench-table" aria-label="Text detection accuracy comparison">
         <thead>
@@ -151,7 +165,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
       <div class="callout"><p>False positives (incorrectly flagging human text as AI) matter as much as false negatives. A 1.8% false positive rate means 1.8 out of every 100 genuine human texts would be wrongly flagged—a critical factor for academic integrity use cases.</p></div>
 
-      <h2>Image Detection Results</h2>
+      <h2 id="image-detection-results">Image Detection Results</h2>
       <p>Image detection is harder than text detection because lossy compression degrades the pixel-level artifacts that many detectors rely on. We tested each tool against images as-submitted (uncompressed) and after one round of JPEG compression at quality 80—the approximate quality of images shared via most social platforms.</p>
 
       <table class="bench-table" aria-label="Image detection accuracy comparison">
@@ -168,7 +182,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
       <p>Our ensemble approach—combining pixel-frequency analysis with a semantic classifier—provides meaningful compression resilience. Most tools that rely solely on frequency-domain analysis see a sharp accuracy drop post-compression; our semantic layer partially compensates.</p>
 
-      <h2>Where We Still Struggle</h2>
+      <h2 id="where-we-still-struggle">Where We Still Struggle</h2>
       <p>We are not going to cherry-pick. There are cases where TruthLens Pro underperforms:</p>
       <ul>
         <li><strong>Short text (under 100 words).</strong> Statistical signals are too weak to be reliable. We show lower confidence scores and flag this to users.</li>
@@ -177,7 +191,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <li><strong>Newly released models.</strong> When a major new model version ships, there is a detection lag of two to four weeks before our classifiers are retrained on its output patterns.</li>
       </ul>
 
-      <h2>How We Keep Accuracy High</h2>
+      <h2 id="how-we-keep-accuracy-high">How We Keep Accuracy High</h2>
       <p>Detection is an arms race, and staying ahead requires continuous retraining. Our pipeline automatically ingests newly identified AI-generated content into training queues, with weekly classifier updates. Our ensemble architecture means a new model is less likely to fool all layers simultaneously than any single-method detector.</p>
 
       <p>We also run live accuracy monitoring against a held-out validation set that updates weekly. If the accuracy on that set drops below threshold, an alert fires and a retraining job is queued automatically.</p>
@@ -189,14 +203,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
 
 <section>
-<h2>Independent Third-Party Validation</h2>
+<h2 id="independent-third-party-validation">Independent Third-Party Validation</h2>
 <p>Transparency in AI detection requires more than self-reported performance metrics. Any company can claim high accuracy on its own benchmarks—what matters is how a tool performs when tested by independent researchers using real-world datasets it has never seen before. TruthLens has been subjected to third-party evaluation using diverse corpora drawn from academic writing, news articles, social media posts, and marketing copy generated by a range of models including GPT-4, Claude, Gemini, and open-source alternatives.</p>
 <p>These evaluations consistently place TruthLens among the top performers in balanced F1-score, a metric that accounts for both false positives and false negatives. Independent testing is critical because it prevents the overfitting problem: a model trained and tested only on its own data will almost always look artificially accurate. Third-party audits force detectors to prove generalization, which is the only kind of accuracy that matters in practice.</p>
 <p>We publish our independent evaluation results in our documentation and update them as new model versions are released. We believe this level of openness is essential to building warranted trust—not just marketing trust—in AI detection technology.</p>
 </section>
 
 <section>
-<h2>How Accuracy Varies by Content Type</h2>
+<h2 id="how-accuracy-varies-by-content-type">How Accuracy Varies by Content Type</h2>
 <p>AI detection is not a single problem—it is a family of problems, and accuracy varies significantly depending on the type and length of content being analyzed. TruthLens's accuracy profile across content categories reflects this nuance.</p>
 <p><strong>Long-form text (500+ words)</strong> is where detection is most reliable. Longer passages give the model more statistical signal—more tokens to analyze for the subtle probabilistic patterns that distinguish AI generation from human composition. For blog posts, academic essays, and news articles, TruthLens achieves its highest accuracy figures.</p>
 <p><strong>Short-form text (under 100 words)</strong> is significantly harder. A single paragraph or a few sentences simply does not contain enough information for any detector to be highly confident. TruthLens is calibrated to report lower confidence scores for short inputs and to communicate that uncertainty clearly to the user—rather than overstating reliability on content that is genuinely ambiguous.</p>
@@ -204,7 +218,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </section>
 
 <section>
-<h2>Our Commitment to Transparency</h2>
+<h2 id="our-commitment-to-transparency">Our Commitment to Transparency</h2>
 <p>TruthLens was built on a simple premise: people deserve to know what they are reading. As AI-generated content proliferates across the web—in news, in educational materials, in product descriptions, in communications—the ability to identify its origin becomes increasingly important for informed decision-making.</p>
 <p>That commitment to transparency extends to how we describe our own tool. We will not overstate our accuracy, hide our limitations, or present cherry-picked benchmarks as representative performance. Every scan result includes a confidence indicator precisely because certainty is often not warranted. We invest continuously in model improvements and in honest communication of where and why our detector can fall short.</p>
 <p>If you encounter a case where TruthLens produces a result that seems wrong—a false positive on a clearly human-written piece, or a false negative on demonstrably AI-generated text—we want to hear from you. Feedback from real-world use is one of the most valuable inputs to model improvement, and it is how we continue to earn the trust that our users place in us.</p>
@@ -212,8 +226,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </article>
   </div>
 </main>
+
+<div class="share-section" style="max-width:700px;margin:2rem auto;padding:1rem 1.5rem;border-top:1px solid #e8e8e8;">
+  <p style="font-size:.9rem;font-weight:600;color:#444;margin:0 0 .7rem;">Share this article</p>
+  <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftruthlensdetect.com%2Fblog%2Fai-detection-accuracy%2F&text=AI+Detection+Accuracy" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:.45rem .9rem;border-radius:6px;background:#000;color:#fff;font-size:.85rem;text-decoration:none;">&#120143; Share</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ftruthlensdetect.com%2Fblog%2Fai-detection-accuracy%2F" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:.45rem .9rem;border-radius:6px;background:#0077b5;color:#fff;font-size:.85rem;text-decoration:none;">LinkedIn</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftruthlensdetect.com%2Fblog%2Fai-detection-accuracy%2F" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:.45rem .9rem;border-radius:6px;background:#1877f2;color:#fff;font-size:.85rem;text-decoration:none;">Facebook</a>
+  </div>
+</div>
 <footer class="site-footer">
-  <p>&copy; 2025 TruthLens Pro &middot; <a href="/legal/">Privacy &amp; Terms</a> &middot; <a href="/blog/">Blog</a></p>
+  <p>&copy; 2025 TruthLens Pro &middot; <a href="/privacy/">Privacy</a> &amp; <a href="/terms/">Terms</a> &middot; <a href="/blog/">Blog</a></p>
 
 
 <section style="max-width:700px;margin:2rem auto;padding:1rem;background:#f8f9fa;border-radius:8px;">
