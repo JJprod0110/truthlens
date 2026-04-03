@@ -19,10 +19,25 @@ from = "/terms"
 to = "/legal.html"
 status = 301
 
-# Proxy og-preview.png directly from GitHub raw (ensures real PNG bytes are served)
+# Proxy image assets directly from GitHub raw (ensures real PNG bytes are served)
 [[redirects]]
 from = "/og-preview.png"
 to = "https://raw.githubusercontent.com/JJprod0110/truthlens/main/og-preview.png"
+status = 200
+
+[[redirects]]
+from = "/apple-touch-icon.png"
+to = "https://raw.githubusercontent.com/JJprod0110/truthlens/main/apple-touch-icon.png"
+status = 200
+
+[[redirects]]
+from = "/icon-192.png"
+to = "https://raw.githubusercontent.com/JJprod0110/truthlens/main/apple-touch-icon.png"
+status = 200
+
+[[redirects]]
+from = "/icon-512.png"
+to = "https://raw.githubusercontent.com/JJprod0110/truthlens/main/apple-touch-icon.png"
 status = 200
 
 # 404 catch-all -- serve branded 404 page for any unmatched path (must be last)
