@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TruthLens Pro Blog</title>
+    <link>https://truthlensdetect.com/blog/</link>
+    <description>Insights on AI detection, deepfakes, and content authenticity from the TruthLens Pro team.</description>
+    <language>en-us</language>
+    <atom:link href="https://truthlensdetect.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>How to Detect AI-Generated Writing</title>
+      <link>https://truthlensdetect.com/blog/how-to-detect-ai-writing/</link>
+      <guid isPermaLink="true">https://truthlensdetect.com/blog/how-to-detect-ai-writing/</guid>
+      <pubDate>Sat, 15 Mar 2025 00:00:00 +0000</pubDate>
+      <description>AI writing tools leave telltale patterns. Learn the markers and cues that reveal machine-generated text, and how TruthLens Pro catches them automatically.</description>
+    </item>
+    <item>
+      <title>How AI Generates Deepfake Images</title>
+      <link>https://truthlensdetect.com/blog/deepfake-images-explained/</link>
+      <guid isPermaLink="true">https://truthlensdetect.com/blog/deepfake-images-explained/</guid>
+      <pubDate>Fri, 28 Feb 2025 00:00:00 +0000</pubDate>
+      <description>AI image synthesis has reached photorealistic quality. Learn how GAN and diffusion systems generate deepfakes, and the artifacts they leave behind.</description>
+    </item>
+    <item>
+      <title>AI Detection Accuracy: How TruthLens Compares</title>
+      <link>https://truthlensdetect.com/blog/ai-detection-accuracy/</link>
+      <guid isPermaLink="true">https://truthlensdetect.com/blog/ai-detection-accuracy/</guid>
+      <pubDate>Mon, 10 Feb 2025 00:00:00 +0000</pubDate>
+      <description>We benchmarked TruthLens Pro against leading AI detection tools using 10,000 samples. Results: 97.4% accuracy for text and 94.1% for images.</description>
+    </item>
+  </channel>
+</rss>
