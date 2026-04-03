@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Blog — TruthLens Pro</title>
+<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Blog — TruthLens Pro</title>
     <link rel="canonical" href="https://truthlensdetect.com/blog/">
     <meta name="description" content="The TruthLens Pro blog — tips, research, and updates on detecting AI-generated content.">
     <meta property="og:title" content="Blog — TruthLens Pro">
@@ -14,7 +14,12 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="TruthLens Pro Blog — AI Detection Tips &amp; Research">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"TruthLens Pro Blog","url":"https://truthlensdetect.com/blog/","description":"Tips, research, and updates on detecting AI-generated content."}</script></head><body>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"TruthLens Pro Blog","url":"https://truthlensdetect.com/blog/","description":"Tips, research, and updates on detecting AI-generated content."}</script>
+    <meta name="robots" content="index, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>body{line-height:1.6}</style></head><body>
+  <a href="#main-content" class="skip-link" style="position:absolute;top:-100px;left:0;background:#6c8fff;color:#fff;padding:8px 16px;z-index:10000;border-radius:0 0 6px 0;font-family:inherit;font-size:14px;text-decoration:none" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
   <nav class="topbar" aria-label="Main navigation">
     <a href="/" class="logo">TruthLens<span>Pro</span></a>
     <div class="nav-links">
@@ -57,5 +62,16 @@
   <footer class="site-footer">
     <p>&copy; 2025 TruthLens Pro &middot; <a href="/legal/">Privacy &amp; Terms</a></p>
   </footer>
-</body>
+
+  <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1814;color:#f7f5f0;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:9999;font-size:14px;font-family:inherit;box-shadow:0 -2px 12px rgba(0,0,0,.3)">
+    <p style="margin:0">We use cookies for analytics. <a href="/legal/" style="color:#6c8fff;text-decoration:underline">Privacy Policy</a></p>
+    <div style="display:flex;gap:8px;flex-shrink:0">
+      <button onclick="tlConsent('decline')" style="padding:7px 14px;border:1px solid #f7f5f0;background:transparent;color:#f7f5f0;cursor:pointer;border-radius:6px;font-family:inherit;font-size:13px">Decline</button>
+      <button onclick="tlConsent('accept')" style="padding:7px 14px;border:none;background:#6c8fff;color:#fff;cursor:pointer;border-radius:6px;font-family:inherit;font-size:13px">Accept</button>
+    </div>
+  </div>
+  <script>
+  (function(){var c=localStorage.getItem('tl-cookie');if(!c){document.getElementById('cookie-banner').style.display='flex';}})();
+  function tlConsent(c){localStorage.setItem('tl-cookie',c);document.getElementById('cookie-banner').style.display='none';}
+  </script></body>
 </html>
