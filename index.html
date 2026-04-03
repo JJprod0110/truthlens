@@ -1395,6 +1395,19 @@ let appState = {
   authMode: 'signup'
 };
 
+/* ── MOBILE NAV ── */
+function toggleMobileNav() {
+  var drawer = document.getElementById('mobileNavDrawer');
+  var btn = document.getElementById('hamburgerBtn');
+  if (!drawer) return;
+  var isOpen = drawer.classList.contains('open');
+  drawer.classList.toggle('open');
+  if (btn) {
+    btn.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  }
+}
+
 /* ── MODAL ── */
 function openModal(id) {
   document.getElementById(id).classList.add('open');
