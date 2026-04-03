@@ -2,11 +2,13 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>AI Detection Accuracy: How TruthLens Pro Compares — TruthLens Pro Blog</title>
+<title>AI Detection Accuracy: How TruthLens Compares</title>
 <link rel="canonical" href="https://truthlensdetect.com/blog/ai-detection-accuracy/">
-<meta name="description" content="We benchmarked TruthLens Pro against leading AI detection tools using 10,000 samples. Our results show 97.4% accuracy for text and 94.1% for images. Here is how we got there.">
-<meta property="og:title" content="AI Detection Accuracy: How TruthLens Pro Compares — TruthLens Pro Blog">
+<meta name="description" content="We benchmarked TruthLens Pro against leading AI detection tools using 10,000 samples. Results: 97.4% accuracy for text and 94.1% for images.">>
+<meta property="og:title" content="AI Detection Accuracy: How TruthLens Pro Compares â TruthLens Pro Blog">
 <meta property="og:description" content="We benchmarked TruthLens Pro against leading AI detection tools using 10,000 samples. 97.4% text accuracy, 94.1% image accuracy.">
 <meta property="og:url" content="https://truthlensdetect.com/blog/ai-detection-accuracy/">
 <meta property="og:type" content="article">
@@ -14,7 +16,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI Detection Accuracy: How TruthLens Pro Compares — TruthLens Pro Blog">
+<meta name="twitter:title" content="AI Detection Accuracy: How TruthLens Pro Compares â TruthLens Pro Blog">
 <meta name="twitter:description" content="97.4% text accuracy, 94.1% image accuracy. How we benchmark AI detection.">
 <meta name="twitter:image" content="https://truthlensdetect.com/og-preview.png">
 <meta name="twitter:site" content="@truthlenspro">
@@ -90,14 +92,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </nav>
 <main id="main-content">
   <div class="article-wrap">
-    <a href="/blog/" class="back-link">← Back to Blog</a>
+    <a href="/blog/" class="back-link">â Back to Blog</a>
     <header class="article-header">
       <h1>AI Detection Accuracy: How TruthLens Pro Compares</h1>
       <div class="article-meta">
         <span>By TruthLens Team</span>
-        <span aria-hidden="true">·</span>
+        <span aria-hidden="true">Â·</span>
         <time datetime="2025-02-10">February 10, 2025</time>
-        <span aria-hidden="true">·</span>
+        <span aria-hidden="true">Â·</span>
         <span>7 min read</span>
       </div>
     </header>
@@ -105,7 +107,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <meta itemprop="datePublished" content="2025-02-10">
       <meta itemprop="author" content="TruthLens Team">
 
-      <p>Accuracy claims are cheap in the AI detection space. Any tool can claim high accuracy with a carefully curated dataset. We did it differently: we assembled a balanced benchmark of 10,000 samples—5,000 human-written texts and 5,000 AI-generated texts from seven different models—and ran every tool we could evaluate against the same data. Here is what we found.</p>
+      <p>Accuracy claims are cheap in the AI detection space. Any tool can claim high accuracy with a carefully curated dataset. We did it differently: we assembled a balanced benchmark of 10,000 samplesâ5,000 human-written texts and 5,000 AI-generated texts from seven different modelsâand ran every tool we could evaluate against the same data. Here is what we found.</p>
 
       <div class="stat-grid">
         <div class="stat-card"><span class="num">97.4%</span><span class="lbl">Text detection accuracy</span></div>
@@ -115,11 +117,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
 
       <h2>How We Built the Benchmark</h2>
-      <p>Good benchmarks are hard. The most common mistake in AI detection evaluation is testing on data that is too similar to training data—a form of data leakage that produces inflated accuracy numbers that collapse in the real world.</p>
+      <p>Good benchmarks are hard. The most common mistake in AI detection evaluation is testing on data that is too similar to training dataâa form of data leakage that produces inflated accuracy numbers that collapse in the real world.</p>
       <p>Our benchmark was designed with three constraints:</p>
       <ol>
         <li><strong>No overlap with training data.</strong> We sourced human text from publications and forums that postdate our training cutoff and generated AI text from model versions released after training.</li>
-        <li><strong>Domain variety.</strong> Samples span academic writing, journalism, social media posts, product reviews, and creative fiction—matching the distribution of content our users actually submit.</li>
+        <li><strong>Domain variety.</strong> Samples span academic writing, journalism, social media posts, product reviews, and creative fictionâmatching the distribution of content our users actually submit.</li>
         <li><strong>Adversarial samples.</strong> 15% of AI-generated samples were processed through paraphrasers or lightly edited by humans before testing, to simulate evasion attempts.</li>
       </ol>
 
@@ -137,10 +139,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </tbody>
       </table>
 
-      <div class="callout"><p>False positives (incorrectly flagging human text as AI) matter as much as false negatives. A 1.8% false positive rate means 1.8 out of every 100 genuine human texts would be wrongly flagged—a critical factor for academic integrity use cases.</p></div>
+      <div class="callout"><p>False positives (incorrectly flagging human text as AI) matter as much as false negatives. A 1.8% false positive rate means 1.8 out of every 100 genuine human texts would be wrongly flaggedâa critical factor for academic integrity use cases.</p></div>
 
       <h2>Image Detection Results</h2>
-      <p>Image detection is harder than text detection because lossy compression degrades the pixel-level artifacts that many detectors rely on. We tested each tool against images as-submitted (uncompressed) and after one round of JPEG compression at quality 80—the approximate quality of images shared via most social platforms.</p>
+      <p>Image detection is harder than text detection because lossy compression degrades the pixel-level artifacts that many detectors rely on. We tested each tool against images as-submitted (uncompressed) and after one round of JPEG compression at quality 80âthe approximate quality of images shared via most social platforms.</p>
 
       <table class="bench-table" aria-label="Image detection accuracy comparison">
         <thead>
@@ -154,13 +156,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </tbody>
       </table>
 
-      <p>Our ensemble approach—combining pixel-frequency analysis with a semantic classifier—provides meaningful compression resilience. Most tools that rely solely on frequency-domain analysis see a sharp accuracy drop post-compression; our semantic layer partially compensates.</p>
+      <p>Our ensemble approachâcombining pixel-frequency analysis with a semantic classifierâprovides meaningful compression resilience. Most tools that rely solely on frequency-domain analysis see a sharp accuracy drop post-compression; our semantic layer partially compensates.</p>
 
       <h2>Where We Still Struggle</h2>
       <p>We are not going to cherry-pick. There are cases where TruthLens Pro underperforms:</p>
       <ul>
         <li><strong>Short text (under 100 words).</strong> Statistical signals are too weak to be reliable. We show lower confidence scores and flag this to users.</li>
-        <li><strong>Heavy human editing of AI text.</strong> When a human substantially rewrites AI output, accuracy drops to around 74%—still useful, but not definitive.</li>
+        <li><strong>Heavy human editing of AI text.</strong> When a human substantially rewrites AI output, accuracy drops to around 74%âstill useful, but not definitive.</li>
         <li><strong>Non-English languages.</strong> Our primary training data is English. Romance languages perform reasonably well; Asian language scripts perform notably worse.</li>
         <li><strong>Newly released models.</strong> When a major new model version ships, there is a detection lag of two to four weeks before our classifiers are retrained on its output patterns.</li>
       </ul>
@@ -172,8 +174,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
       <div class="cta-box">
         <h3>Put the numbers to the test</h3>
-        <p>Try TruthLens Pro free on your own text or images and see the detailed confidence breakdown for yourself—no account required.</p>
-        <a href="/#detect">Try TruthLens Pro Free →</a>
+        <p>Try TruthLens Pro free on your own text or images and see the detailed confidence breakdown for yourselfâno account required.</p>
+        <a href="/#detect">Try TruthLens Pro Free â</a>
       </div>
     </article>
   </div>
@@ -187,7 +189,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <ul style="list-style:none;padding:0;margin:0;">
     <li style="margin-bottom:0.5rem;"><a href="/blog/deepfake-images-explained/">Deepfake Images Explained: How AI Generates Fake Photos</a></li>
     <li style="margin-bottom:0.5rem;"><a href="/blog/how-to-detect-ai-writing/">How to Detect AI Writing: A Complete Guide</a></li>
-    <li><a href="/">Try TruthLens Pro — Free AI Content Detector</a></li>
+    <li><a href="/">Try TruthLens Pro â Free AI Content Detector</a></li>
   </ul>
 </section>
 </footer>
