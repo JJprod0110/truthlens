@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Deepfake Images Explained: How AI Generates Fake Photos — TruthLens Pro Blog</title>
+<link rel="canonical" href="https://truthlensdetect.com/blog/deepfake-images-explained/">
+<meta name="description" content="From GAN-generated faces to diffusion model landscapes, AI image synthesis has reached photorealistic quality. Learn how these systems work and what artifacts they leave behind.">
+<meta property="og:title" content="Deepfake Images Explained: How AI Generates Fake Photos — TruthLens Pro Blog">
+<meta property="og:description" content="From GAN-generated faces to diffusion model landscapes, AI image synthesis has reached photorealistic quality. Learn how these systems work.">
+<meta property="og:url" content="https://truthlensdetect.com/blog/deepfake-images-explained/">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://truthlensdetect.com/og-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Deepfake Images Explained: How AI Generates Fake Photos — TruthLens Pro Blog">
+<meta name="twitter:description" content="How AI generates photorealistic fake images—and how detection works.">
+<meta name="twitter:image" content="https://truthlensdetect.com/og-preview.png">
+<meta name="twitter:site" content="@truthlenspro">
+<meta name="robots" content="index, follow">
+<link rel="alternate" type="application/rss+xml" title="TruthLens Pro Blog" href="/feed.xml">
+<link rel="manifest" href="/manifest.json">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Deepfake Images Explained: How AI Generates Fake Photos","datePublished":"2025-02-28","dateModified":"2025-02-28","author":{"@type":"Organization","name":"TruthLens Team","url":"https://truthlensdetect.com"},"publisher":{"@type":"Organization","name":"TruthLens Pro","url":"https://truthlensdetect.com"},"url":"https://truthlensdetect.com/blog/deepfake-images-explained/","description":"From GAN-generated faces to diffusion model landscapes, AI image synthesis has reached photorealistic quality."}</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI'$sans-serif;background:#0d0d1a;color:#e0e0e0;line-height:1.7;min-height:100vh;display:flex;flex-direction:column}
+:focus-visible{outline:3px solid #6c8fff;outline-offset:2px;border-radius:3px;}
+.topbar{padding:1rem 2rem;background:#111128;border-bottom:1px solid #222;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.logo{color:#fff;text-decoration:none;font-weight:700;font-size:1.1rem}
+.logo span{color:#6c8fff}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{color:#aaa;text-decoration:none;font-size:0.9rem;transition:color .2s}
+.nav-links a:hover,.nav-links a[aria-current="page"]{color:#fff}
+.cta-btn{background:#6c8fff;color:#fff;padding:0.5rem 1.25rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;white-space:nowrap}
+.cta-btn:hover{background:#5a7aff}
+.article-wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem;flex:1;width:100%}
+.back-link{color:#6c8fff;text-decoration:none;font-size:0.9rem;display:inline-flex;align-items:center;gap:0.35rem;margin-bottom:2rem}
+.back-link:hover{text-decoration:underline}
+.article-header{margin-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:2rem}
+.article-header h1{font-size:clamp(1.5rem,4vw,2.1rem);color:#fff;line-height:1.3;margin-bottom:1rem}
+.article-meta{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.45);flex-wrap:wrap}
+.article-body h2{font-size:1.25rem;color:#fff;margin:2rem 0 0.75rem;padding-top:0.25rem}
+.article-body p{margin-bottom:1.25rem;color:#ccc;font-size:1rem}
+.article-body ul,.article-body ol{margin:0 0 1.25rem 1.5rem;color:#ccc}
+.article-body li{margin-bottom:0.5rem}
+.article-body strong{color:#e0e0e0}
+.article-body a{color:#6c8fff;text-decoration:underline}
+.callout{background:#1a1a2e;border-left:3px solid #6c8fff;border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin:1.5rem 0}
+.callout p{margin:0;color:#b0b8e0;font-size:0.95rem}
+.artifact-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.9rem}
+.artifact-table th{background:#111128;color:#aaa;padding:0.6rem 1rem;text-align:left;border-bottom:1px solid #222;font-weight:600}
+.artifact-table td{padding:0.6rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);color:#ccc;vertical-align:top}
+.artifact-table tr:hover td{background:rgba(255,255,255,.02)}
+.cta-box{background:linear-gradient(135deg,#1a1a2e 0%,#111128 100%);border:1px solid rgba(108,143,255,0.25);border-radius:12px;padding:2rem;text-align:center;margin:2.5rem 0}
+.cta-box h3{color:#fff;margin-bottom:0.5rem;font-size:1.2rem}
+.cta-box p{color:#aaa;margin-bottom:1.25rem;font-size:0.9rem}
+.cta-box a{background:#6c8fff;color:#fff;padding:0.7rem 1.75rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.95rem;display:inline-block}
+.cta-box a:hover{background:#5a7aff}
+.site-footer{text-align:center;padding:2rem;color:#555;font-size:0.85rem;border-top:1px solid #222}
+.site-footer a{color:#6c8fff;text-decoration:none}
+#cookie-banner{display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1814;color:#f7f5f0;padding:14px 24px;align-items:center;justify-content:space-between;gap:16px;z-index:9999;font-size:14px;font-family:inherit;box-shadow:0 -2px 12px rgba(0,0,0,.3)}
+#cookie-banner p{margin:0}#cookie-banner a{color:#6c8fff;text-decoration:underline}
+#cookie-banner button{cursor:pointer;border-radius:6px;font-family:inherit;font-size:13px;padding:7px 14px}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link" style="position:absolute;top:-100px;left:0;background:#6c8fff;color:#fff;padding:8px 16px;z-index:10000;border-radius:0 0 6px 0;font-family:inherit;font-size:14px;text-decoration:none" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
+<nav class="topbar" aria-label="Main navigation">
+  <a href="/" class="logo">TruthLens<span>Pro</span></a>
+  <div class="nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/blog/" aria-current="page">Blog</a>
+    <a href="/api/">API</a>
+  </div>
+  <a href="/#detect" class="cta-btn">Try Free</a>
+</nav>
+<main id="main-content">
+  <div class="article-wrap">
+    <a href="/blog/" class="back-link">← Back to Blog</a>
+    <header class="article-header">
+      <h1>Deepfake Images Explained: How AI Generates Fake Photos</h1>
+      <div class="article-meta">
+        <span>By TruthLens Team</span>
+        <span aria-hidden="true">·</span>
+        <time datetime="2025-02-28">February 28, 2025</time>
+        <span aria-hidden="true">·</span>
+        <span>5 min read</span>
+      </div>
+    </header>
+    <article class="article-body" itemscope itemtype="https://schema.org/BlogPosting">
+      <meta itemprop="datePublished" content="2025-02-28">
+      <meta itemprop="author" content="TruthLens Team">
+
+      <p>In 2025, a photorealistic image of a person, place, or event can be generated in seconds—for free, by anyone. The technology behind this is not magic; it is mathematics applied at enormous scale. Understanding how AI image synthesis works is the foundation for understanding how to detect it.</p>
+
+      <h2>The Two Dominant Architectures</h2>
+      <p>Most AI-generated images today come from one of two model families: <strong>Generative Adversarial Networks (GANs)</strong> and <strong>Diffusion Models</strong>. They work differently and leave different artifacts.</p>
+
+      <p><strong>GANs</strong> pit two neural networks against each other—a generator that creates images and a discriminator that tries to spot the fakes. Through millions of training rounds, the generator learns to produce images the discriminator cannot distinguish from real photographs. The result is fast, high-resolution synthesis, but GANs tend to struggle with complex scenes and fine details like hands, teeth, and text.</p>
+
+      <p><strong>Diffusion models</strong> (used by Stable Diffusion, DALL-E, Midjourney, and others) take a different approach: they learn to reverse a process of adding noise to an image. Starting from pure static, the model iteratively removes noise according to a text prompt until a coherent image emerges. Diffusion models produce more varied and photorealistic results than GANs for many categories of image, but they require more compute per generation.</p>
+
+      <h2>Artifacts: What AI Images Get Wrong</h2>
+      <p>Despite their sophistication, both architectures leave detectable artifacts. The specific patterns vary by model version and prompt, but these are the most reliable indicators:</p>
+
+      <table class="artifact-table" aria-label="Common AI image artifacts by type">
+        <thead>
+          <tr><th>Artifact</th><th>Where to look</th><th>Why it happens</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Hands and fingers</strong></td><td>Any image with visible hands</td><td>Models struggle with the combinatorial complexity of finger positions</td></tr>
+          <tr><td><strong>Text and lettering</strong></td><td>Signs, shirts, books</td><td>Diffusion models treat text as texture, not semantics</td></tr>
+          <tr><td><strong>Ear asymmetry</strong></td><td>Portrait photos</td><td>GAN face synthesis applies global constraints that lose fine bilateral symmetry</td></tr>
+          <tr><td><strong>Background repetition</strong></td><td>Crowds, foliage, brickwork</td><td>Models repeat patterns when filling large uniform areas</td></tr>
+          <tr><td><strong>Lighting inconsistency</strong></td><td>Shadows, reflections</td><td>Models do not simulate physics; light sources can contradict themselves</td></tr>
+          <tr><td><strong>Skin texture uniformity</strong></td><td>Face close-ups</td><td>GAN generators smooth high-frequency skin detail</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout"><p>Artifacts are becoming subtler with each model generation. StyleGAN3 largely fixed the "watery" motion artifacts of StyleGAN2. SDXL improved hands significantly over earlier Stable Diffusion versions. Detectors must retrain regularly to keep pace.</p></div>
+
+      <h2>Pixel-Level Analysis vs. Semantic Analysis</h2>
+      <p>Detection tools use two broad approaches. <strong>Pixel-level analysis</strong> looks at the raw frequency spectrum of an image—AI-generated images have characteristic patterns in their DCT (Discrete Cosine Transform) coefficients that differ from photos taken by cameras. This is fast and model-agnostic but can be fooled by lossy compression (JPEG, social media resizing) that removes high-frequency detail.</p>
+
+      <p><strong>Semantic analysis</strong> uses a classifier trained on known AI-generated and real images to spot holistic patterns. This approach is more robust to compression but requires large training datasets and degrades when a new model architecture is released that differs from its training distribution.</p>
+
+      <p>TruthLens Pro combines both methods with an ensemble approach, cross-checking pixel statistics against semantic patterns to produce a higher-confidence result than either method alone.</p>
+
+      <h2>The Face-Swap Variant</h2>
+      <p>Deepfakes in the narrower original sense—video or image face swaps—use a separate pipeline: an encoder-decoder architecture that maps one person's facial geometry onto another's in real time. These are technically different from generative synthesis but produce similar artifacts: unnatural skin tone at the face boundary, loss of fine wrinkles near the swap edge, and frame-to-frame temporal inconsistency in video.</p>
+
+      <h2>What You Can Do Now</h2>
+      <ul>
+        <li>Upload any suspicious image to TruthLens Pro for an instant AI probability score</li>
+        <li>Right-click and reverse image search to check if the image appears elsewhere in a different context</li>
+        <li>Zoom into hands, teeth, and background text—these are still the fastest manual tells</li>
+        <li>Check image metadata (EXIF data) for camera make/model; AI-generated images typically have none</li>
+        <li>For video, look for temporal artifacts: unnatural blinking patterns, edge flickering at the hairline</li>
+      </ul>
+
+      <div class="cta-box">
+        <h3>Verify any image in seconds</h3>
+        <p>Upload an image to TruthLens Pro and get a pixel-level authenticity analysis with a confidence score—free, no sign-up required.</p>
+        <a href="/#detect">Analyze Image Free →</a>
+      </div>
+    </article>
+  </div>
+</main>
+<footer class="site-footer">
+  <p>&copy; 2025 TruthLens Pro &middot; <a href="/legal/">Privacy &amp; Terms</a> &middot; <a href="/blog/">Blog</a></p>
+</footer>
+<div id="cookie-banner">
+  <p>We use cookies for analytics. <a href="/legal/">Privacy Policy</a></p>
+  <div style="display:flex;gap:8px;flex-shrink:0">
+    <button onclick="tlConsent('decline')" style="border:1px solid #f7f5f0;background:transparent;color:#f7f5f0">Decline</button>
+    <button onclick="tlConsent('accept')" style="border:none;background:#6c8fff;color:#fff">Accept</button>
+  </div>
+</div>
+<script>
+(function(){var c=localStorage.getItem('tl-cookie');if(!c){document.getElementById('cookie-banner').style.display='flex';}})();
+function tlConsent(c){localStorage.setItem('tl-cookie',c);document.getElementById('cookie-banner').style.display='none';}
+</script>
+</body>
+</html>
