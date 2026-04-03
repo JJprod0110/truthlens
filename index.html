@@ -24,7 +24,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"TruthLens Pro","url":"https://truthlensdetect.com","description":"AI-powered content authenticity detector. Detect AI-generated text and images instantly.","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","softwareVersion":"2.0","featureList":["AI text detection","AI image detection","Batch scanning","API access","Real-time results"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"TruthLens Pro","url":"https://truthlensdetect.com"}}</script>
   <!-- Google Analytics GA4 - replace G-BJHMNT7NCM with your ID -->
   <!-- GA loaded by loadGA() after consent -->
-  <script>(function(){if(localStorage.getItem('tl-cookie')==='accept'){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-BJHMNT7NCM';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-BJHMNT7NCM');}})()</script>
+  
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -1498,7 +1498,8 @@ function renderTopbar() {
     r.innerHTML = `
       <button class="topbar-btn tb-ghost" onclick="openModal('plansOverlay')">Pricing</button>
       <button class="topbar-btn tb-ghost" onclick="openAuthModal('signin')">Sign in</button>
-      <button class="topbar-btn tb-fill" onclick="openAuthModal('signup')">Get started free →</button>`;
+      <button class="topbar-btn tb-fill" onclick="openAuthModal('signup')">Get started free →</button>
+      <button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>`;
   } else {
     const initial = appState.user.name[0].toUpperCase();
     const planTag = appState.plan === 'pro' ? 'PRO' : appState.plan === 'enterprise' ? 'TEAM' : 'FREE';
@@ -1509,7 +1510,8 @@ function renderTopbar() {
         <div class="user-avatar">${initial}</div>
         <span class="user-name">${appState.user.name.split(' ')[0]}</span>
         <span class="user-plan-tag ${appState.plan}">${planTag}</span>
-      </div>`;
+      </div>
+      <button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>`;
   }
 }
 
@@ -2128,31 +2130,6 @@ document.querySelectorAll('.overlay').forEach(o => {
       </div>
     </div>
   </div>
-  <script>
-    (function(){
-      var ck=localStorage.getItem('ck_consent');
-      if(!ck){setTimeout(function(){var b=document.getElementById('ck-banner');if(b)b.style.display='block';},800);}
-      else if(ck==='accepted'){loadGA();}
-    })();
-    function ckAccept(){localStorage.setItem('ck_consent','accepted');document.getElementById('ck-banner').style.display='none';loadGA();}
-    function ckDecline(){localStorage.setItem('ck_consent','declined');document.getElementById('ck-banner').style.display='none';}
-    function loadGA(){if(window._gaLoaded)return;window._gaLoaded=true;var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id=G-BJHMNT7NCM';s.async=true;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','G-BJHMNT7NCM');}
   
-function toggleMobileNav() {
-  var btn = document.getElementById('hamburgerBtn');
-  var drawer = document.getElementById('mobileNavDrawer');
-  if (!btn || !drawer) return;
-  var isOpen = btn.classList.toggle('open');
-  drawer.classList.toggle('open', isOpen);
-  btn.setAttribute('aria-expanded', String(isOpen));
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-}
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    var btn = document.getElementById('hamburgerBtn');
-    if (btn && btn.classList.contains('open')) toggleMobileNav();
-  }
-});
-</script>
 <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1814;color:#f7f5f0;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:9999;font-size:14px;font-family:inherit;box-shadow:0 -2px 12px rgba(0,0,0,.3)"><p style="margin:0">We use cookies for analytics. <a href="/legal/" style="color:#6c8fff;text-decoration:underline">Privacy Policy</a></p><div style="display:flex;gap:8px;flex-shrink:0"><button onclick="tlConsent('decline')" style="padding:6px 14px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#f7f5f0;border-radius:6px;cursor:pointer;font-size:13px">Decline</button><button onclick="tlConsent('accept')" style="padding:6px 14px;border:none;background:#6c8fff;color:#fff;border-radius:6px;cursor:pointer;font-size:13px">Accept</button></div></div><script>(function(){var c=localStorage.getItem('tl-cookie');if(!c){document.getElementById('cookie-banner').style.display='flex';}})();function tlConsent(c){localStorage.setItem('tl-cookie',c);document.getElementById('cookie-banner').style.display='none';if(c==='accept'&&!window._tlGa){window._tlGa=1;var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id=G-BJHMNT7NCM';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','G-BJHMNT7NCM');}}
 </html>
