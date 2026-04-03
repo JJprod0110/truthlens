@@ -8,15 +8,26 @@ to = "https://truthlensdetect.com/:splat"
 status = 301
 force = true
 
-# /privacy and /terms -> /legal.html
+# /legal and /legal.html -> /privacy/ (canonical)
+[[redirects]]
+from = "/legal"
+to = "/privacy/"
+status = 301
+
+[[redirects]]
+from = "/legal.html"
+to = "/privacy/"
+status = 301
+
+# /privacy and /terms -> canonical pretty URLs
 [[redirects]]
 from = "/privacy"
-to = "/legal.html"
+to = "/privacy/"
 status = 301
 
 [[redirects]]
 from = "/terms"
-to = "/legal.html"
+to = "/terms/"
 status = 301
 
 # Proxy image assets directly from GitHub raw (ensures real PNG bytes are served)
