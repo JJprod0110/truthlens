@@ -40,6 +40,26 @@ from = "/icon-512.png"
 to = "https://raw.githubusercontent.com/JJprod0110/truthlens/main/apple-touch-icon.png"
 status = 200
 
+[[redirects]]
+from = "/favicon.ico"
+to = "https://raw.githubusercontent.com/JJprod0110/truthlens/main/apple-touch-icon.png"
+status = 200
+
+[[redirects]]
+from = "/favicon.png"
+to = "https://raw.githubusercontent.com/JJprod0110/truthlens/main/apple-touch-icon.png"
+status = 200
+
+[[redirects]]
+from = "/favicon-32x32.png"
+to = "https://raw.githubusercontent.com/JJprod0110/truthlens/main/apple-touch-icon.png"
+status = 200
+
+[[redirects]]
+from = "/favicon-16x16.png"
+to = "https://raw.githubusercontent.com/JJprod0110/truthlens/main/apple-touch-icon.png"
+status = 200
+
 # 404 catch-all -- serve branded 404 page for any unmatched path (must be last)
 [[redirects]]
 from = "/*"
