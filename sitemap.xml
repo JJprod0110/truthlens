@@ -7,31 +7,26 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://truthlensdetect.com/legal/</loc>
-    <lastmod>2026-04-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
     <loc>https://truthlensdetect.com/blog/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://truthlensdetect.com/blog/deepfake-images-explained/</loc>
-    <lastmod>2026-04-03</lastmod>
+    <loc>https://truthlensdetect.com/blog/how-to-detect-ai-writing/</loc>
+    <lastmod>2025-03-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://truthlensdetect.com/blog/how-to-detect-ai-writing/</loc>
-fix: update /legal trailing slash and blog lastmod dates in sitemap.xml    <changefreq>monthly</changefreq>
+    <loc>https://truthlensdetect.com/blog/deepfake-images-explained/</loc>
+    <lastmod>2025-02-28</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://truthlensdetect.com/blog/ai-detection-accuracy/</loc>
-    <lastmod>2026-04-03</lastmod>
+    <lastmod>2025-02-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -40,5 +35,23 @@ fix: update /legal trailing slash and blog lastmod dates in sitemap.xml    <chan
     <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://truthlensdetect.com/legal/</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://truthlensdetect.com/terms/</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://truthlensdetect.com/privacy/</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
 </urlset>
