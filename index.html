@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html dir="ltr">
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -21,22 +21,7 @@
     <link rel="canonical" href="https://truthlensdetect.com/">
     <title>TruthLens Pro — AI Content Detector</title>
   <!-- Schema.org Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "TruthLens Pro",
-    "description": "AI-powered content detector. Spot misinformation, AI-generated text, and fake news in seconds.",
-    "url": "https://truthlensdetect.com/",
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "Any",
-    "offers": [{"@type":"Offer","price":"0","priceCurrency":"USD","name":"Free"},{"@type":"Offer","price":"12","priceCurrency":"USD","name":"Pro"}],
-    "creator": {"@type":"Organization","name":"TruthLens","url":"https://truthlensdetect.com/"}
-  ,
-  "image": "https://truthlensdetect.com/og-preview.png",
-  "softwareVersion": "1.0",
-  "featureList": "AI content detection, bias analysis, source credibility scoring, fake news detection"}
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"TruthLens Pro","url":"https://truthlensdetect.com","description":"AI-powered content authenticity detector. Detect AI-generated text and images instantly.","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","softwareVersion":"2.0","featureList":["AI text detection","AI image detection","Batch scanning","API access","Real-time results"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"TruthLens Pro","url":"https://truthlensdetect.com"}}</script>
   <!-- Google Analytics GA4 - replace G-BJHMNT7NCM with your ID -->
   <!-- GA loaded by loadGA() after consent -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJHMNT7NCM"></script>
@@ -1120,7 +1105,7 @@ footer {
       ondragleave="dzl('videoDropZone')"
       ondrop="requirePro()">
       <span class="dz-icon">🎬</span>
-      <h2>Video detection is a Pro feature</h2>
+      <p>Video detection is a Pro feature</p>
       <p>Upgrade to detect AI-generated video, deepfakes, and synthetic media</p>
       <button onclick="event.stopPropagation();openModal('plansOverlay')" style="margin-top:1rem;padding:0.6rem 1.4rem;background:var(--accent);border:none;border-radius:8px;color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:0.88rem;cursor:pointer;">Upgrade to Pro →</button>
     </div>
@@ -1152,12 +1137,12 @@ footer {
   </div>
 
   <!-- Results -->
-  <div class="results-area" id="resultsArea"></div>
+  <div class="results-area" id="resultsArea" aria-live="polite"></div>
 
   <!-- History -->
   <div class="history-section" id="historySection" style="display:none">
     <div class="history-header">
-      <h2>Recent scans</h2>
+      <h3>Recent scans</h3>
       <span class="clear-hist" onclick="clearHistory()">Clear all</span>
     </div>
     <div class="history-list" id="historyList"></div>
@@ -1201,7 +1186,7 @@ footer {
       <div class="money-grid">
         <div class="money-left">
           <h2 class="section-label" style="color:rgba(255,255,255,0.4)">Built to earn</h2>
-          <h2>Multiple revenue streams, built in</h2>
+          <h3>Multiple revenue streams, built in</h3>
           <p>TruthLens is designed to make money. Every feature drives a conversion path — from free to paid, from users to enterprise deals.</p>
         </div>
         <div class="revenue-streams">
@@ -2057,5 +2042,5 @@ document.addEventListener('keydown', function(e) {
   }
 });
 </script>
-</body>
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1814;color:#f7f5f0;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:9999;font-size:14px;font-family:inherit;box-shadow:0 -2px 12px rgba(0,0,0,.3)"><p style="margin:0">We use cookies for analytics. <a href="/legal/" style="color:#6c8fff;text-decoration:underline">Privacy Policy</a></p><div style="display:flex;gap:8px;flex-shrink:0"><button onclick="tlConsent('decline')" style="padding:6px 14px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#f7f5f0;border-radius:6px;cursor:pointer;font-size:13px">Decline</button><button onclick="tlConsent('accept')" style="padding:6px 14px;border:none;background:#6c8fff;color:#fff;border-radius:6px;cursor:pointer;font-size:13px">Accept</button></div></div><script>(function(){var c=localStorage.getItem('tl-cookie');if(!c){document.getElementById('cookie-banner').style.display='flex';}})();function tlConsent(c){localStorage.setItem('tl-cookie',c);document.getElementById('cookie-banner').style.display='none';}</script></body>
 </html>
