@@ -1,5 +1,5 @@
 <!DOCTYPE html dir="ltr">
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
@@ -24,7 +24,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"TruthLens Pro","url":"https://truthlensdetect.com","description":"AI-powered content authenticity detector. Detect AI-generated text and images instantly.","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","softwareVersion":"2.0","featureList":["AI text detection","AI image detection","Batch scanning","API access","Real-time results"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"TruthLens Pro","url":"https://truthlensdetect.com"}}</script>
   <!-- Google Analytics GA4 - replace G-BJHMNT7NCM with your ID -->
   <!-- GA loaded by loadGA() after consent -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJHMNT7NCM"></script>
+  <script>(function(){if(localStorage.getItem('tl-cookie')==='accept'){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-BJHMNT7NCM';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-BJHMNT7NCM');}})()</script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -782,12 +782,14 @@ footer {
   }
   button.link-btn:hover { opacity: 0.75; }
   button.link-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 2px; }
-</style>
+:focus-visible{outline:3px solid #6c8fff;outline-offset:2px;border-radius:3px;}</style>
   <meta name="theme-color" content="#0f172a">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta property="og:site_name" content="TruthLens Pro">
   <meta property="og:locale" content="en_US">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow"
+  <link rel="alternate" type="application/rss+xml" title="TruthLens Pro Blog" href="/feed.xml">
+  <link rel="manifest" href="/manifest.json">>
 </head>
 <body>
   <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:#1a1a2e;color:#fff;padding:8px 16px;border-radius:4px;text-decoration:none;font-weight:600" onfocus="this.style.cssText=this.style.cssText.replace('left:-9999px','left:16px');this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-9999px';this.style.width='1px';this.style.height='1px'">Skip to main content</a>
@@ -862,11 +864,11 @@ footer {
     </div>
     <div class="form-field">
       <label>Email</label>
-      <input type="email" id="authEmail" placeholder="you@example.com" aria-label="you@example.com">
+      <input type="email" id="authEmail" placeholder="you@example.com" aria-label="you@example.com" autocomplete="email">
     </div>
     <div class="form-field">
       <label>Password</label>
-      <input type="password" id="authPassword" placeholder="••••••••" aria-label="Password">
+      <input type="password" id="authPassword" placeholder="••••••••" aria-label="Password" autocomplete="current-password">
     </div>
     <button class="btn-primary" onclick="submitAuth()" id="authSubmitBtn">Create free account →</button>
     <div class="modal-switch" id="authSwitch">
@@ -1006,7 +1008,7 @@ footer {
   </div>
 </nav>
 </header>
-<main id="main-content" role="main">
+<main id="main-content">
 
 <!-- ═══ HERO ═══ -->
 <div class="hero-section">
@@ -2042,5 +2044,5 @@ document.addEventListener('keydown', function(e) {
   }
 });
 </script>
-<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1814;color:#f7f5f0;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:9999;font-size:14px;font-family:inherit;box-shadow:0 -2px 12px rgba(0,0,0,.3)"><p style="margin:0">We use cookies for analytics. <a href="/legal/" style="color:#6c8fff;text-decoration:underline">Privacy Policy</a></p><div style="display:flex;gap:8px;flex-shrink:0"><button onclick="tlConsent('decline')" style="padding:6px 14px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#f7f5f0;border-radius:6px;cursor:pointer;font-size:13px">Decline</button><button onclick="tlConsent('accept')" style="padding:6px 14px;border:none;background:#6c8fff;color:#fff;border-radius:6px;cursor:pointer;font-size:13px">Accept</button></div></div><script>(function(){var c=localStorage.getItem('tl-cookie');if(!c){document.getElementById('cookie-banner').style.display='flex';}})();function tlConsent(c){localStorage.setItem('tl-cookie',c);document.getElementById('cookie-banner').style.display='none';}</script></body>
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1814;color:#f7f5f0;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:9999;font-size:14px;font-family:inherit;box-shadow:0 -2px 12px rgba(0,0,0,.3)"><p style="margin:0">We use cookies for analytics. <a href="/legal/" style="color:#6c8fff;text-decoration:underline">Privacy Policy</a></p><div style="display:flex;gap:8px;flex-shrink:0"><button onclick="tlConsent('decline')" style="padding:6px 14px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#f7f5f0;border-radius:6px;cursor:pointer;font-size:13px">Decline</button><button onclick="tlConsent('accept')" style="padding:6px 14px;border:none;background:#6c8fff;color:#fff;border-radius:6px;cursor:pointer;font-size:13px">Accept</button></div></div><script>(function(){var c=localStorage.getItem('tl-cookie');if(!c){document.getElementById('cookie-banner').style.display='flex';}})();function tlConsent(c){localStorage.setItem('tl-cookie',c);document.getElementById('cookie-banner').style.display='none';if(c==='accept'&&!window._tlGa){window._tlGa=1;var s=document.createElement('script');s.async=1;s.src='https://www.googletagmanager.com/gtag/js?id=G-BJHMNT7NCM';document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','G-BJHMNT7NCM');}}
 </html>
