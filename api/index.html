@@ -106,7 +106,7 @@ X-RateLimit-Reset: 1711929600</code></pre><div style="text-align:right;margin-to
     <div class="sb-body">
       <div class="sb-panel">
         <label id="sb-input-label">Sample text input</label>
-        <textarea class="sb-textarea" id="sbInput" aria-labelledby="sb-input-label" placeholder="Paste any text here to see how the API would respond…">Furthermore, it is worth noting that the implementation of these measures can significantly enhance the overall operational efficiency. In addition, the stakeholders should consider the broader implications before proceeding.</textarea>
+        <textarea class="sb-textarea" id="sbInput" aria-labelledby="sb-input-label" placeholder="Paste any text here to see how the API would respond...">Furthermore, it is worth noting that the implementation of these measures can significantly enhance the overall operational efficiency. In addition, the stakeholders should consider the broader implications before proceeding.</textarea>
         <button class="sb-run" id="sbRunBtn" onclick="sbRun()">Send request →</button>
         <span class="sb-badge" id="sbBadge">Simulated response — no API key needed</span>
       </div>
@@ -125,7 +125,7 @@ function sbSetMode(m){
   var lbl=document.getElementById('sb-input-label');
   var inp=document.getElementById('sbInput');
   if(m==='image'){lbl.textContent='Image URL';inp.placeholder='https://example.com/photo.jpg';inp.value='';}
-  else{lbl.textContent='Sample text input';inp.placeholder='Paste any text here…';inp.value='Furthermore, it is worth noting that the implementation of these measures can significantly enhance the overall operational efficiency. In addition, the stakeholders should consider the broader implications before proceeding.';}
+  else{lbl.textContent='Sample text input';inp.placeholder='Paste any text here...';inp.value='Furthermore, it is worth noting that the implementation of these measures can significantly enhance the overall operational efficiency. In addition, the stakeholders should consider the broader implications before proceeding.';}
   document.getElementById('sbResponse').textContent='// Response will appear here';
 }
 function sbRun(){
@@ -133,7 +133,7 @@ function sbRun(){
   var out=document.getElementById('sbResponse');
   var input=document.getElementById('sbInput').value.trim();
   if(!input){out.textContent='// Please enter some input first';return;}
-  btn.disabled=true;btn.textContent='Running…';
+  btn.disabled=true;btn.textContent='Running...';
   setTimeout(function(){
     var score=Math.random()*0.3+0.68;
     var label=score>0.75?'ai_generated':'uncertain';
