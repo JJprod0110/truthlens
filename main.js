@@ -32,12 +32,16 @@ function toggleMobileNav() {
 
 /* ── MODAL ── */
 function openModal(id) {
-  document.getElementById(id).classList.add('open');
-  document.getElementById(id).setAttribute('aria-hidden', 'false');
+  const el = document.getElementById(id);
+  el.removeAttribute('inert');
+  el.classList.add('open');
+  el.setAttribute('aria-hidden', 'false');
 }
 function closeModal(id) {
-  document.getElementById(id).classList.remove('open');
-  document.getElementById(id).setAttribute('aria-hidden', 'true');
+  const el = document.getElementById(id);
+  el.classList.remove('open');
+  el.setAttribute('aria-hidden', 'true');
+  el.setAttribute('inert', '');
 }
 function openAuthModal(mode) {
   appState.authMode = mode;
