@@ -909,7 +909,7 @@ footer {
   <!-- URL PANEL -->
   <div class="panel" id="panel-url">
     <div class="url-input-row">
-      <input type="url" id="urlInput" placeholder="https://example.com/article — paste any webpage URL" aria-label="https://example.com/article — paste any webpage URL" />
+      <input type="url" id="urlInput" placeholder="https://example.com/article — paste any webpage URL" aria-label="Webpage URL to analyze" />
       <button class="url-fetch-btn" onclick="fetchURL()">Fetch →</button>
     </div>
     <div class="url-tips">
@@ -1098,7 +1098,7 @@ footer {
     <span class="chat-suggestion" onclick="sendSuggestion(this)">Is my data safe?</span>
   </div>
   <div class="chat-input-row">
-    <input class="chat-input" id="chatInput" placeholder="Ask anything…" aria-label="Ask anything…" onkeydown="if(event.key==='Enter')sendChat()">
+    <input class="chat-input" id="chatInput" placeholder="Ask anything…" aria-label="Chat message" onkeydown="if(event.key==='Enter')sendChat()">
     <button class="chat-send" aria-label="Send message" onclick="sendChat()">→</button>
   </div>
 </div>
@@ -1335,7 +1335,7 @@ footer {
     </div>
     <div class="form-field">
       <label>Email</label>
-      <input type="email" id="authEmail" placeholder="you@example.com" aria-label="you@example.com" autocomplete="email" maxlength="254">
+      <input type="email" id="authEmail" placeholder="you@example.com" aria-label="Email address" autocomplete="email" maxlength="254">
     </div>
     <div class="form-field">
       <label>Password</label>
