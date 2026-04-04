@@ -1315,8 +1315,8 @@ footer {
 </div>
 
 <!-- ═══ AUTH MODAL ═══ -->
-<div class="overlay" id="authOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="authTitle">
-  <div class="modal" inert id="authModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Create account">
+<div class="overlay" inert id="authOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="authTitle">
+  <div class="modal" id="authModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Create account">
     <button class="modal-close" aria-label="Close" onclick="closeModal('authOverlay')">✕</button>
     <h2 id="authTitle">Create account</h2>
     <p class="modal-sub" id="authSub">Join 50,000+ users detecting AI content</p>
@@ -1412,7 +1412,7 @@ footer {
     </div>
   </div>
 </div>
-<div class="overlay" id="shareOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Share Result">
+<div class="overlay" inert id="shareOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Share Result">
   <div class="modal">
     <button class="modal-close" aria-label="Close" onclick="closeModal('shareOverlay')">✕</button>
     <h2>Share Result</h2>
