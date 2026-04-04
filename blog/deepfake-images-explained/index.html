@@ -2,14 +2,14 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ð</text></svg>">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>How AI Generates Deepfake Images — TruthLens Pro</title>
+<title>How AI Generates Deepfake Images â TruthLens Pro</title>
 <link rel="canonical" href="https://truthlensdetect.com/blog/deepfake-images-explained/">
 <meta name="description" content="AI image synthesis has reached photorealistic quality. Learn how GAN and diffusion systems generate deepfakes, and the artifacts they leave behind.">
-<meta property="og:title" content="Deepfake Images Explained: How AI Generates Fake Photos — TruthLens Pro Blog">
+<meta property="og:title" content="Deepfake Images Explained: How AI Generates Fake Photos â TruthLens Pro Blog">
 <meta property="og:description" content="From GAN-generated faces to diffusion model landscapes, AI image synthesis has reached photorealistic quality. Learn how these systems work.">
 <meta property="og:url" content="https://truthlensdetect.com/blog/deepfake-images-explained/">
 <meta property="og:type" content="article">
@@ -17,55 +17,15 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Deepfake Images Explained: How AI Generates Fake Photos — TruthLens Pro Blog">
-<meta name="twitter:description" content="How AI generates photorealistic fake images—and how detection works.">
+<meta name="twitter:title" content="Deepfake Images Explained: How AI Generates Fake Photos â TruthLens Pro Blog">
+<meta name="twitter:description" content="How AI generates photorealistic fake imagesâand how detection works.">
 <meta name="twitter:image" content="https://truthlensdetect.com/og-preview.png">
 <meta name="twitter:site" content="@truthlenspro">
 <meta name="robots" content="index, follow">
 <link rel="alternate" type="application/rss+xml" title="TruthLens Pro Blog" href="/feed.xml">
 <link rel="manifest" href="/manifest.json">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","wordCount":1201,"mainEntityOfPage":{"@type":"WebPage","@id":"https://truthlensdetect.com/blog/deepfake-images-explained/"},"author":{"@type":"Person","name":"TruthLens Editorial Team","url":"https://truthlensdetect.com/blog/"},"image":"https://truthlensdetect.com/og-preview.png","headline":"Deepfake Images Explained: How AI Generates Fake Photos","datePublished":"2026-02-28","dateModified":"2026-04-03","publisher":{"@type":"Organization","name":"TruthLens Pro","url":"https://truthlensdetect.com/"},"url":"https://truthlensdetect.com/blog/deepfake-images-explained/","description":"From GAN-generated faces to diffusion model landscapes, AI image synthesis has reached photorealistic quality."}</script>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d0d1a;color:#e0e0e0;line-height:1.7;min-height:100vh;display:flex;flex-direction:column}
-:focus-visible{outline:3px solid #6c8fff;outline-offset:2px;border-radius:3px;}
-.topbar{padding:1rem 2rem;background:#111128;border-bottom:1px solid #222;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.logo{color:#fff;text-decoration:none;font-weight:700;font-size:1.1rem}
-.logo span{color:#6c8fff}
-.nav-links{display:flex;gap:1.5rem}
-.nav-links a{color:#aaa;text-decoration:none;font-size:0.9rem;transition:color .2s}
-.nav-links a:hover,.nav-links a[aria-current="page"]{color:#fff}
-.cta-btn{background:#6c8fff;color:#fff;padding:0.5rem 1.25rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;white-space:nowrap}
-.cta-btn:hover{background:#5a7aff}
-.article-wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem;flex:1;width:100%}
-.back-link{color:#6c8fff;text-decoration:none;font-size:0.9rem;display:inline-flex;align-items:center;gap:0.35rem;margin-bottom:2rem}
-.back-link:hover{text-decoration:underline}
-.article-header{margin-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:2rem}
-.article-header h1{font-size:clamp(1.5rem,4vw,2.1rem);color:#fff;line-height:1.3;margin-bottom:1rem}
-.article-meta{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.45);flex-wrap:wrap}
-.article-body h2{font-size:1.25rem;color:#fff;margin:2rem 0 0.75rem;padding-top:0.25rem}
-.article-body p{margin-bottom:1.25rem;color:#ccc;font-size:1rem}
-.article-body ul,.article-body ol{margin:0 0 1.25rem 1.5rem;color:#ccc}
-.article-body li{margin-bottom:0.5rem}
-.article-body strong{color:#e0e0e0}
-.article-body a{color:#6c8fff;text-decoration:underline}
-.callout{background:#1a1a2e;border-left:3px solid #6c8fff;border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin:1.5rem 0}
-.callout p{margin:0;color:#b0b8e0;font-size:0.95rem}
-.artifact-table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.9rem}
-.artifact-table th{background:#111128;color:#aaa;padding:0.6rem 1rem;text-align:left;border-bottom:1px solid #222;font-weight:600}
-.artifact-table td{padding:0.6rem 1rem;border-bottom:1px solid rgba(255,255,255,.05);color:#ccc;vertical-align:top}
-.artifact-table tr:hover td{background:rgba(255,255,255,.02)}
-.cta-box{background:linear-gradient(135deg,#1a1a2e 0%,#111128 100%);border:1px solid rgba(108,143,255,0.25);border-radius:12px;padding:2rem;text-align:center;margin:2.5rem 0}
-.cta-box h3{color:#fff;margin-bottom:0.5rem;font-size:1.2rem}
-.cta-box p{color:#aaa;margin-bottom:1.25rem;font-size:0.9rem}
-.cta-box a{background:#6c8fff;color:#fff;padding:0.7rem 1.75rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.95rem;display:inline-block}
-.cta-box a:hover{background:#5a7aff}
-.site-footer{text-align:center;padding:2rem;color:#555;font-size:0.85rem;border-top:1px solid #222}
-.site-footer a{color:#6c8fff;text-decoration:none}
-#cookie-banner{display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1814;color:#f7f5f0;padding:14px 24px;align-items:center;justify-content:space-between;gap:16px;z-index:9999;font-size:14px;font-family:inherit;box-shadow:0 -2px 12px rgba(0,0,0,.3)}
-#cookie-banner p{margin:0}#cookie-banner a{color:#6c8fff;text-decoration:underline}
-#cookie-banner button{cursor:pointer;border-radius:6px;font-family:inherit;font-size:13px;padding:7px 14px}
-</style>
+
 
   <meta name="author" content="TruthLens Team">
   <meta property="article:published_time" content="2026-02-28T00:00:00Z">
@@ -73,9 +33,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <meta property="article:author" content="TruthLens Team">
   <meta name="theme-color" content="#0f172a">
   <meta property="og:site_name" content="TruthLens Pro">
+  <link rel="stylesheet" href="/assets/main.css">
 </head>
 <body>
-<a href="#main-content" class="skip-link" style="position:absolute;top:-100px;left:0;background:#6c8fff;color:#fff;padding:8px 16px;z-index:10000;border-radius:0 0 6px 0;font-family:inherit;font-size:14px;text-decoration:none" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
+<a href="#main-content" class="skip-link ist-10nqx6p" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
 <nav class="topbar" aria-label="Main navigation">
   <a href="/" class="logo">TruthLens<span>Pro</span></a>
   <div class="nav-links">
@@ -88,35 +49,35 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </nav>
 <main id="main-content">
   <div class="article-wrap">
-    <a href="/blog/" class="back-link">← Back to Blog</a>
+    <a href="/blog/" class="back-link">â Back to Blog</a>
     <header class="article-header">
       <h1>Deepfake Images Explained: How AI Generates Fake Photos</h1>
       <div class="article-meta">
         <span>By TruthLens Team</span>
-        <span aria-hidden="true">·</span>
+        <span aria-hidden="true">Â·</span>
         <time datetime="2026-02-28">February 28, 2026</time>
-        <span aria-hidden="true">·</span>
+        <span aria-hidden="true">Â·</span>
         <span>5 min read</span>
       </div>
     </header>
-      <nav aria-label="Breadcrumb" style="margin-bottom:1rem;font-size:0.875rem;color:#6b7280">
-        <ol style="list-style:none;padding:0;margin:0;display:flex;gap:0.5rem;flex-wrap:wrap">
-          <li><a href="/" style="color:#6b7280;text-decoration:none">Home</a> <span aria-hidden="true">/</span></li>
-          <li><a href="/blog/" style="color:#6b7280;text-decoration:none">Blog</a> <span aria-hidden="true">/</span></li>
-          <li style="color:#111" style="color:#ccc" aria-current="page">How AI Generates Deepfake Images</li>
+      <nav aria-label="Breadcrumb" class="ist-1dyg0k">
+        <ol class="ist-1w0ru87">
+          <li><a href="/" class="ist-1wty8sz">Home</a> <span aria-hidden="true">/</span></li>
+          <li><a href="/blog/" class="ist-1wty8sz">Blog</a> <span aria-hidden="true">/</span></li>
+          <li class="ist-1h1fpgw" class="ist-1mzg0hu" aria-current="page">How AI Generates Deepfake Images</li>
         </ol>
       </nav>
-<nav class="article-toc" aria-label="Table of contents" style="background:#1a1a2e;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:1.2rem 1.5rem;margin:1.5rem auto 2rem;max-width:700px;">
-  <p style="font-weight:600;margin:0 0 .6rem;font-size:.9rem;color:#ccc;">In this article</p>
-  <ol style="margin:0;padding-left:1.2rem;font-size:.9rem;line-height:1.9;">
-    <li><a href="#two-dominant-architectures" style="color:#6c8fff;text-decoration:none;">The Two Dominant Architectures</a></li>
-    <li><a href="#artifacts-what-ai-images-get-wrong" style="color:#6c8fff;text-decoration:none;">Artifacts: What AI Images Get Wrong</a></li>
-    <li><a href="#pixel-level-vs-semantic-analysis" style="color:#6c8fff;text-decoration:none;">Pixel-Level Analysis vs. Semantic Analysis</a></li>
-    <li><a href="#face-swap-variant" style="color:#6c8fff;text-decoration:none;">The Face-Swap Variant</a></li>
-    <li><a href="#what-you-can-do-now" style="color:#6c8fff;text-decoration:none;">What You Can Do Now</a></li>
-    <li><a href="#how-training-data-shapes-output" style="color:#6c8fff;text-decoration:none;">How Training Data Shapes Model Output</a></li>
-    <li><a href="#how-deepfakes-are-used" style="color:#6c8fff;text-decoration:none;">How Deepfakes Are Used in the Real World</a></li>
-    <li><a href="#emerging-standards-watermarking-c2pa" style="color:#6c8fff;text-decoration:none;">Emerging Standards: Watermarking and C2PA</a></li>
+<nav class="article-toc" aria-label="Table of contents" class="ist-1ebh3fp">
+  <p class="ist-1hewwf4">In this article</p>
+  <ol class="ist-1npimb1">
+    <li><a href="#two-dominant-architectures" class="ist-yh0wf0">The Two Dominant Architectures</a></li>
+    <li><a href="#artifacts-what-ai-images-get-wrong" class="ist-yh0wf0">Artifacts: What AI Images Get Wrong</a></li>
+    <li><a href="#pixel-level-vs-semantic-analysis" class="ist-yh0wf0">Pixel-Level Analysis vs. Semantic Analysis</a></li>
+    <li><a href="#face-swap-variant" class="ist-yh0wf0">The Face-Swap Variant</a></li>
+    <li><a href="#what-you-can-do-now" class="ist-yh0wf0">What You Can Do Now</a></li>
+    <li><a href="#how-training-data-shapes-output" class="ist-yh0wf0">How Training Data Shapes Model Output</a></li>
+    <li><a href="#how-deepfakes-are-used" class="ist-yh0wf0">How Deepfakes Are Used in the Real World</a></li>
+    <li><a href="#emerging-standards-watermarking-c2pa" class="ist-yh0wf0">Emerging Standards: Watermarking and C2PA</a></li>
   </ol>
 </nav>
 
@@ -124,12 +85,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <meta itemprop="datePublished" content="2026-02-28">
       <meta itemprop="author" content="TruthLens Team">
 
-      <p>In 2025, a photorealistic image of a person, place, or event can be generated in seconds—for free, by anyone. The technology behind this is not magic; it is mathematics applied at enormous scale. Understanding how AI image synthesis works is the foundation for understanding how to detect it.</p>
+      <p>In 2025, a photorealistic image of a person, place, or event can be generated in secondsâfor free, by anyone. The technology behind this is not magic; it is mathematics applied at enormous scale. Understanding how AI image synthesis works is the foundation for understanding how to detect it.</p>
 
       <h2 id="two-dominant-architectures">The Two Dominant Architectures</h2>
       <p>Most AI-generated images today come from one of two model families: <strong>Generative Adversarial Networks (GANs)</strong> and <strong>Diffusion Models</strong>. They work differently and leave different artifacts.</p>
 
-      <p><strong>GANs</strong> pit two neural networks against each other—a generator that creates images and a discriminator that tries to spot the fakes. Through millions of training rounds, the generator learns to produce images the discriminator cannot distinguish from real photographs. The result is fast, high-resolution synthesis, but GANs tend to struggle with complex scenes and fine details like hands, teeth, and text.</p>
+      <p><strong>GANs</strong> pit two neural networks against each otherâa generator that creates images and a discriminator that tries to spot the fakes. Through millions of training rounds, the generator learns to produce images the discriminator cannot distinguish from real photographs. The result is fast, high-resolution synthesis, but GANs tend to struggle with complex scenes and fine details like hands, teeth, and text.</p>
 
       <p><strong>Diffusion models</strong> (used by Stable Diffusion, DALL-E, Midjourney, and others) take a different approach: they learn to reverse a process of adding noise to an image. Starting from pure static, the model iteratively removes noise according to a text prompt until a coherent image emerges. Diffusion models produce more varied and photorealistic results than GANs for many categories of image, but they require more compute per generation.</p>
 
@@ -153,74 +114,74 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="callout"><p>Artifacts are becoming subtler with each model generation. StyleGAN3 largely fixed the "watery" motion artifacts of StyleGAN2. SDXL improved hands significantly over earlier Stable Diffusion versions. Detectors must retrain regularly to keep pace.</p></div>
 
       <h2 id="pixel-level-vs-semantic-analysis">Pixel-Level Analysis vs. Semantic Analysis</h2>
-      <p>Detection tools use two broad approaches. <strong>Pixel-level analysis</strong> looks at the raw frequency spectrum of an image—AI-generated images have characteristic patterns in their DCT (Discrete Cosine Transform) coefficients that differ from photos taken by cameras. This is fast and model-agnostic but can be fooled by lossy compression (JPEG, social media resizing) that removes high-frequency detail.</p>
+      <p>Detection tools use two broad approaches. <strong>Pixel-level analysis</strong> looks at the raw frequency spectrum of an imageâAI-generated images have characteristic patterns in their DCT (Discrete Cosine Transform) coefficients that differ from photos taken by cameras. This is fast and model-agnostic but can be fooled by lossy compression (JPEG, social media resizing) that removes high-frequency detail.</p>
 
       <p><strong>Semantic analysis</strong> uses a classifier trained on known AI-generated and real images to spot holistic patterns. This approach is more robust to compression but requires large training datasets and degrades when a new model architecture is released that differs from its training distribution.</p>
 
       <p>TruthLens Pro combines both methods with an ensemble approach, cross-checking pixel statistics against semantic patterns to produce a higher-confidence result than either method alone.</p>
 
       <h2 id="face-swap-variant">The Face-Swap Variant</h2>
-      <p>Deepfakes in the narrower original sense—video or image face swaps—use a separate pipeline: an encoder-decoder architecture that maps one person's facial geometry onto another's in real time. These are technically different from generative synthesis but produce similar artifacts: unnatural skin tone at the face boundary, loss of fine wrinkles near the swap edge, and frame-to-frame temporal inconsistency in video.</p>
+      <p>Deepfakes in the narrower original senseâvideo or image face swapsâuse a separate pipeline: an encoder-decoder architecture that maps one person's facial geometry onto another's in real time. These are technically different from generative synthesis but produce similar artifacts: unnatural skin tone at the face boundary, loss of fine wrinkles near the swap edge, and frame-to-frame temporal inconsistency in video.</p>
 
       <h2 id="what-you-can-do-now">What You Can Do Now</h2>
       <ul>
         <li>Upload any suspicious image to TruthLens Pro for an instant AI probability score</li>
         <li>Right-click and reverse image search to check if the image appears elsewhere in a different context</li>
-        <li>Zoom into hands, teeth, and background text—these are still the fastest manual tells</li>
+        <li>Zoom into hands, teeth, and background textâthese are still the fastest manual tells</li>
         <li>Check image metadata (EXIF data) for camera make/model; AI-generated images typically have none</li>
         <li>For video, look for temporal artifacts: unnatural blinking patterns, edge flickering at the hairline</li>
       </ul>
 
       <div class="cta-box">
         <h3>Verify any image in seconds</h3>
-        <p>Upload an image to TruthLens Pro and get a pixel-level authenticity analysis with a confidence score—free, no sign-up required.</p>
-        <a href="/#detect">Analyze Image Free →</a>
+        <p>Upload an image to TruthLens Pro and get a pixel-level authenticity analysis with a confidence scoreâfree, no sign-up required.</p>
+        <a href="/#detect">Analyze Image Free â</a>
       </div>
 
       <h2 id="how-training-data-shapes-output">How Training Data Shapes Model Output</h2>
-      <p>The quality and diversity of training data is the single largest determinant of a generative model's output quality. Early GAN models trained on limited datasets like CelebA (about 200,000 celebrity faces) produced convincing faces but failed immediately when asked for non-face content. Modern diffusion models like DALL-E 3 and Stable Diffusion XL trained on billions of image-caption pairs scraped from the internet, giving them far broader coverage—but also introducing biases baked into that data.</p>
+      <p>The quality and diversity of training data is the single largest determinant of a generative model's output quality. Early GAN models trained on limited datasets like CelebA (about 200,000 celebrity faces) produced convincing faces but failed immediately when asked for non-face content. Modern diffusion models like DALL-E 3 and Stable Diffusion XL trained on billions of image-caption pairs scraped from the internet, giving them far broader coverageâbut also introducing biases baked into that data.</p>
       <p>For detectors, this matters because a model trained on a narrow distribution of content will leave narrow, predictable artifacts. A model trained on diverse data will produce more varied artifacts that require correspondingly diverse training sets to detect. TruthLens Pro continuously adds samples from newly released model versions to its training queue precisely to keep pace with this moving target.</p>
-      <p>One underappreciated consequence of large training sets is <strong>memorization</strong>: generative models sometimes reproduce near-exact copies of training images when prompted similarly to a training example. This is both a copyright concern and a detection signal—if reverse image search returns a near-match, the "AI-generated" image may actually be a slightly modified real photograph.</p>
+      <p>One underappreciated consequence of large training sets is <strong>memorization</strong>: generative models sometimes reproduce near-exact copies of training images when prompted similarly to a training example. This is both a copyright concern and a detection signalâif reverse image search returns a near-match, the "AI-generated" image may actually be a slightly modified real photograph.</p>
 
       <h2 id="how-deepfakes-are-used">How Deepfakes Are Used in the Real World</h2>
-      <p>AI-generated imagery is used across a wide spectrum from benign creative applications to active harm. On the benign end: concept art for games and films, stock image generation, personalized avatars, and product visualization. These use cases are growing and largely uncontroversial—the images are clearly labeled as AI-generated by their creators.</p>
-      <p>The harmful end of the spectrum is more serious. <strong>Non-consensual intimate imagery</strong> (NCII) is one of the most prevalent harms—AI tools are used to generate sexualized images of real individuals without consent, overwhelmingly targeting women. <strong>Political disinformation</strong> is another: fabricated images of political figures in compromising situations or at fake events have been used to influence elections and inflame conflicts. <strong>Financial fraud</strong> via deepfake video calls impersonating executives has cost companies hundreds of millions of dollars.</p>
-      <p>A 2024 report from the AI Incident Database found that AI image manipulation was involved in approximately 38% of documented AI-related harms—making it the single largest category by incident count. Detection tools like TruthLens Pro represent one layer of defense, but platform-level policies, watermarking standards, and legislative action are equally necessary.</p>
+      <p>AI-generated imagery is used across a wide spectrum from benign creative applications to active harm. On the benign end: concept art for games and films, stock image generation, personalized avatars, and product visualization. These use cases are growing and largely uncontroversialâthe images are clearly labeled as AI-generated by their creators.</p>
+      <p>The harmful end of the spectrum is more serious. <strong>Non-consensual intimate imagery</strong> (NCII) is one of the most prevalent harmsâAI tools are used to generate sexualized images of real individuals without consent, overwhelmingly targeting women. <strong>Political disinformation</strong> is another: fabricated images of political figures in compromising situations or at fake events have been used to influence elections and inflame conflicts. <strong>Financial fraud</strong> via deepfake video calls impersonating executives has cost companies hundreds of millions of dollars.</p>
+      <p>A 2024 report from the AI Incident Database found that AI image manipulation was involved in approximately 38% of documented AI-related harmsâmaking it the single largest category by incident count. Detection tools like TruthLens Pro represent one layer of defense, but platform-level policies, watermarking standards, and legislative action are equally necessary.</p>
 
       <h2 id="emerging-standards-watermarking-c2pa">Emerging Standards: Watermarking and C2PA</h2>
-      <p>The content provenance problem—knowing whether an image was taken by a camera or generated by AI—has prompted several industry standards efforts. The Coalition for Content Provenance and Authenticity (C2PA) defines an open standard for embedding cryptographically signed metadata into image files, recording their origin and edit history. Adobe's Content Credentials initiative and Leica's camera line both support C2PA. When an image carries a valid C2PA manifest, its origin is verifiable without any AI detection at all.</p>
-      <p>Google DeepMind's <strong>SynthID</strong> embeds an imperceptible watermark directly into the pixel data of AI-generated images. Unlike metadata (which is trivially stripped), SynthID watermarks survive moderate JPEG compression, cropping, and color adjustments. The approach is not foolproof—adversarial attacks can remove them—but it significantly raises the cost of laundering AI-generated imagery as authentic.</p>
-      <p>Until these standards achieve widespread adoption, detection tools remain the primary line of defense for most users encountering images of unknown provenance. Combining multiple signals—C2PA metadata when available, pixel-level analysis, semantic classification, and reverse image search—gives the highest confidence result.</p>
+      <p>The content provenance problemâknowing whether an image was taken by a camera or generated by AIâhas prompted several industry standards efforts. The Coalition for Content Provenance and Authenticity (C2PA) defines an open standard for embedding cryptographically signed metadata into image files, recording their origin and edit history. Adobe's Content Credentials initiative and Leica's camera line both support C2PA. When an image carries a valid C2PA manifest, its origin is verifiable without any AI detection at all.</p>
+      <p>Google DeepMind's <strong>SynthID</strong> embeds an imperceptible watermark directly into the pixel data of AI-generated images. Unlike metadata (which is trivially stripped), SynthID watermarks survive moderate JPEG compression, cropping, and color adjustments. The approach is not foolproofâadversarial attacks can remove themâbut it significantly raises the cost of laundering AI-generated imagery as authentic.</p>
+      <p>Until these standards achieve widespread adoption, detection tools remain the primary line of defense for most users encountering images of unknown provenance. Combining multiple signalsâC2PA metadata when available, pixel-level analysis, semantic classification, and reverse image searchâgives the highest confidence result.</p>
     </article>
   </div>
 </main>
 
-<div class="share-section" style="max-width:700px;margin:2rem auto;padding:1rem 1.5rem;border-top:1px solid #e8e8e8;">
-  <p style="font-size:.9rem;font-weight:600;color:#ccc;margin:0 0 .7rem;">Share this article</p>
-  <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
-    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftruthlensdetect.com%2Fblog%2Fdeepfake-images-explained%2F&text=Deepfake+Images+Explained" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;padding:.45rem .9rem;border-radius:6px;background:#000;color:#fff;font-size:.85rem;text-decoration:none;">&#120143; Share</a>
-    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ftruthlensdetect.com%2Fblog%2Fdeepfake-images-explained%2F" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;padding:.45rem .9rem;border-radius:6px;background:#0077b5;color:#fff;font-size:.85rem;text-decoration:none;">LinkedIn</a>
-    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftruthlensdetect.com%2Fblog%2Fdeepfake-images-explained%2F" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;padding:.45rem .9rem;border-radius:6px;background:#1877f2;color:#fff;font-size:.85rem;text-decoration:none;">Facebook</a>
+<div class="share-section ist-1b9kbco">
+  <p class="ist-h6ujdz">Share this article</p>
+  <div class="ist-ak1cmx">
+    <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ftruthlensdetect.com%2Fblog%2Fdeepfake-images-explained%2F&text=Deepfake+Images+Explained" target="_blank" rel="noopener noreferrer" class="ist-1elfe6o">&#120143; Share</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Ftruthlensdetect.com%2Fblog%2Fdeepfake-images-explained%2F" target="_blank" rel="noopener noreferrer" class="ist-1lhfunr">LinkedIn</a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftruthlensdetect.com%2Fblog%2Fdeepfake-images-explained%2F" target="_blank" rel="noopener noreferrer" class="ist-1marfjb">Facebook</a>
   </div>
 </div>
 <footer class="site-footer">
   <p>&copy; 2026 TruthLens Pro &middot; <a href="/privacy/">Privacy</a> &amp; <a href="/terms/">Terms</a> &middot; <a href="/blog/">Blog</a></p>
 
 
-<section style="max-width:700px;margin:2rem auto;padding:1rem;background:#111128;border-radius:8px;">
-  <h3 style="margin-bottom:1rem;font-size:1.1rem;color:#ccc;">Related Articles</h3>
-  <ul style="list-style:none;padding:0;margin:0;">
-    <li style="margin-bottom:0.5rem;"><a href="/blog/how-to-detect-ai-writing/">How to Detect AI Writing: A Complete Guide</a></li>
-    <li style="margin-bottom:0.5rem;"><a href="/blog/ai-detection-accuracy/">AI Detection Accuracy: How TruthLens Pro Compares</a></li>
-    <li><a href="/">Try TruthLens Pro — Free AI Content Detector</a></li>
+<section class="ist-n89ntp">
+  <h3 class="ist-1b73919">Related Articles</h3>
+  <ul class="ist-1wnkl99">
+    <li class="ist-1be1ynf"><a href="/blog/how-to-detect-ai-writing/">How to Detect AI Writing: A Complete Guide</a></li>
+    <li class="ist-1be1ynf"><a href="/blog/ai-detection-accuracy/">AI Detection Accuracy: How TruthLens Pro Compares</a></li>
+    <li><a href="/">Try TruthLens Pro â Free AI Content Detector</a></li>
   </ul>
 </section>
 </footer>
 <div id="cookie-banner">
   <p>We use cookies for analytics. <a href="/legal/">Privacy Policy</a></p>
-  <div style="display:flex;gap:8px;flex-shrink:0">
-    <button type="button" onclick="tlConsent('decline')" style="border:1px solid #f7f5f0;background:transparent;color:#f7f5f0">Decline</button>
-    <button type="button" onclick="tlConsent('accept')" style="border:none;background:#6c8fff;color:#fff">Accept</button>
+  <div class="ist-q3u7q1">
+    <button type="button" onclick="tlConsent('decline')" class="ist-nch1le">Decline</button>
+    <button type="button" onclick="tlConsent('accept')" class="ist-1xqlwzz">Accept</button>
   </div>
 </div>
 <script>
