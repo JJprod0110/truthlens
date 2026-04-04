@@ -2,22 +2,22 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ð</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>API Docs â TruthLens Pro</title>
+<title>API Docs — TruthLens Pro</title>
 <link rel="canonical" href="https://truthlensdetect.com/api/">
-<meta name="description" content="TruthLens Pro API docs â integrate AI content detection into your app with our REST API.">
-<meta property="og:title" content="API Docs â TruthLens Pro">
+<meta name="description" content="TruthLens Pro API docs — integrate AI content detection into your app with our REST API.">
+<meta property="og:title" content="API Docs — TruthLens Pro">
 <meta property="og:description" content="Integrate AI content detection into your app. Detect AI-generated text, images, and video via REST API.">
 <meta property="og:url" content="https://truthlensdetect.com/api/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://truthlensdetect.com/og-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="TruthLens Pro API Docs â AI Detection REST API">
+<meta property="og:image:alt" content="TruthLens Pro API Docs — AI Detection REST API">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="API Docs â TruthLens Pro">
+<meta name="twitter:title" content="API Docs — TruthLens Pro">
 <meta name="twitter:description" content="Integrate AI content detection into your app via the TruthLens REST API.">
 <meta name="twitter:image" content="https://truthlensdetect.com/og-preview.png">
 <meta name="twitter:site" content="@truthlenspro">
@@ -99,7 +99,7 @@ X-RateLimit-Reset: 1711929600</code></pre>
   <section class="api-section" id="response-fields">
     <h2>Response Fields</h2>
     <p>All detection endpoints return a JSON object. Here is what each field means:</p>
-    <table class="ist-1mfgmol"><thead><tr class="ist-1ko7ym9"><th class="ist-1afysk9">Field</th><th class="ist-1afysk9">Type</th><th class="ist-1afysk9">Description</th></tr></thead><tbody><tr class="ist-1bye0f0"><td class="ist-1wi8njj">verdict</td><td class="ist-1ftresr">string</td><td class="ist-1ol3ao0">"ai_generated", "human", or "uncertain". The primary classification.</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">confidence</td><td class="ist-1ftresr">float</td><td class="ist-1ol3ao0">0.0â1.0. Values above 0.85 are high-confidence; 0.60â0.85 moderate; below 0.60 uncertain.</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">signals</td><td class="ist-1ftresr">object</td><td class="ist-1ol3ao0">Per-signal scores (perplexity, burstiness, semantic coherence, etc.), each 0.0â1.0.</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">model_version</td><td class="ist-1ftresr">string</td><td class="ist-1ol3ao0">The model version used, e.g. "tl-text-v3.1".</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">scan_id</td><td class="ist-1ftresr">string</td><td class="ist-1ol3ao0">Unique scan identifier. Use in support requests or to fetch scan history.</td></tr><tr><td class="ist-1wi8njj">processed_at</td><td class="ist-1ftresr">string</td><td class="ist-1ol3ao0">ISO 8601 timestamp of when analysis completed.</td></tr></tbody></table>
+    <table class="ist-1mfgmol"><thead><tr class="ist-1ko7ym9"><th class="ist-1afysk9">Field</th><th class="ist-1afysk9">Type</th><th class="ist-1afysk9">Description</th></tr></thead><tbody><tr class="ist-1bye0f0"><td class="ist-1wi8njj">verdict</td><td class="ist-1ftresr">string</td><td class="ist-1ol3ao0">"ai_generated", "human", or "uncertain". The primary classification.</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">confidence</td><td class="ist-1ftresr">float</td><td class="ist-1ol3ao0">0.0–1.0. Values above 0.85 are high-confidence; 0.60–0.85 moderate; below 0.60 uncertain.</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">signals</td><td class="ist-1ftresr">object</td><td class="ist-1ol3ao0">Per-signal scores (perplexity, burstiness, semantic coherence, etc.), each 0.0–1.0.</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">model_version</td><td class="ist-1ftresr">string</td><td class="ist-1ol3ao0">The model version used, e.g. "tl-text-v3.1".</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">scan_id</td><td class="ist-1ftresr">string</td><td class="ist-1ol3ao0">Unique scan identifier. Use in support requests or to fetch scan history.</td></tr><tr><td class="ist-1wi8njj">processed_at</td><td class="ist-1ftresr">string</td><td class="ist-1ol3ao0">ISO 8601 timestamp of when analysis completed.</td></tr></tbody></table>
   </section>
 
   <section class="api-section" id="error-codes">
@@ -115,7 +115,7 @@ X-RateLimit-Reset: 1711929600</code></pre>
 
   <section class="api-section" id="sdk-examples">
     <h2>SDK &amp; Code Examples</h2>
-    <p>No SDK is required â the API is a standard REST interface. Copy-paste examples in common languages:</p>
+    <p>No SDK is required — the API is a standard REST interface. Copy-paste examples in common languages:</p>
     <h3>Python</h3>
     <pre tabindex="0"><code class="language-python">import requests
 
@@ -146,7 +146,7 @@ console.log("Verdict:", data.verdict, "| Confidence:", (data.confidence * 100).t
   -H "X-API-Key: your_api_key_here" \
   -H "Content-Type: application/json" \
   -d '{"text": "Paste the content to analyze here."}'</code></pre>
-    <p class="ist-5m2vls"><strong>API access requires the Enterprise plan ($49/mo).</strong> Free and Pro plans use the web interface. <a href="https://truthlensdetect.com/#pricing" class="ist-y6s0ws">View plans â</a></p>
+    <p class="ist-5m2vls"><strong>API access requires the Enterprise plan ($49/mo).</strong> Free and Pro plans use the web interface. <a href="https://truthlensdetect.com/#pricing" class="ist-y6s0ws">View plans →</a></p>
   </section>
 
   <section class="api-section" id="versioning">
