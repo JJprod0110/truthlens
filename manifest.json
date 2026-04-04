@@ -2,14 +2,14 @@
   "id": "/",
   "name": "TruthLens Pro",
   "short_name": "TruthLens",
-  "description": "AI-powered content authenticity detector — spot AI-generated text, images, and video in seconds.",
+  "description": "AI-powered content authenticity detector â spot AI-generated text, images, and video in seconds.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "lang": "en",
   "background_color": "#0f0e0c",
-    "theme_color": "#0d0d1a",
+  "theme_color": "#0d0d1a",
   "categories": [
     "utilities",
     "productivity"
@@ -19,13 +19,25 @@
       "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "shortcuts": [
@@ -72,7 +84,7 @@
       "sizes": "1200x630",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "TruthLens Pro — AI Content Detector"
+      "label": "TruthLens Pro â AI Content Detector"
     }
   ]
 }
