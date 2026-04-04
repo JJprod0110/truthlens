@@ -14,19 +14,19 @@
   </url>
   <url>
     <loc>https://truthlensdetect.com/blog/how-to-detect-ai-writing/</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://truthlensdetect.com/blog/deepfake-images-explained/</loc>
-    <lastmod>2026-02-28</lastmod>
+    <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://truthlensdetect.com/blog/ai-detection-accuracy/</loc>
-    <lastmod>2026-02-10</lastmod>
+    <lastmod>2026-04-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -44,6 +44,12 @@
   </url>
   <url>
     <loc>https://truthlensdetect.com/privacy/</loc>
+    <lastmod>2026-04-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://truthlensdetect.com/legal/</loc>
     <lastmod>2026-04-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
