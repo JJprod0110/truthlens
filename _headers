@@ -7,7 +7,7 @@
  Cross-Origin-Opener-Policy: same-origin
  Cross-Origin-Resource-Policy: same-origin
  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
- Content-Security-Policy: default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://cloudflareinsights.com https://teiqxbapfjbnsaifbspa.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; frame-ancestors 'none'
+ Content-Security-Policy: default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://static.cloudflareinsights.com 'sha256-fE5TbAL9cfbGbPqBn+qzTlj1jBjd/Y8ngdj/JKfjUMU=' 'sha256-ziIu/lxCAfE6tjRSbkigPxdCwMcXsU2U3JIZM1QLa5Q=' 'sha256-R3HOY6LuaUcA0RQc+5Cyc1hCn3Q9RQGPtn4gpPOwsa8=' 'sha256-jWMoI64sv2mHIif/b5z7eyXj1WCALxioGbL/J94H+NE=' 'sha256-dM949ZVLhUGJGgbmFSzxQQFKFMQ6AFFYFA3RkJt1cGw='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://cloudflareinsights.com https://teiqxbapfjbnsaifbspa.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests; frame-ancestors 'none'
  X-Permitted-Cross-Domain-Policies: none
 
 /assets/*
