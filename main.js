@@ -325,8 +325,7 @@ async function doAnalyze(type, text, file) {
     saveToHistory(appState.lastResult);
     displayResults(result, type);
   } catch (e) {
-    console.error(e);
-    hideLoading();
+        hideLoading();
     showToast('Analysis failed — please try again.');
   }
 }
@@ -763,7 +762,7 @@ document.querySelectorAll('.overlay').forEach(o => {
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log('[SW] registered:', reg.scope))
-      .catch(err => console.warn('[SW] registration failed:', err));
+      .then(() => {})
+      .catch(() => {});
   });
 }
