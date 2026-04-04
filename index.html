@@ -827,6 +827,7 @@ footer {
   <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"TruthLens Pro","description":"Unlimited AI content detection for journalists and researchers","offers":{"@type":"Offer","price":"12.00","priceCurrency":"USD","priceSpecification":{"@type":"RecurringCharge","billingDuration":"P1M"},"availability":"https://schema.org/InStock","url":"https://buy.stripe.com/eVq28t0NBdH24aDaXjcwg00"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"TruthLens Enterprise","description":"Unlimited AI content detection with API access for teams and platforms","offers":{"@type":"Offer","price":"49.00","priceCurrency":"USD","priceSpecification":{"@type":"RecurringCharge","billingDuration":"P1M"},"availability":"https://schema.org/InStock","url":"mailto:sales@truthlensdetect.com"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"TruthLens Pro","url":"https://truthlensdetect.com/","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://truthlensdetect.com/?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
 </head>
 <body>
   <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:#1a1a2e;color:#fff;padding:8px 16px;border-radius:4px;text-decoration:none;font-weight:600" onfocus="this.style.cssText=this.style.cssText.replace('left:-9999px','left:16px');this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-9999px';this.style.width='1px';this.style.height='1px'">Skip to main content</a>
@@ -836,11 +837,11 @@ footer {
 <nav class="topbar" aria-label="Main navigation">
   <div class="topbar-logo">Truth<em>Lens</em><sup>PRO</sup></div>
   <div class="topbar-right" id="topbarRight"><button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNavDrawer" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
-    <button class="topbar-btn tb-ghost" onclick="openModal('privacyOverlay')" style="display:flex;align-items:center;gap:0.35rem;color:var(--green);border-color:rgba(26,122,74,0.3);">🔒 Privacy</button>
+    <button type="button" class="topbar-btn tb-ghost" onclick="openModal('privacyOverlay')" style="display:flex;align-items:center;gap:0.35rem;color:var(--green);border-color:rgba(26,122,74,0.3);">🔒 Privacy</button>
     <a href="/blog/" class="topbar-btn tb-ghost">Blog</a>
-      <button class="topbar-btn tb-ghost" onclick="openModal('plansOverlay')">Pricing</button>
-    <button class="topbar-btn tb-ghost" onclick="openAuthModal('signin')">Sign in</button>
-    <button class="topbar-btn tb-fill" onclick="openAuthModal('signup')">Get started free →</button>
+      <button type="button" class="topbar-btn tb-ghost" onclick="openModal('plansOverlay')">Pricing</button>
+    <button type="button" class="topbar-btn tb-ghost" onclick="openAuthModal('signin')">Sign in</button>
+    <button type="button" class="topbar-btn tb-fill" onclick="openAuthModal('signup')">Get started free →</button>
       <button class="hamburger-btn" id="hamburgerBtn2"type="button" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
   </div>
 
@@ -880,16 +881,16 @@ footer {
 
   <!-- Input Type Tabs -->
   <div class="input-tabs">
-    <button class="input-tab active" onclick="switchPanel('text')">
+    <button type="button" class="input-tab active" onclick="switchPanel('text')">
       <span class="ti-icon">📝</span> Text
     </button>
-    <button class="input-tab" onclick="switchPanel('url')">
+    <button type="button" class="input-tab" onclick="switchPanel('url')">
       <span class="ti-icon">🔗</span> URL
     </button>
-    <button class="input-tab" onclick="switchPanel('image')">
+    <button type="button" class="input-tab" onclick="switchPanel('image')">
       <span class="ti-icon">🖼️</span> Image
     </button>
-    <button class="input-tab pro-locked" onclick="switchPanel('video')">
+    <button type="button" class="input-tab pro-locked" onclick="switchPanel('video')">
       <span class="ti-icon">🎬</span> Video
       <span class="pro-lock">PRO</span>
     </button>
@@ -902,7 +903,7 @@ footer {
     </div>
     <div class="textarea-toolbar">
       <span class="char-count"><span id="charCount">0</span>/10,000</span>
-      <button class="paste-btn" onclick="pasteFromClipboard()">📋 Paste from clipboard</button>
+      <button type="button" class="paste-btn" onclick="pasteFromClipboard()">📋 Paste from clipboard</button>
     </div>
   </div>
 
@@ -910,7 +911,7 @@ footer {
   <div class="panel" id="panel-url">
     <div class="url-input-row">
       <input type="url" id="urlInput" placeholder="https://example.com/article — paste any webpage URL" aria-label="Webpage URL to analyze" />
-      <button class="url-fetch-btn" onclick="fetchURL()">Fetch →</button>
+      <button type="button" class="url-fetch-btn" onclick="fetchURL()">Fetch →</button>
     </div>
     <div class="url-tips">
       <h2>Works great with</h2>
@@ -953,7 +954,7 @@ footer {
       <span class="dz-icon">🎬</span>
       <p>Video detection is a Pro feature</p>
       <p>Upgrade to detect AI-generated video, deepfakes, and synthetic media</p>
-      <button onclick="event.stopPropagation();openModal('plansOverlay')" style="margin-top:1rem;padding:0.6rem 1.4rem;background:var(--accent);border:none;border-radius:8px;color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:0.88rem;cursor:pointer;">Upgrade to Pro →</button>
+      <button type="button" onclick="event.stopPropagation();openModal('plansOverlay')" style="margin-top:1rem;padding:0.6rem 1.4rem;background:var(--accent);border:none;border-radius:8px;color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:0.88rem;cursor:pointer;">Upgrade to Pro →</button>
     </div>
     <input type="file" id="vidFile" accept="video/*" style="display:none" aria-label="Upload video for analysis" onchange="loadPreview('vidFile','vidPreview','videoDropZone','video')">
     <div class="preview-area" id="vidPreview"></div>
@@ -961,7 +962,7 @@ footer {
 
   <!-- CTA -->
   <div class="analyze-cta">
-    <button class="analyze-main-btn" id="mainAnalyzeBtn" onclick="runAnalysis()">
+    <button type="button" class="analyze-main-btn" id="mainAnalyzeBtn" onclick="runAnalysis()">
       <span>🔍</span> <span id="analyzeLabel">Analyze Content</span>
     </button>
   </div>
@@ -1076,7 +1077,7 @@ footer {
 </div>
 
 <!-- ═══ SUPPORT BOT ═══ -->
-<button class="chat-bubble" aria-label="Open support chat" onclick="toggleChat()" id="chatBubble">
+<button type="button" class="chat-bubble" aria-label="Open support chat" onclick="toggleChat()" id="chatBubble">
   💬
   <span class="notif">1</span>
 </button>
@@ -1088,7 +1089,7 @@ footer {
       <div class="bot-name">TruthLens Support</div>
       <div class="bot-status">● Online — AI powered</div>
     </div>
-    <button class="close-chat" aria-label="Close chat" onclick="toggleChat()">✕</button>
+    <button type="button" class="close-chat" aria-label="Close chat" onclick="toggleChat()">✕</button>
   </div>
   <div class="chat-messages" id="chatMessages"></div>
   <div class="chat-suggestions" id="chatSuggestions">
@@ -1099,7 +1100,7 @@ footer {
   </div>
   <div class="chat-input-row">
     <input class="chat-input" id="chatInput" placeholder="Ask anything…" aria-label="Chat message" onkeydown="if(event.key==='Enter')sendChat()">
-    <button class="chat-send" aria-label="Send message" onclick="sendChat()">→</button>
+    <button type="button" class="chat-send" aria-label="Send message" onclick="sendChat()">→</button>
   </div>
 </div>
 
@@ -1170,7 +1171,7 @@ footer {
           <li>30-day scan history</li>
           <li>Email support</li>
         </ul>
-        <a class="plan-btn filled" href="https://buy.stripe.com/eVq28t0NBdH24aDaXjcwg00" target="_blank" rel="noopener">Get Pro →</a>
+        <a class="plan-btn filled" href="https://buy.stripe.com/eVq28t0NBdH24aDaXjcwg00" target="_blank" rel="noopener noreferrer">Get Pro →</a>
       </div>
       <div class="plan-card">
         <div class="plan-name">Enterprise</div>
@@ -1249,8 +1250,8 @@ footer {
         <a href="/privacy/" style="color:#6c8fff;text-decoration:underline">Privacy Policy</a>.
       </p>
       <div style="display:flex;gap:0.75rem;flex-shrink:0">
-        <button onclick="ckDecline()" style="background:transparent;border:1px solid #555;color:#aaa;padding:0.5rem 1.1rem;border-radius:6px;cursor:pointer;font-size:0.85rem">Decline</button>
-        <button onclick="ckAccept()" style="background:#6c8fff;border:none;color:#fff;padding:0.5rem 1.25rem;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:600">Accept</button>
+        <button type="button" onclick="ckDecline()" style="background:transparent;border:1px solid #555;color:#aaa;padding:0.5rem 1.1rem;border-radius:6px;cursor:pointer;font-size:0.85rem">Decline</button>
+        <button type="button" onclick="ckAccept()" style="background:#6c8fff;border:none;color:#fff;padding:0.5rem 1.25rem;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:600">Accept</button>
       </div>
     </div>
   </div>
@@ -1260,15 +1261,15 @@ footer {
   <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
     <label style="display:flex;align-items:center;gap:6px;cursor:pointer;min-height:44px;"><input type="checkbox" id="cookie-functional" aria-label="Functional (required)" checked disabled style="width:16px;height:16px"> Functional (required)</label>
     <label style="display:flex;align-items:center;gap:6px;cursor:pointer;min-height:44px;"><input type="checkbox" id="cookie-analytics" aria-label="Analytics cookies" style="width:16px;height:16px"> Analytics</label>
-    <button onclick="acceptSelectedCookies()" style="background:#5a4fcf;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;min-height:44px;font-weight:600;">Save Preferences</button>
-    <button onclick="acceptAllCookies()" style="background:#7c3aed;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;min-height:44px;font-weight:600;">Accept All</button>
-    <button onclick="rejectAllCookies()" style="background:transparent;color:#aaa;border:1px solid #555;padding:10px 20px;border-radius:6px;cursor:pointer;min-height:44px;">Reject All</button>
+    <button type="button" onclick="acceptSelectedCookies()" style="background:#5a4fcf;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;min-height:44px;font-weight:600;">Save Preferences</button>
+    <button type="button" onclick="acceptAllCookies()" style="background:#7c3aed;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;min-height:44px;font-weight:600;">Accept All</button>
+    <button type="button" onclick="rejectAllCookies()" style="background:transparent;color:#aaa;border:1px solid #555;padding:10px 20px;border-radius:6px;cursor:pointer;min-height:44px;">Reject All</button>
   </div>
 </div>
 <!-- ═══ PRIVACY PLEDGE MODAL ═══ -->
 <div class="overlay" inert id="privacyOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Our Privacy Pledge">
   <div class="modal privacy-modal">
-    <button class="modal-close" aria-label="Close" onclick="closeModal('privacyOverlay')">✕</button>
+    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('privacyOverlay')">✕</button>
     <h2>🔒 Our Privacy Pledge</h2>
     <p class="modal-sub">Written in plain English, not legalese. This is what we actually do with your data.</p>
     <div class="privacy-commitment">
@@ -1317,13 +1318,13 @@ footer {
 <!-- ═══ AUTH MODAL ═══ -->
 <div class="overlay" inert id="authOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="authTitle">
   <div class="modal" id="authModal" aria-label="Create account">
-    <button class="modal-close" aria-label="Close" onclick="closeModal('authOverlay')">✕</button>
+    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('authOverlay')">✕</button>
     <h2 id="authTitle">Create account</h2>
     <p class="modal-sub" id="authSub">Join 50,000+ users detecting AI content</p>
 
     <div class="social-btns">
-      <button class="social-btn" aria-label="Sign in with Google" onclick="socialLogin('Google')">🌐 Google</button>
-      <button class="social-btn" aria-label="Sign in with Twitter/X" onclick="socialLogin('Twitter/X')">𝕏 Twitter/X</button>
+      <button type="button" class="social-btn" aria-label="Sign in with Google" onclick="socialLogin('Google')">🌐 Google</button>
+      <button type="button" class="social-btn" aria-label="Sign in with Twitter/X" onclick="socialLogin('Twitter/X')">𝕏 Twitter/X</button>
     </div>
     <div class="divider"><span></span><p>or email</p><span></span></div>
 
@@ -1341,7 +1342,7 @@ footer {
       <label>Password</label>
       <input type="password" id="authPassword" placeholder="••••••••" aria-label="Password" autocomplete="current-password" maxlength="128">
     </div>
-    <button class="btn-primary" onclick="submitAuth()" id="authSubmitBtn">Create free account →</button>
+    <button type="button" class="btn-primary" onclick="submitAuth()" id="authSubmitBtn">Create free account →</button>
     <div class="modal-switch" id="authSwitch">
       Already have an account? <button type="button" class="link-btn" onclick="toggleAuthMode()">Sign in</button>
     </div>
@@ -1352,7 +1353,7 @@ footer {
 </div>
 <div class="overlay" inert id="plansOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Upgrade TruthLens">
   <div class="modal plans-modal" style="max-width:820px">
-    <button class="modal-close" aria-label="Close" onclick="closeModal('plansOverlay')">✕</button>
+    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('plansOverlay')">✕</button>
     <h2>Upgrade TruthLens</h2>
     <p class="modal-sub">Unlock unlimited scans, video detection, and priority results</p>
     <div class="plans-grid">
@@ -1370,7 +1371,7 @@ footer {
           <li class="no">Scan history</li>
           <li class="no">Priority support</li>
         </ul>
-        <button class="plan-btn outline" onclick="closeModal('plansOverlay')">Current plan</button>
+        <button type="button" class="plan-btn outline" onclick="closeModal('plansOverlay')">Current plan</button>
       </div>
       <div class="plan-card popular">
         <div class="popular-tag">MOST POPULAR</div>
@@ -1403,7 +1404,7 @@ footer {
           <li>Unlimited scan history</li>
           <li>Priority + SLA support</li>
         </ul>
-        <button class="plan-btn outline"  onclick="window.location.href='mailto:sales@truthlensdetect.com'">Contact sales →</button>
+        <button type="button" class="plan-btn outline"  onclick="window.location.href='mailto:sales@truthlensdetect.com'">Contact sales →</button>
       </div>
     </div>
     <div style="margin-top:1.5rem;padding:0.9rem 1.2rem;background:#f0fdf6;border:1.5px solid #a0d4b5;border-radius:12px;display:flex;align-items:center;gap:0.8rem;">
@@ -1414,7 +1415,7 @@ footer {
 </div>
 <div class="overlay" inert id="shareOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Share Result">
   <div class="modal">
-    <button class="modal-close" aria-label="Close" onclick="closeModal('shareOverlay')">✕</button>
+    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('shareOverlay')">✕</button>
     <h2>Share Result</h2>
     <p class="modal-sub">Spread awareness — let others know about this content</p>
     <div class="share-preview-card" id="sharePreviewCard">
@@ -1449,7 +1450,7 @@ footer {
     </div>
     <div class="share-link-row">
       <input class="share-link-input" id="shareLinkInput" aria-label="Share link URL" value="https://truthlensdetect.com/r/a8x2k9" readonly>
-      <button class="copy-btn" onclick="copyLink()">Copy link</button>
+      <button type="button" class="copy-btn" onclick="copyLink()">Copy link</button>
     </div>
   </div>
 </div>
