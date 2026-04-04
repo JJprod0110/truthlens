@@ -2,22 +2,22 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ð</text></svg>">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>API Docs — TruthLens Pro</title>
+<title>API Docs â TruthLens Pro</title>
 <link rel="canonical" href="https://truthlensdetect.com/api/">
-<meta name="description" content="TruthLens Pro API docs — integrate AI content detection into your app with our REST API.">
-<meta property="og:title" content="API Docs — TruthLens Pro">
+<meta name="description" content="TruthLens Pro API docs â integrate AI content detection into your app with our REST API.">
+<meta property="og:title" content="API Docs â TruthLens Pro">
 <meta property="og:description" content="Integrate AI content detection into your app. Detect AI-generated text, images, and video via REST API.">
 <meta property="og:url" content="https://truthlensdetect.com/api/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://truthlensdetect.com/og-preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="TruthLens Pro API Docs — AI Detection REST API">
+<meta property="og:image:alt" content="TruthLens Pro API Docs â AI Detection REST API">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="API Docs — TruthLens Pro">
+<meta name="twitter:title" content="API Docs â TruthLens Pro">
 <meta name="twitter:description" content="Integrate AI content detection into your app via the TruthLens REST API.">
 <meta name="twitter:image" content="https://truthlensdetect.com/og-preview.png">
 <meta name="twitter:site" content="@truthlenspro">
@@ -27,59 +27,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"TruthLens Pro API","url":"https://truthlensdetect.com/api/","description":"Integrate AI content detection into your app with the TruthLens Pro REST API."}</script>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d0d1a;color:#e0e0e0;line-height:1.7;min-height:100vh;display:flex;flex-direction:column}
-:focus-visible{outline:3px solid #6c8fff;outline-offset:2px;border-radius:3px;}
-pre:focus{outline:2px solid rgba(108,143,255,.5);outline-offset:0;}
-.topbar{padding:1rem 2rem;background:#111128;border-bottom:1px solid #222;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.logo{color:#fff;text-decoration:none;font-weight:700;font-size:1.1rem}
-.logo span{color:#6c8fff}
-.nav-links{display:flex;gap:1.5rem}
-.nav-links a{color:#aaa;text-decoration:none;font-size:0.9rem;transition:color .2s}
-.nav-links a:hover,.nav-links a[aria-current="page"]{color:#fff}
-.cta-btn{background:#6c8fff;color:#fff;padding:0.5rem 1.25rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.9rem;white-space:nowrap}
-.cta-btn:hover{background:#5a7aff}
-.api-main{max-width:860px;margin:0 auto;padding:2.5rem 1.5rem;flex:1;width:100%}
-.api-header{margin-bottom:2.5rem}
-.api-header h1{font-size:clamp(1.6rem,4vw,2.2rem);color:#fff;margin-bottom:1rem;line-height:1.3}
-.api-header p{color:#aaa;font-size:1rem;max-width:600px}
-.api-section{margin-bottom:3rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.07)}
-.api-section:last-child{border-bottom:none}
-.api-section h2{font-size:1.3rem;color:#fff;margin-bottom:0.75rem}
-.api-section h3{font-size:1rem;color:#ccc;margin:1.5rem 0 0.5rem;font-weight:600}
-.api-section p{color:#aaa;margin-bottom:1rem;font-size:0.95rem}
-.api-section pre{background:#111128;border:1px solid #222;border-radius:8px;padding:1rem 1.25rem;overflow-x:auto;font-size:0.85rem;color:#ccc;margin-bottom:0.25rem}
-.api-section code{font-family:monospace}
-/* API Sandbox */
-.sandbox-section{background:#111128;border-top:1px solid rgba(255,255,255,.07);padding:3rem 1.5rem}
-.sandbox-inner{max-width:860px;margin:0 auto}
-.sandbox-section h2{font-size:1.4rem;color:#fff;margin-bottom:0.5rem}
-.sandbox-section .sb-sub{color:#888;font-size:0.9rem;margin-bottom:1.75rem}
-.sb-tabs{display:flex;gap:0.5rem;margin-bottom:1rem}
-.sb-tab{background:transparent;border:1px solid #333;color:#aaa;padding:0.4rem 1rem;border-radius:6px;cursor:pointer;font-size:0.85rem;font-family:inherit}
-.sb-tab.active{background:#6c8fff;border-color:#6c8fff;color:#fff}
-.sb-body{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-@media(max-width:640px){.sb-body{grid-template-columns:1fr}}
-.sb-panel label{font-size:0.8rem;color:#888;display:block;margin-bottom:0.4rem}
-.sb-textarea{width:100%;height:160px;background:#0d0d1a;border:1px solid #333;border-radius:8px;color:#e0e0e0;font-size:0.85rem;font-family:monospace;padding:0.75rem;resize:vertical}
-.sb-textarea:focus{outline:2px solid #6c8fff;border-color:transparent}
-.sb-run{margin-top:0.75rem;background:#6c8fff;color:#fff;border:none;padding:0.6rem 1.5rem;border-radius:7px;font-size:0.9rem;font-weight:600;cursor:pointer;font-family:inherit;width:100%}
-.sb-run:hover{background:#5a7aff}
-.sb-run:disabled{opacity:0.5;cursor:not-allowed}
-.sb-response{background:#0d0d1a;border:1px solid #222;border-radius:8px;height:160px;overflow:auto;font-family:monospace;font-size:0.8rem;color:#ccc;padding:0.75rem;white-space:pre}
-.sb-badge{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.75rem;color:#888;margin-top:0.5rem}
-.sb-badge::before{content:'';display:block;width:8px;height:8px;border-radius:50%;background:#6c8fff}
-.site-footer{text-align:center;padding:2rem;color:#555;font-size:0.85rem;border-top:1px solid #222}
-.site-footer a{color:#6c8fff;text-decoration:none}
-#cookie-banner{display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1814;color:#f7f5f0;padding:14px 24px;align-items:center;justify-content:space-between;gap:16px;z-index:9999;font-size:14px;font-family:inherit;box-shadow:0 -2px 12px rgba(0,0,0,.3)}
-#cookie-banner p{margin:0}
-#cookie-banner a{color:#6c8fff;text-decoration:underline}
-#cookie-banner button{cursor:pointer;border-radius:6px;font-family:inherit;font-size:13px;padding:7px 14px}
-</style>
+
+  <link rel="stylesheet" href="/assets/main.css">
 </head>
 <body>
-<a href="#main-content" class="skip-link" style="position:absolute;top:-100px;left:0;background:#6c8fff;color:#fff;padding:8px 16px;z-index:10000;border-radius:0 0 6px 0;font-family:inherit;font-size:14px;text-decoration:none" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
+<a href="#main-content" class="skip-link ist-10nqx6p" onfocus="this.style.top='0'" onblur="this.style.top='-100px'">Skip to content</a>
 <nav class="topbar" aria-label="Main navigation">
   <a href="/" class="logo">TruthLens<span>Pro</span></a>
   <div class="nav-links">
@@ -93,9 +45,9 @@ pre:focus{outline:2px solid rgba(108,143,255,.5);outline-offset:0;}
 <main id="main-content" class="api-main">
   <header class="api-header">
     <h1>TruthLens Pro API</h1>
-    <nav aria-label="On this page" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 20px;margin:24px 0">
-      <p style="font-weight:700;margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.4)">Contents</p>
-      <ol style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:14px">
+    <nav aria-label="On this page" class="ist-dsehgi">
+      <p class="ist-1xfrc46">Contents</p>
+      <ol class="ist-lqm5ql">
         <li><a href="#authentication">Authentication</a></li>
         <li><a href="#text-detection">Text Detection</a></li>
         <li><a href="#image-detection">Image Detection</a></li>
@@ -108,33 +60,33 @@ pre:focus{outline:2px solid rgba(108,143,255,.5);outline-offset:0;}
     <h2>Authentication</h2>
     <p>All requests require a Bearer token in the <code>Authorization</code> header. Get your API key from your account dashboard.</p>
     <pre tabindex="0"><code class="language-text">Authorization: Bearer YOUR_API_KEY</code></pre>
-    <div style="text-align:right;margin-top:-6px;margin-bottom:10px"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" style="padding:3px 10px;font-size:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border-radius:5px;cursor:pointer;font-family:inherit">Copy</button></div>
+    <div class="ist-kjw8kw"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" class="ist-gaw20k">Copy</button></div>
   </section>
   <section class="api-section" id="text-detection">
     <h2>Text Detection</h2>
     <p>Analyze text to determine whether it was written by a human or generated by an AI model.</p>
     <h3 id="text-endpoint">Endpoint</h3>
     <pre tabindex="0"><code class="language-bash">POST https://api.truthlensdetect.com/v1/detect/text</code></pre>
-    <div style="text-align:right;margin-top:-6px;margin-bottom:10px"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" style="padding:3px 10px;font-size:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border-radius:5px;cursor:pointer;font-family:inherit">Copy</button></div>
+    <div class="ist-kjw8kw"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" class="ist-gaw20k">Copy</button></div>
     <h3 id="text-request">Request</h3>
     <pre tabindex="0"><code class="language-json">{ "text": "Content to analyze.", "language": "en" }</code></pre>
-    <div style="text-align:right;margin-top:-6px;margin-bottom:10px"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" style="padding:3px 10px;font-size:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border-radius:5px;cursor:pointer;font-family:inherit">Copy</button></div>
+    <div class="ist-kjw8kw"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" class="ist-gaw20k">Copy</button></div>
     <h3 id="text-response">Response</h3>
     <pre tabindex="0"><code class="language-json">{ "score": 0.94, "label": "ai_generated", "confidence": "high", "model_version": "tlp-2.1" }</code></pre>
-    <div style="text-align:right;margin-top:-6px;margin-bottom:10px"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" style="padding:3px 10px;font-size:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border-radius:5px;cursor:pointer;font-family:inherit">Copy</button></div>
+    <div class="ist-kjw8kw"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" class="ist-gaw20k">Copy</button></div>
   </section>
   <section class="api-section" id="image-detection">
     <h2>Image Detection</h2>
     <p>Submit an image URL or base64-encoded image to detect AI-generated or manipulated visuals.</p>
     <h3 id="image-endpoint">Endpoint</h3>
     <pre tabindex="0"><code class="language-bash">POST https://api.truthlensdetect.com/v1/detect/image</code></pre>
-    <div style="text-align:right;margin-top:-6px;margin-bottom:10px"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" style="padding:3px 10px;font-size:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border-radius:5px;cursor:pointer;font-family:inherit">Copy</button></div>
+    <div class="ist-kjw8kw"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" class="ist-gaw20k">Copy</button></div>
     <h3 id="image-request">Request</h3>
     <pre tabindex="0"><code class="language-json">{ "image_url": "https://example.com/photo.jpg" }</code></pre>
-    <div style="text-align:right;margin-top:-6px;margin-bottom:10px"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" style="padding:3px 10px;font-size:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border-radius:5px;cursor:pointer;font-family:inherit">Copy</button></div>
+    <div class="ist-kjw8kw"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" class="ist-gaw20k">Copy</button></div>
     <h3 id="image-response">Response</h3>
     <pre tabindex="0"><code class="language-json">{ "score": 0.87, "label": "ai_generated", "confidence": "high", "signals": ["diffusion_artifacts", "unnatural_texture"] }</code></pre>
-    <div style="text-align:right;margin-top:-6px;margin-bottom:10px"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" style="padding:3px 10px;font-size:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border-radius:5px;cursor:pointer;font-family:inherit">Copy</button></div>
+    <div class="ist-kjw8kw"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" class="ist-gaw20k">Copy</button></div>
   </section>
   <section class="api-section" id="rate-limits">
     <h2>Rate Limits</h2>
@@ -142,18 +94,18 @@ pre:focus{outline:2px solid rgba(108,143,255,.5);outline-offset:0;}
     <pre tabindex="0"><code class="language-json">X-RateLimit-Limit: 10000
 X-RateLimit-Remaining: 9847
 X-RateLimit-Reset: 1711929600</code></pre>
-    <div style="text-align:right;margin-top:-6px;margin-bottom:10px"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" style="padding:3px 10px;font-size:12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:rgba(255,255,255,.7);border-radius:5px;cursor:pointer;font-family:inherit">Copy</button></div>
+    <div class="ist-kjw8kw"><button onclick="var t=this.parentNode.previousElementSibling.textContent;navigator.clipboard.writeText(t).then(function(){var b=this;this.textContent='Copied!';setTimeout(function(){b.textContent='Copy';},1500);}.bind(this)).catch(function(){})" class="ist-gaw20k">Copy</button></div>
   </section>
   <section class="api-section" id="response-fields">
     <h2>Response Fields</h2>
     <p>All detection endpoints return a JSON object. Here is what each field means:</p>
-    <table style="width:100%;border-collapse:collapse;font-size:.9rem;margin:1rem 0;"><thead><tr style="border-bottom:1px solid rgba(255,255,255,.2);"><th style="text-align:left;padding:.5rem .75rem;color:rgba(255,255,255,.5);">Field</th><th style="text-align:left;padding:.5rem .75rem;color:rgba(255,255,255,.5);">Type</th><th style="text-align:left;padding:.5rem .75rem;color:rgba(255,255,255,.5);">Description</th></tr></thead><tbody><tr style="border-bottom:1px solid rgba(255,255,255,.07);"><td style="padding:.5rem .75rem;font-family:monospace;color:#f0a070;">verdict</td><td style="padding:.5rem .75rem;color:rgba(255,255,255,.6);">string</td><td style="padding:.5rem .75rem;">"ai_generated", "human", or "uncertain". The primary classification.</td></tr><tr style="border-bottom:1px solid rgba(255,255,255,.07);"><td style="padding:.5rem .75rem;font-family:monospace;color:#f0a070;">confidence</td><td style="padding:.5rem .75rem;color:rgba(255,255,255,.6);">float</td><td style="padding:.5rem .75rem;">0.0–1.0. Values above 0.85 are high-confidence; 0.60–0.85 moderate; below 0.60 uncertain.</td></tr><tr style="border-bottom:1px solid rgba(255,255,255,.07);"><td style="padding:.5rem .75rem;font-family:monospace;color:#f0a070;">signals</td><td style="padding:.5rem .75rem;color:rgba(255,255,255,.6);">object</td><td style="padding:.5rem .75rem;">Per-signal scores (perplexity, burstiness, semantic coherence, etc.), each 0.0–1.0.</td></tr><tr style="border-bottom:1px solid rgba(255,255,255,.07);"><td style="padding:.5rem .75rem;font-family:monospace;color:#f0a070;">model_version</td><td style="padding:.5rem .75rem;color:rgba(255,255,255,.6);">string</td><td style="padding:.5rem .75rem;">The model version used, e.g. "tl-text-v3.1".</td></tr><tr style="border-bottom:1px solid rgba(255,255,255,.07);"><td style="padding:.5rem .75rem;font-family:monospace;color:#f0a070;">scan_id</td><td style="padding:.5rem .75rem;color:rgba(255,255,255,.6);">string</td><td style="padding:.5rem .75rem;">Unique scan identifier. Use in support requests or to fetch scan history.</td></tr><tr><td style="padding:.5rem .75rem;font-family:monospace;color:#f0a070;">processed_at</td><td style="padding:.5rem .75rem;color:rgba(255,255,255,.6);">string</td><td style="padding:.5rem .75rem;">ISO 8601 timestamp of when analysis completed.</td></tr></tbody></table>
+    <table class="ist-1mfgmol"><thead><tr class="ist-1ko7ym9"><th class="ist-1afysk9">Field</th><th class="ist-1afysk9">Type</th><th class="ist-1afysk9">Description</th></tr></thead><tbody><tr class="ist-1bye0f0"><td class="ist-1wi8njj">verdict</td><td class="ist-1ftresr">string</td><td class="ist-1ol3ao0">"ai_generated", "human", or "uncertain". The primary classification.</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">confidence</td><td class="ist-1ftresr">float</td><td class="ist-1ol3ao0">0.0â1.0. Values above 0.85 are high-confidence; 0.60â0.85 moderate; below 0.60 uncertain.</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">signals</td><td class="ist-1ftresr">object</td><td class="ist-1ol3ao0">Per-signal scores (perplexity, burstiness, semantic coherence, etc.), each 0.0â1.0.</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">model_version</td><td class="ist-1ftresr">string</td><td class="ist-1ol3ao0">The model version used, e.g. "tl-text-v3.1".</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">scan_id</td><td class="ist-1ftresr">string</td><td class="ist-1ol3ao0">Unique scan identifier. Use in support requests or to fetch scan history.</td></tr><tr><td class="ist-1wi8njj">processed_at</td><td class="ist-1ftresr">string</td><td class="ist-1ol3ao0">ISO 8601 timestamp of when analysis completed.</td></tr></tbody></table>
   </section>
 
   <section class="api-section" id="error-codes">
     <h2>Error Codes</h2>
     <p>TruthLens uses standard HTTP status codes. All error responses include a JSON body with <code>error</code> (machine-readable) and <code>message</code> (human-readable) fields.</p>
-    <table style="width:100%;border-collapse:collapse;font-size:.9rem;margin:1rem 0;"><thead><tr style="border-bottom:1px solid rgba(255,255,255,.2);"><th style="text-align:left;padding:.5rem .75rem;color:rgba(255,255,255,.5);">Status</th><th style="text-align:left;padding:.5rem .75rem;color:rgba(255,255,255,.5);">Error Code</th><th style="text-align:left;padding:.5rem .75rem;color:rgba(255,255,255,.5);">Meaning</th></tr></thead><tbody><tr style="border-bottom:1px solid rgba(255,255,255,.07);"><td style="padding:.5rem .75rem;font-family:monospace;color:#f0a070;">400</td><td style="padding:.5rem .75rem;font-family:monospace;">invalid_request</td><td style="padding:.5rem .75rem;">Missing or malformed field (e.g. no <code>text</code> provided).</td></tr><tr style="border-bottom:1px solid rgba(255,255,255,.07);"><td style="padding:.5rem .75rem;font-family:monospace;color:#f0a070;">401</td><td style="padding:.5rem .75rem;font-family:monospace;">unauthorized</td><td style="padding:.5rem .75rem;">API key missing, invalid, or revoked. Check your <code>X-API-Key</code> header.</td></tr><tr style="border-bottom:1px solid rgba(255,255,255,.07);"><td style="padding:.5rem .75rem;font-family:monospace;color:#f0a070;">403</td><td style="padding:.5rem .75rem;font-family:monospace;">forbidden</td><td style="padding:.5rem .75rem;">Your plan does not include API access. Upgrade to Enterprise.</td></tr><tr style="border-bottom:1px solid rgba(255,255,255,.07);"><td style="padding:.5rem .75rem;font-family:monospace;color:#f0a070;">413</td><td style="padding:.5rem .75rem;font-family:monospace;">payload_too_large</td><td style="padding:.5rem .75rem;">Text exceeds 10,000 chars or image exceeds 10 MB.</td></tr><tr style="border-bottom:1px solid rgba(255,255,255,.07);"><td style="padding:.5rem .75rem;font-family:monospace;color:#f0a070;">422</td><td style="padding:.5rem .75rem;font-family:monospace;">unprocessable</td><td style="padding:.5rem .75rem;">Content could not be analyzed (e.g. image corrupted, text too short).</td></tr><tr style="border-bottom:1px solid rgba(255,255,255,.07);"><td style="padding:.5rem .75rem;font-family:monospace;color:#f0a070;">429</td><td style="padding:.5rem .75rem;font-family:monospace;">rate_limit_exceeded</td><td style="padding:.5rem .75rem;">Too many requests. See <code>Retry-After</code> header for wait time in seconds.</td></tr><tr><td style="padding:.5rem .75rem;font-family:monospace;color:#f0a070;">500</td><td style="padding:.5rem .75rem;font-family:monospace;">internal_error</td><td style="padding:.5rem .75rem;">Unexpected server error. Contact <a href="mailto:api-support@truthlensdetect.com" style="color:#e85d26;">api-support@truthlensdetect.com</a>.</td></tr></tbody></table>
+    <table class="ist-1mfgmol"><thead><tr class="ist-1ko7ym9"><th class="ist-1afysk9">Status</th><th class="ist-1afysk9">Error Code</th><th class="ist-1afysk9">Meaning</th></tr></thead><tbody><tr class="ist-1bye0f0"><td class="ist-1wi8njj">400</td><td class="ist-1o9g9fy">invalid_request</td><td class="ist-1ol3ao0">Missing or malformed field (e.g. no <code>text</code> provided).</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">401</td><td class="ist-1o9g9fy">unauthorized</td><td class="ist-1ol3ao0">API key missing, invalid, or revoked. Check your <code>X-API-Key</code> header.</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">403</td><td class="ist-1o9g9fy">forbidden</td><td class="ist-1ol3ao0">Your plan does not include API access. Upgrade to Enterprise.</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">413</td><td class="ist-1o9g9fy">payload_too_large</td><td class="ist-1ol3ao0">Text exceeds 10,000 chars or image exceeds 10 MB.</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">422</td><td class="ist-1o9g9fy">unprocessable</td><td class="ist-1ol3ao0">Content could not be analyzed (e.g. image corrupted, text too short).</td></tr><tr class="ist-1bye0f0"><td class="ist-1wi8njj">429</td><td class="ist-1o9g9fy">rate_limit_exceeded</td><td class="ist-1ol3ao0">Too many requests. See <code>Retry-After</code> header for wait time in seconds.</td></tr><tr><td class="ist-1wi8njj">500</td><td class="ist-1o9g9fy">internal_error</td><td class="ist-1ol3ao0">Unexpected server error. Contact <a href="mailto:api-support@truthlensdetect.com" class="ist-y6s0ws">api-support@truthlensdetect.com</a>.</td></tr></tbody></table>
     <pre tabindex="0"><code class="language-json">{
   "error": "rate_limit_exceeded",
   "message": "Rate limit exceeded. Retry after 30 seconds.",
@@ -163,7 +115,7 @@ X-RateLimit-Reset: 1711929600</code></pre>
 
   <section class="api-section" id="sdk-examples">
     <h2>SDK &amp; Code Examples</h2>
-    <p>No SDK is required — the API is a standard REST interface. Copy-paste examples in common languages:</p>
+    <p>No SDK is required â the API is a standard REST interface. Copy-paste examples in common languages:</p>
     <h3>Python</h3>
     <pre tabindex="0"><code class="language-python">import requests
 
@@ -194,20 +146,20 @@ console.log("Verdict:", data.verdict, "| Confidence:", (data.confidence * 100).t
   -H "X-API-Key: your_api_key_here" \
   -H "Content-Type: application/json" \
   -d '{"text": "Paste the content to analyze here."}'</code></pre>
-    <p style="margin-top:1.5rem;padding:1rem;background:rgba(232,93,38,.08);border-left:3px solid #e85d26;border-radius:0 6px 6px 0;font-size:.9rem;"><strong>API access requires the Enterprise plan ($49/mo).</strong> Free and Pro plans use the web interface. <a href="https://truthlensdetect.com/#pricing" style="color:#e85d26;">View plans →</a></p>
+    <p class="ist-5m2vls"><strong>API access requires the Enterprise plan ($49/mo).</strong> Free and Pro plans use the web interface. <a href="https://truthlensdetect.com/#pricing" class="ist-y6s0ws">View plans â</a></p>
   </section>
 
   <section class="api-section" id="versioning">
     <h2>Versioning</h2>
     <p>The current stable version is <strong>v1</strong> (included in all endpoint paths). Breaking changes will be released under a new major version (v2, v3) with at least 6 months advance notice. Non-breaking additions may be introduced to v1 without notice.</p>
-    <p>Pin to a specific version in your endpoint URL and monitor our <a href="/blog/" style="color:#e85d26;">blog</a> for deprecation announcements.</p>
+    <p>Pin to a specific version in your endpoint URL and monitor our <a href="/blog/" class="ist-y6s0ws">blog</a> for deprecation announcements.</p>
   </section>
 
 </main>
 <section class="sandbox-section" aria-label="API sandbox">
   <div class="sandbox-inner">
     <h2>Try the API</h2>
-    <p class="sb-sub">Paste any text below and see the response format your integration will receive. This sandbox uses a live simulation &mdash; <a href="/#detect" style="color:#6c8fff">the real detector</a> is on the homepage.</p>
+    <p class="sb-sub">Paste any text below and see the response format your integration will receive. This sandbox uses a live simulation &mdash; <a href="/#detect" class="ist-12sj81a">the real detector</a> is on the homepage.</p>
     <div class="sb-tabs" role="tablist">
       <button class="sb-tab active" onclick="sbSetMode('text')" role="tab" aria-selected="true">Text detection</button>
       <button class="sb-tab" onclick="sbSetMode('image')" role="tab" aria-selected="false">Image detection</button>
@@ -274,9 +226,9 @@ function b(v){return v?'true':'false';}
 </footer>
 <div id="cookie-banner">
   <p>We use cookies for analytics. <a href="/privacy/">Privacy Policy</a></p>
-  <div style="display:flex;gap:8px;flex-shrink:0">
-    <button onclick="tlConsent('decline')" style="border:1px solid #f7f5f0;background:transparent;color:#f7f5f0">Decline</button>
-    <button onclick="tlConsent('accept')" style="border:none;background:#6c8fff;color:#fff">Accept</button>
+  <div class="ist-q3u7q1">
+    <button onclick="tlConsent('decline')" class="ist-nch1le">Decline</button>
+    <button onclick="tlConsent('accept')" class="ist-1xqlwzz">Accept</button>
   </div>
 </div>
 <script>
