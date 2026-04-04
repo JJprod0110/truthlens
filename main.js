@@ -141,6 +141,7 @@ function renderTopbar() {
     const planTag = appState.plan === 'pro' ? 'PRO' : appState.plan === 'enterprise' ? 'TEAM' : 'FREE';
     r.innerHTML = `
       <button class="topbar-btn tb-ghost" onclick="openModal('privacyOverlay')" style="display:flex;align-items:center;gap:0.35rem;color:var(--green);border-color:rgba(26,122,74,0.3);">🔒 Privacy</button>
+      <a href="/blog/" class="topbar-btn tb-ghost">Blog</a>
       <button class="topbar-btn tb-ghost" onclick="openModal('plansOverlay')">Upgrade</button>
       <div class="user-pill" onclick="openModal('plansOverlay')">
         <div class="user-avatar">${initial}</div>
