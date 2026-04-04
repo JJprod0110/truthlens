@@ -131,6 +131,7 @@ function renderTopbar() {
   const r = document.getElementById('topbarRight');
   if (!appState.user) {
     r.innerHTML = `
+      <a href="/blog/" class="topbar-btn tb-ghost">Blog</a>
       <button class="topbar-btn tb-ghost" onclick="openModal('plansOverlay')">Pricing</button>
       <button class="topbar-btn tb-ghost" onclick="openAuthModal('signin')">Sign in</button>
       <button class="topbar-btn tb-fill" onclick="openAuthModal('signup')">Get started free →</button>
