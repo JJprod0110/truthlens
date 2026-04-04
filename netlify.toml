@@ -8,15 +8,15 @@ to = "https://truthlensdetect.com/:splat"
 status = 301
 force = true
 
-# /legal and /legal.html -> /privacy/ (canonical)
+# Canonicalize /legal variants -> /legal (no trailing slash)
 [[redirects]]
-from = "/legal"
-to = "/privacy/"
+from = "/legal/"
+to = "/legal"
 status = 301
 
 [[redirects]]
 from = "/legal.html"
-to = "/privacy/"
+to = "/legal"
 status = 301
 
 # /privacy and /terms -> canonical pretty URLs
