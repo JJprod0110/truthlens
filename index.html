@@ -2,24 +2,24 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ð</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Detect AI-generated text, images, and video in seconds. TruthLens Pro uses forensic-grade AI analysis to expose fakes. Free to start, no signup needed.">
-    <meta property="og:title" content="TruthLens Pro — AI Content Detector">
-    <meta property="og:description" content="Detect AI-generated text, images &amp; video in seconds. Zero data selling — ever.">
+    <meta property="og:title" content="TruthLens Pro â AI Content Detector">
+    <meta property="og:description" content="Detect AI-generated text, images &amp; video in seconds. Zero data selling â ever.">
     <meta property="og:image" content="https://truthlensdetect.com/og-preview.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="TruthLens Pro — AI Content Detector">
+    <meta property="og:image:alt" content="TruthLens Pro â AI Content Detector">
     <meta property="og:url" content="https://truthlensdetect.com/">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@truthlenspro">
-    <meta name="twitter:title" content="TruthLens Pro — AI Content Detector">
-    <meta name="twitter:description" content="Detect AI-generated text, images &amp; video in seconds. Zero data selling — ever.">
+    <meta name="twitter:title" content="TruthLens Pro â AI Content Detector">
+    <meta name="twitter:description" content="Detect AI-generated text, images &amp; video in seconds. Zero data selling â ever.">
     <meta name="twitter:image" content="https://truthlensdetect.com/og-preview.png">
     <link rel="canonical" href="https://truthlensdetect.com/">
-    <title>TruthLens Pro — AI Content Detector</title>
+    <title>TruthLens Pro â AI Content Detector</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -33,790 +33,7 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"TruthLens Pro","url":"https://truthlensdetect.com/","logo":"https://truthlensdetect.com/icon-512.png","sameAs":[],"contactPoint":{"@type":"ContactPoint","email":"support@truthlensdetect.com","contactType":"customer support"}}</script>
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How accurate is TruthLens AI detection?","acceptedAnswer":{"@type":"Answer","text":"TruthLens achieves over 95% accuracy on benchmark datasets by analyzing linguistic patterns, statistical anomalies, and writing style indicators unique to AI-generated content."}},{"@type":"Question","name":"What types of content can TruthLens detect?","acceptedAnswer":{"@type":"Answer","text":"TruthLens detects AI-generated text, deepfake images, and AI-written articles. It supports content from ChatGPT, Claude, Gemini, and other major AI models."}},{"@type":"Question","name":"Is there a free plan?","acceptedAnswer":{"@type":"Answer","text":"Yes, TruthLens offers 5 free scans per day with no credit card required. The Pro plan at $12/month unlocks unlimited scans and advanced features."}},{"@type":"Question","name":"How does TruthLens protect my privacy?","acceptedAnswer":{"@type":"Answer","text":"TruthLens does not store submitted content. All analysis is performed in real-time and discarded immediately after results are returned."}}]}</script>
     <script src="/analytics.js" defer></script>
-<style>
-:root {
-  --bg: #f7f5f0;
-  --surface: #ffffff;
-  --border: #e8e4dc;
-  --ink: #1a1814;
-  --muted: #9a9488;
-  --accent: #ff4d1c;
-  --accent2: #1a1814;
-  --green: #1a7a4a;
-  --yellow: #e8a020;
-  --card: #fdfcf9;
-  --shadow: 0 2px 16px rgba(26,24,20,0.08);
-  --shadow-lg: 0 8px 40px rgba(26,24,20,0.14);
-}
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: 'Cabinet Grotesk', sans-serif;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* ─── MODALS ─── */
-.overlay {
-  position: fixed; inset: 0;
-  background: rgba(26,24,20,0.55);
-  backdrop-filter: blur(4px);
-  z-index: 1000;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none; transition: opacity 0.25s;
-}
-.overlay.open { opacity: 1; pointer-events: all; }
-
-.modal {
-  background: var(--surface);
-  border-radius: 20px;
-  padding: 2.5rem;
-  width: 100%; max-width: 440px;
-  box-shadow: var(--shadow-lg);
-  transform: translateY(20px) scale(0.97);
-  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
-  position: relative;
-}
-.overlay.open .modal { transform: translateY(0) scale(1); }
-
-.modal-close {
-  position: absolute; top: 1.2rem; right: 1.2rem;
-  width: 44px; height: 44px; border-radius: 50%;
-  background: var(--border); border: none; cursor: pointer;
-  font-size: 1rem; display: flex; align-items: center; justify-content: center;
-  transition: background 0.15s;
-}
-.modal-close:hover { background: #ddd; }
-
-.modal h2 { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
-.modal-sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.8rem; }
-
-.form-field { margin-bottom: 1rem; }
-.form-field label { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.4rem; color: var(--muted); }
-.form-field input {
-  width: 100%; padding: 0.75rem 1rem;
-  background: var(--bg); border: 1.5px solid var(--border);
-  border-radius: 10px; font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 0.95rem; color: var(--ink); outline: none;
-  transition: border-color 0.2s;
-}
-.form-field input:focus { border-color: var(--accent); }
-
-.btn-primary {
-  width: 100%; padding: 0.9rem;
-  background: var(--accent); border: none; border-radius: 10px;
-  color: #fff; font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 1rem; font-weight: 800; cursor: pointer;
-  transition: filter 0.2s, transform 0.15s; letter-spacing: 0.01em;
-  margin-top: 0.5rem;
-}
-.btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
-
-.modal-switch { text-align: center; margin-top: 1.2rem; font-size: 0.85rem; color: var(--muted); }
-.modal-switch a { color: var(--accent); text-decoration: none; font-weight: 700; cursor: pointer; }
-
-.divider { display: flex; align-items: center; gap: 0.8rem; margin: 1.2rem 0; }
-.divider span { flex: 1; height: 1px; background: var(--border); }
-.divider p { font-size: 0.75rem; color: var(--muted); font-weight: 600; }
-
-.social-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
-.social-btn {
-  padding: 0.65rem; border: 1.5px solid var(--border); background: var(--surface);
-  border-radius: 9px; font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 0.82rem; font-weight: 700; cursor: pointer; display: flex;
-  align-items: center; justify-content: center; gap: 0.4rem;
-  transition: border-color 0.2s, background 0.2s;
-}
-.social-btn:hover { border-color: var(--ink); background: var(--bg); }
-
-/* ─── PLANS MODAL ─── */
-.plans-modal { max-width: 820px; }
-.plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
-.plan-card {
-  border: 1.5px solid var(--border); border-radius: 14px; padding: 1.5rem;
-  position: relative; background: var(--card);
-}
-.plan-card.popular { border-color: var(--accent); background: #fff7f5; }
-.popular-tag {
-  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-  background: var(--accent); color: #fff; font-size: 0.65rem; font-weight: 800;
-  letter-spacing: 0.1em; padding: 0.25rem 0.8rem; border-radius: 20px;
-}
-.plan-name { font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
-.plan-price { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 0.2rem; }
-.plan-price span { font-size: 1rem; font-weight: 600; color: var(--muted); }
-.plan-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.2rem; }
-.plan-features { list-style: none; font-size: 0.82rem; }
-.plan-features li { padding: 0.3rem 0; display: flex; gap: 0.5rem; align-items: flex-start; }
-.plan-features li::before { content: '✓'; color: var(--green); font-weight: 800; flex-shrink: 0; }
-.plan-features li.no::before { content: '✕'; color: #ccc; }
-.plan-btn {
-  width: 100%; margin-top: 1.2rem; padding: 0.7rem;
-  border-radius: 9px; font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 0.88rem; font-weight: 800; cursor: pointer; transition: all 0.2s;
-}
-.plan-btn.outline { background: transparent; border: 1.5px solid var(--border); color: var(--ink); }
-.plan-btn.outline:hover { border-color: var(--ink); }
-.plan-btn.filled { background: var(--accent); border: none; color: #fff; }
-.plan-btn.filled:hover { filter: brightness(1.1); }
-
-/* ─── SHARE MODAL ─── */
-.share-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-top: 1.2rem; }
-.share-btn-item {
-  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
-  padding: 1rem 0.5rem; border: 1.5px solid var(--border); border-radius: 12px;
-  cursor: pointer; transition: all 0.2s; background: var(--card);
-}
-.share-btn-item:hover { border-color: var(--ink); transform: translateY(-2px); }
-.share-btn-item .icon { font-size: 1.6rem; }
-.share-btn-item .lbl { font-size: 0.7rem; font-weight: 700; color: var(--muted); }
-.share-link-row { display: flex; gap: 0.5rem; margin-top: 1rem; }
-.share-link-input {
-  flex: 1; padding: 0.7rem 0.9rem; border: 1.5px solid var(--border);
-  border-radius: 9px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
-  background: var(--bg); color: var(--muted); outline: none;
-}
-.copy-btn {
-  padding: 0.7rem 1.2rem; background: var(--ink); color: #fff; border: none;
-  border-radius: 9px; font-family: 'Cabinet Grotesk', sans-serif; font-weight: 700;
-  font-size: 0.82rem; cursor: pointer; transition: background 0.2s; white-space: nowrap;
-}
-.copy-btn:hover { background: #333; }
-.share-preview-card {
-  border: 1.5px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem;
-  background: var(--bg); margin-top: 1rem; font-size: 0.82rem;
-}
-.share-preview-card .sp-title { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.3rem; }
-.share-preview-card .sp-sub { color: var(--muted); font-size: 0.78rem; }
-
-/* ─── TOPBAR ─── */
-.topbar {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(247,245,240,0.9); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0.9rem 2rem;
-}
-.topbar-logo { font-size: 1.1rem; font-weight: 900; letter-spacing: -0.03em; }
-.topbar-logo em { color: var(--accent); font-style: normal; }
-.topbar-logo sup { font-size: 0.5rem; vertical-align: super; background: var(--accent); color: #fff; padding: 1px 4px; border-radius: 3px; font-weight: 800; }
-
-.topbar-right { display: flex; align-items: center; gap: 0.75rem; }
-/* ── Mobile hamburger nav ── */
-.hamburger-btn {
-  display: none; background: none; border: none; cursor: pointer;
-  padding: 6px; flex-direction: column; gap: 5px; z-index: 1001;
-  align-items: center; justify-content: center;
-}
-.hamburger-btn span {
-  display: block; width: 24px; height: 2px; background: #fff;
-  border-radius: 2px; transition: transform 0.25s, opacity 0.25s;
-}
-.hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger-btn.open span:nth-child(2) { opacity: 0; }
-.hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.mobile-nav-drawer {
-  display: none; position: fixed; inset: 0;
-  background: rgba(10,10,30,0.97); z-index: 1000;
-  flex-direction: column; align-items: center; justify-content: center;
-  gap: 1.5rem; padding: 2rem;
-}
-.mobile-nav-drawer.open { display: flex; }
-.mobile-nav-drawer .topbar-btn { width: 100%; max-width: 280px; text-align: center; font-size: 1.1rem; padding: 0.9rem 1.5rem; }
-@media (max-width: 640px) {
-  .hamburger-btn { display: flex; }
-  .topbar-right > .topbar-btn,
-  .topbar-right > a.topbar-btn { display: none !important; }
-}
-.topbar-btn {
-  padding: 0.5rem 1.1rem; border-radius: 8px; font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
-}
-.tb-ghost { background: transparent; border: 1.5px solid var(--border); color: var(--ink); }
-.tb-ghost:hover { border-color: var(--ink); }
-.tb-fill { background: var(--accent); border: none; color: #fff; }
-.tb-fill:hover { filter: brightness(1.1); }
-
-.user-pill {
-  display: flex; align-items: center; gap: 0.6rem;
-  padding: 0.4rem 0.9rem 0.4rem 0.4rem;
-  border: 1.5px solid var(--border); border-radius: 30px; cursor: pointer;
-  background: var(--surface); transition: border-color 0.2s;
-}
-.user-pill:hover { border-color: var(--ink); }
-.user-avatar {
-  width: 28px; height: 28px; border-radius: 50%; background: var(--accent);
-  color: #fff; font-size: 0.7rem; font-weight: 800; display: flex;
-  align-items: center; justify-content: center;
-}
-.user-name { font-size: 0.82rem; font-weight: 700; }
-.user-plan-tag { font-size: 0.62rem; font-weight: 800; padding: 2px 7px; border-radius: 10px; }
-.user-plan-tag.free { background: var(--border); color: var(--muted); }
-.user-plan-tag.pro { background: #fff3cd; color: #9a6a00; }
-.user-plan-tag.enterprise { background: #e8f5e9; color: var(--green); }
-
-/* ─── HERO ─── */
-.hero-section {
-  text-align: center; padding: 4rem 1.5rem 0;
-  max-width: 700px; margin: 0 auto;
-}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: var(--surface); border: 1.5px solid var(--border);
-  border-radius: 30px; padding: 0.35rem 1rem;
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem;
-}
-.hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: blink 2s ease-in-out infinite; }
-@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-.hero-section h1 {
-  font-size: clamp(2.8rem, 7vw, 5rem);
-  font-weight: 900; letter-spacing: -0.04em; line-height: 1.0;
-  margin-bottom: 1.2rem;
-}
-.hero-section h1 .strike {
-  position: relative; display: inline-block;
-}
-.hero-section h1 .strike::after {
-  content: ''; position: absolute; top: 50%; left: -4px; right: -4px;
-  height: 4px; background: var(--accent); transform: rotate(-1.5deg);
-}
-.hero-section p {
-  font-size: 1.05rem; color: var(--muted); max-width: 480px;
-  margin: 0 auto 2.5rem; line-height: 1.65;
-}
-
-.stats-row {
-  display: flex; justify-content: center; align-items: center; gap: 2.5rem;
-  margin-bottom: 3rem; flex-wrap: wrap;
-}
-.stat-item { text-align: center; }
-.stat-item .num { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.03em; }
-.stat-item .lbl { font-size: 0.72rem; font-weight: 700; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
-.stat-divider { width: 1px; height: 36px; background: var(--border); }
-
-/* ─── MAIN APP ─── */
-.app-container {
-  max-width: 860px; margin: 0 auto; padding: 0 1.5rem 4rem;
-}
-
-/* Input method tabs */
-.input-tabs {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem; background: var(--surface);
-  border: 1.5px solid var(--border); border-radius: 14px;
-  padding: 0.4rem; margin-bottom: 1.5rem;
-}
-.input-tab {
-  padding: 0.7rem 0.5rem; border: none; background: transparent;
-  border-radius: 10px; cursor: pointer; font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 0.82rem; font-weight: 700; color: var(--muted);
-  display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
-  transition: all 0.2s;
-}
-.input-tab .ti-icon { font-size: 1.3rem; }
-.input-tab:hover { color: var(--ink); background: var(--bg); }
-.input-tab.active { background: var(--ink); color: #fff; }
-.input-tab.pro-locked { position: relative; }
-.pro-lock { position: absolute; top: 6px; right: 6px; background: var(--accent); color: #fff; font-size: 0.5rem; padding: 1px 4px; border-radius: 3px; font-weight: 800; }
-
-/* Panel base */
-.panel { display: none; }
-.panel.active { display: block; }
-
-/* Text input */
-.text-area-wrap { position: relative; }
-.text-area-wrap textarea {
-  width: 100%; min-height: 240px; padding: 1.25rem;
-  background: var(--surface); border: 1.5px solid var(--border);
-  border-radius: 14px; font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 0.95rem; color: var(--ink); line-height: 1.7; resize: vertical; outline: none;
-  transition: border-color 0.2s;
-}
-.text-area-wrap textarea:focus { border-color: var(--accent); }
-.text-area-wrap textarea::placeholder { color: #ccc; }
-
-.textarea-toolbar {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-top: 0.5rem; padding: 0 0.3rem;
-}
-.char-count { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); }
-.paste-btn {
-  padding: 0.35rem 0.8rem; background: transparent; border: 1.5px solid var(--border);
-  border-radius: 7px; font-family: 'Cabinet Grotesk', sans-serif; font-size: 0.75rem;
-  font-weight: 700; cursor: pointer; transition: all 0.2s;
-}
-.paste-btn:hover { border-color: var(--ink); }
-
-/* URL input */
-.url-input-row { display: flex; gap: 0.6rem; margin-bottom: 1rem; }
-.url-input-row input {
-  flex: 1; padding: 0.85rem 1.1rem; border: 1.5px solid var(--border);
-  border-radius: 10px; font-family: 'Cabinet Grotesk', sans-serif; font-size: 0.92rem;
-  background: var(--surface); color: var(--ink); outline: none; transition: border-color 0.2s;
-}
-.url-input-row input:focus { border-color: var(--accent); }
-.url-fetch-btn {
-  padding: 0.85rem 1.4rem; background: var(--ink); border: none; border-radius: 10px;
-  color: #fff; font-family: 'Cabinet Grotesk', sans-serif; font-weight: 800;
-  font-size: 0.88rem; cursor: pointer; transition: background 0.2s; white-space: nowrap;
-}
-.url-fetch-btn:hover { background: #333; }
-
-.url-tips {
-  background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px;
-  padding: 1rem 1.2rem;
-}
-.url-tips h4 { font-size: 0.78rem; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.6rem; }
-.url-tip-list { display: flex; flex-direction: column; gap: 0.4rem; }
-.url-tip { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; }
-.url-tip .tc { color: var(--muted); font-size: 1rem; }
-
-/* Upload zone */
-.drop-zone {
-  border: 2px dashed var(--border); border-radius: 16px; padding: 3rem 2rem;
-  text-align: center; cursor: pointer; transition: all 0.25s; background: var(--surface);
-  position: relative; overflow: hidden;
-}
-.drop-zone:hover, .drop-zone.dragover { border-color: var(--accent); background: #fff7f5; }
-.drop-zone .dz-icon { font-size: 2.8rem; margin-bottom: 0.8rem; display: block; }
-.drop-zone h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.3rem; }
-.drop-zone p { font-size: 0.8rem; color: var(--muted); }
-.drop-zone .browse-link { color: var(--accent); font-weight: 700; cursor: pointer; }
-
-.preview-area { margin-bottom: 1rem; text-align: center; }
-.preview-area img { max-width: 100%; max-height: 280px; border-radius: 12px; border: 1.5px solid var(--border); object-fit: contain; }
-.preview-area video { max-width: 100%; max-height: 280px; border-radius: 12px; border: 1.5px solid var(--border); }
-.file-badge {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: var(--bg); border: 1.5px solid var(--border); border-radius: 8px;
-  padding: 0.4rem 0.8rem; font-size: 0.78rem; font-weight: 700; margin-top: 0.5rem;
-}
-.file-badge .remove { cursor: pointer; color: var(--muted); margin-left: 0.3rem; }
-.file-badge .remove:hover { color: var(--accent); }
-
-/* Analyze CTA */
-.analyze-cta { margin-top: 1.5rem; display: flex; gap: 0.75rem; align-items: center; }
-.analyze-main-btn {
-  flex: 1; padding: 1rem 2rem; background: var(--accent); border: none;
-  border-radius: 12px; color: #fff; font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 1rem; font-weight: 900; cursor: pointer; transition: all 0.2s;
-  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-  letter-spacing: 0.01em;
-}
-.analyze-main-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
-.analyze-main-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
-
-.daily-counter {
-  font-size: 0.75rem; color: var(--muted); text-align: center;
-  font-family: 'JetBrains Mono', monospace;
-}
-.upgrade-nudge { color: var(--accent); font-weight: 700; cursor: pointer; }
-
-/* Loading */
-.loading-state { display: none; text-align: center; padding: 3rem 0; }
-.loading-state.active { display: block; }
-.loading-steps { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; margin-top: 1.2rem; }
-.loading-step { font-size: 0.8rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; opacity: 0; transition: opacity 0.4s; }
-.loading-step.active { opacity: 1; color: var(--ink); }
-
-.scan-anim {
-  width: 72px; height: 72px; margin: 0 auto; position: relative;
-  border-radius: 50%; border: 2px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-}
-.scan-anim::before {
-  content: ''; position: absolute; inset: 0; border-radius: 50%;
-  border: 2.5px solid transparent; border-top-color: var(--accent);
-  animation: spinr 0.9s linear infinite;
-}
-@keyframes spinr { to { transform: rotate(360deg); } }
-.scan-anim .scan-icon { font-size: 1.6rem; }
-
-/* Results */
-.results-area { display: none; }
-.results-area.active { display: block; animation: slideUp 0.4s cubic-bezier(0.16,1,0.3,1); }
-@keyframes slideUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
-
-.verdict-banner {
-  border-radius: 18px; padding: 2rem 2rem 1.5rem; margin-bottom: 1.2rem;
-  border: 1.5px solid; position: relative; overflow: hidden;
-}
-.verdict-banner.ai-gen { border-color: #ffb8a0; background: #fff5f2; }
-.verdict-banner.human { border-color: #a0d4b5; background: #f2fdf6; }
-.verdict-banner.uncertain { border-color: #f0d68a; background: #fffcf0; }
-
-.verdict-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
-.verdict-left { display: flex; align-items: center; gap: 1rem; }
-.verdict-icon { font-size: 2.8rem; }
-.verdict-title { font-size: 1.7rem; font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; }
-.verdict-conf { font-size: 0.75rem; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
-.verdict-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
-.v-action-btn {
-  padding: 0.5rem 1rem; border-radius: 8px; font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 0.8rem; font-weight: 800; cursor: pointer; transition: all 0.2s;
-}
-.va-share { background: var(--ink); border: none; color: #fff; }
-.va-share:hover { background: #333; }
-.va-save { background: transparent; border: 1.5px solid var(--border); color: var(--ink); }
-.va-save:hover { border-color: var(--ink); }
-
-/* Score bar */
-.score-bar-section { margin-bottom: 1.5rem; }
-.score-bar-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
-.score-bar-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
-.score-pct { font-size: 2rem; font-weight: 900; letter-spacing: -0.04em; }
-.score-track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
-.score-fill { height: 100%; border-radius: 4px; width: 0; transition: width 1.2s cubic-bezier(0.16,1,0.3,1); }
-.score-fill.ai-fill { background: linear-gradient(90deg, #ff8c6b, #ff4d1c); }
-.score-fill.human-fill { background: linear-gradient(90deg, #57cc88, #1a7a4a); }
-.score-fill.uncertain-fill { background: linear-gradient(90deg, #f5c842, #e8a020); }
-
-/* Signal chips */
-.signals-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-.signal-chip {
-  display: flex; align-items: center; gap: 0.4rem;
-  padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; border: 1.5px solid;
-}
-.signal-chip.high { background: #fff0ee; border-color: #ffb8a0; color: #c0310a; }
-.signal-chip.medium { background: #fff8e8; border-color: #f0d68a; color: #9a6a00; }
-.signal-chip.low { background: #eefaf4; border-color: #a0d4b5; color: #1a7a4a; }
-.signal-chip.unknown { background: var(--bg); border-color: var(--border); color: var(--muted); }
-
-/* Analysis box */
-.analysis-box {
-  background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px;
-  padding: 1.1rem 1.3rem; font-size: 0.88rem; line-height: 1.7; color: #555;
-}
-.analysis-box strong { color: var(--ink); }
-
-/* History */
-.history-section { margin-top: 2rem; }
-.history-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.9rem; }
-.history-header h3 { font-size: 0.9rem; font-weight: 900; letter-spacing: -0.01em; }
-.clear-hist { font-size: 0.78rem; color: var(--muted); cursor: pointer; font-weight: 600; }
-.clear-hist:hover { color: var(--accent); }
-.history-list { display: flex; flex-direction: column; gap: 0.5rem; }
-.history-item {
-  display: flex; align-items: center; gap: 0.9rem;
-  padding: 0.85rem 1.1rem; background: var(--surface); border: 1.5px solid var(--border);
-  border-radius: 11px; cursor: pointer; transition: border-color 0.2s;
-}
-.history-item:hover { border-color: var(--ink); }
-.hi-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.hi-dot.ai-gen { background: var(--accent); }
-.hi-dot.human { background: var(--green); }
-.hi-dot.uncertain { background: var(--yellow); }
-.hi-label { flex: 1; font-size: 0.85rem; font-weight: 700; }
-.hi-meta { font-size: 0.72rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
-
-/* How it works */
-.how-section { max-width: 860px; margin: 3rem auto 0; padding: 0 1.5rem; }
-.section-label { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.8rem; }
-.how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-.how-card {
-  background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px;
-  padding: 1.5rem; position: relative;
-}
-.how-num { font-size: 3rem; font-weight: 900; color: var(--border); letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.8rem; }
-.how-card h4 { font-size: 0.95rem; font-weight: 800; margin-bottom: 0.4rem; }
-.how-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
-
-/* Money section */
-.money-section {
-  max-width: 860px; margin: 2.5rem auto 0; padding: 0 1.5rem;
-  background: var(--ink); color: #fff; border-radius: 20px;
-  overflow: hidden; position: relative;
-}
-.money-inner { padding: 3rem; position: relative; z-index: 1; }
-.money-section::before {
-  content: ''; position: absolute; top: -60px; right: -60px;
-  width: 260px; height: 260px; border-radius: 50%;
-  background: rgba(255,77,28,0.15);
-}
-.money-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-.money-left h2 { font-size: 1.9rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.8rem; }
-.money-left p { font-size: 0.88rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
-.revenue-streams { display: flex; flex-direction: column; gap: 0.75rem; }
-.revenue-item {
-  display: flex; align-items: center; gap: 1rem;
-  padding: 0.9rem 1.1rem; background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
-}
-.rev-icon { font-size: 1.4rem; flex-shrink: 0; }
-.rev-info .rev-name { font-size: 0.85rem; font-weight: 800; }
-.rev-info .rev-amt { font-size: 0.75rem; color: #ff9980; font-family: 'JetBrains Mono', monospace; }
-
-/* Footer */
-footer {
-  border-top: 1px solid var(--border); margin-top: 4rem; padding: 2rem 2rem;
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-}
-.footer-logo { font-size: 0.9rem; font-weight: 900; letter-spacing: -0.02em; }
-.footer-logo em { color: var(--accent); font-style: normal; }
-.footer-links { display: flex; gap: 1.5rem; }
-.footer-links a { font-size: 0.8rem; color: var(--muted); text-decoration: none; font-weight: 600; }
-.footer-links a:hover { color: var(--ink); }
-.footer-right { font-size: 0.75rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
-
-/* ─── PRIVACY PLEDGE ─── */
-.privacy-banner {
-  max-width: 860px; margin: 2.5rem auto 0; padding: 0 1.5rem;
-}
-.privacy-banner-inner {
-  background: #f0fdf6; border: 1.5px solid #a0d4b5;
-  border-radius: 18px; padding: 2.2rem 2.5rem;
-  display: flex; align-items: center; gap: 2rem;
-  position: relative; overflow: hidden;
-}
-.privacy-banner-inner::before {
-  content: '🔒'; font-size: 7rem; position: absolute;
-  right: 1.5rem; top: 50%; transform: translateY(-50%);
-  opacity: 0.07; pointer-events: none;
-}
-.pb-shield { font-size: 2.4rem; flex-shrink: 0; }
-.pb-text h3 { font-size: 1.15rem; font-weight: 900; letter-spacing: -0.02em; color: #0e4d2a; margin-bottom: 0.4rem; }
-.pb-text p { font-size: 0.85rem; color: #2a7a50; line-height: 1.55; }
-.pb-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.9rem; }
-.pb-badge {
-  display: inline-flex; align-items: center; gap: 0.35rem;
-  background: #fff; border: 1.5px solid #a0d4b5; border-radius: 20px;
-  padding: 0.3rem 0.8rem; font-size: 0.72rem; font-weight: 800;
-  color: #1a7a4a; letter-spacing: 0.03em;
-}
-
-/* Privacy modal */
-.privacy-modal { max-width: 560px; }
-.privacy-commitment { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.2rem; }
-.pc-item {
-  display: flex; gap: 1rem; align-items: flex-start;
-  padding: 1rem 1.1rem; background: var(--bg);
-  border: 1.5px solid var(--border); border-radius: 12px;
-}
-.pc-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
-.pc-text h4 { font-size: 0.88rem; font-weight: 800; margin-bottom: 0.2rem; }
-.pc-text p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
-.privacy-seal {
-  margin-top: 1.2rem; padding: 1rem; background: #f0fdf6;
-  border: 1.5px solid #a0d4b5; border-radius: 12px; text-align: center;
-}
-.privacy-seal p { font-size: 0.78rem; color: #2a7a50; font-weight: 700; }
-
-/* Privacy trust strip (topbar) */
-.trust-strip {
-  background: #0e4d2a; color: #a0d4b5;
-  text-align: center; font-size: 0.72rem; font-weight: 700;
-  padding: 0.45rem 1rem; letter-spacing: 0.05em;
-  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-}
-.trust-strip a { color: #6ddfaa; text-decoration: underline; cursor: pointer; }
-
-/* Privacy inline callout in auth modal */
-.auth-privacy-note {
-  display: flex; align-items: center; gap: 0.5rem;
-  margin-top: 0.9rem; padding: 0.65rem 0.9rem;
-  background: #f0fdf6; border: 1.5px solid #a0d4b5;
-  border-radius: 9px; font-size: 0.75rem; color: #1a7a4a; font-weight: 700;
-}
-
-/* ─── SUPPORT BOT ─── */
-.chat-bubble {
-  position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
-  width: 56px; height: 56px; border-radius: 50%;
-  background: var(--accent); border: none; cursor: pointer;
-  box-shadow: 0 4px 20px rgba(255,77,28,0.4);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; transition: all 0.2s; color: #fff;
-}
-.chat-bubble:hover { transform: scale(1.08); filter: brightness(1.1); }
-.chat-bubble .notif {
-  position: absolute; top: -4px; right: -4px; width: 18px; height: 18px;
-  background: var(--green); border-radius: 50%; border: 2px solid var(--bg);
-  font-size: 0.55rem; font-weight: 800; display: flex; align-items: center; justify-content: center;
-}
-
-.chat-window {
-  position: fixed; bottom: 6rem; right: 2rem; z-index: 999;
-  width: 360px; max-height: 520px; background: var(--surface);
-  border: 1.5px solid var(--border); border-radius: 20px;
-  box-shadow: var(--shadow-lg); display: flex; flex-direction: column;
-  transform: scale(0.9) translateY(20px); opacity: 0; pointer-events: none;
-  transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
-  overflow: hidden;
-}
-.chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
-
-.chat-header {
-  padding: 1rem 1.2rem; background: var(--ink); color: #fff;
-  display: flex; align-items: center; gap: 0.7rem;
-}
-.chat-header .bot-avatar {
-  width: 34px; height: 34px; border-radius: 50%; background: var(--accent);
-  display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
-}
-.chat-header .bot-info .bot-name { font-size: 0.88rem; font-weight: 800; }
-.chat-header .bot-info .bot-status { font-size: 0.7rem; color: #6ddfaa; font-weight: 600; }
-.chat-header .close-chat {
-  margin-left: auto; background: transparent; border: none; color: #fff;
-  cursor: pointer; font-size: 1.1rem; opacity: 0.7; transition: opacity 0.2s;
-}
-.chat-header .close-chat:hover { opacity: 1; }
-
-.chat-messages {
-  flex: 1; overflow-y: auto; padding: 1rem; display: flex;
-  flex-direction: column; gap: 0.7rem;
-}
-.chat-msg {
-  max-width: 85%; padding: 0.65rem 0.9rem; border-radius: 14px;
-  font-size: 0.82rem; line-height: 1.5;
-}
-.chat-msg.bot {
-  background: var(--bg); border: 1.5px solid var(--border);
-  color: var(--ink); align-self: flex-start; border-bottom-left-radius: 4px;
-}
-.chat-msg.user {
-  background: var(--accent); color: #fff;
-  align-self: flex-end; border-bottom-right-radius: 4px;
-}
-.chat-msg.typing { padding: 0.8rem 1rem; }
-.typing-dots { display: flex; gap: 4px; align-items: center; }
-.typing-dots span {
-  width: 6px; height: 6px; border-radius: 50%; background: var(--muted);
-  animation: typingBounce 1.2s ease-in-out infinite;
-}
-.typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-.typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-@keyframes typingBounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
-
-.chat-input-row {
-  padding: 0.8rem; border-top: 1.5px solid var(--border);
-  display: flex; gap: 0.5rem;
-}
-.chat-input {
-  flex: 1; padding: 0.6rem 0.9rem; border: 1.5px solid var(--border);
-  border-radius: 20px; font-family: 'Cabinet Grotesk', sans-serif;
-  font-size: 0.82rem; outline: none; background: var(--bg); color: var(--ink);
-  transition: border-color 0.2s;
-}
-.chat-input:focus { border-color: var(--accent); }
-.chat-send {
-  width: 44px; height: 44px; border-radius: 50%; background: var(--accent);
-  border: none; color: #fff; cursor: pointer; font-size: 1rem;
-  display: flex; align-items: center; justify-content: center;
-  transition: filter 0.2s; flex-shrink: 0;
-}
-.chat-send:hover { filter: brightness(1.1); }
-
-.chat-suggestions { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0 1rem 0.6rem; }
-.chat-suggestion {
-  padding: 0.3rem 0.7rem; background: var(--bg); border: 1.5px solid var(--border);
-  border-radius: 20px; font-size: 0.72rem; font-weight: 700; cursor: pointer;
-  transition: all 0.15s; color: var(--ink);
-}
-.chat-suggestion:hover { border-color: var(--accent); color: var(--accent); }
-
-@media (max-width: 768px) {
-  .plans-grid { grid-template-columns: 1fr; }
-  .how-grid { grid-template-columns: 1fr; }
-  .money-grid { grid-template-columns: 1fr; }
-  .input-tabs { grid-template-columns: repeat(2, 1fr); }
-  .share-grid { grid-template-columns: repeat(3, 1fr); }
-  .topbar { padding: 0.8rem 1rem; }
-  .hero-section { padding: 2.5rem 1rem 0; }
-  .money-inner { padding: 2rem; }
-  .verdict-top { flex-direction: column; }
-  .stats-row { gap: 1.5rem; }
-}
-@media (max-width: 420px) {
-  .chat-window { width: calc(100vw - 2rem); right: 1rem; }
-  .input-tabs { grid-template-columns: 1fr; }
-}
-
-  /* A11y: link-style buttons for onclick-only interactive elements */
-  button.link-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    display: inline;
-  }
-  button.link-btn:hover { opacity: 0.75; }
-  button.link-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; border-radius: 2px; }
-
-/* Social proof section */
-.social-proof{background:#111128;padding:4rem 1.5rem;border-top:1px solid rgba(255,255,255,.07)}
-.social-proof .sp-inner{max-width:960px;margin:0 auto}
-.social-proof h2{text-align:center;font-size:clamp(1.3rem,3vw,1.8rem);color:#fff;margin-bottom:0.5rem}
-.social-proof .sp-sub{text-align:center;color:#888;font-size:0.95rem;margin-bottom:2.5rem}
-.sp-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-bottom:3rem}
-.sp-stat{background:#0d0d1a;border:1px solid rgba(108,143,255,.15);border-radius:10px;padding:1.25rem;text-align:center}
-.sp-stat .num{display:block;font-size:2rem;font-weight:700;color:#6c8fff;line-height:1.1}
-.sp-stat .lbl{display:block;font-size:0.8rem;color:#888;margin-top:0.3rem}
-.sp-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
-.sp-card{background:#0d0d1a;border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:1.5rem}
-.sp-card .stars{color:#6c8fff;font-size:1rem;margin-bottom:0.75rem;letter-spacing:2px}
-.sp-card q{display:block;color:#ccc;font-size:0.95rem;line-height:1.6;margin-bottom:1rem;font-style:italic}
-.sp-card .author{font-size:0.85rem;color:#666}
-.sp-card .author strong{color:#aaa;display:block}
-:focus-visible{outline:3px solid #6c8fff;outline-offset:2px;border-radius:3px;}
-/* === a11y: minimum readable font sizes === */
-.popular-tag { font-size: 0.75rem !important; }
-.pro-lock { font-size: 0.75rem !important; }
-.notif { font-size: 0.75rem !important; }
-.topbar-logo sup { font-size: 0.75rem !important; vertical-align: super; }
-/* === a11y: focus-visible keyboard outlines === */
-.form-field input:focus-visible,
-.share-link-input:focus-visible,
-.text-area-wrap textarea:focus-visible,
-.url-input-row input:focus-visible,
-.chat-input:focus-visible {
-  outline: 2px solid #6c8fff;
-  outline-offset: 2px;
-}
-/* === a11y: minimum 44px touch targets === */
-.topbar-btn { min-height: 44px; }
-.hamburger-btn { min-height: 44px; min-width: 44px; }
-.tab-btn { min-height: 44px; }
-.run-btn, .fetch-btn, .upload-btn { min-height: 44px; }
-.footer-col a { min-height: 44px; display: inline-flex; align-items: center; }
-.plan-cta { min-height: 44px; }
-
-/* === FAQ section === */
-.faq-section { padding: 5rem 1.5rem; background: var(--bg); }
-.faq-section .section-inner { max-width: 780px; margin: 0 auto; }
-.faq-section .section-label { margin-bottom: 2rem; }
-.faq-list { display: flex; flex-direction: column; gap: 1rem; }
-.faq-item { border: 1px solid var(--border); border-radius: 0.75rem; overflow: hidden; }
-.faq-item summary.faq-q { padding: 1.25rem 1.5rem; cursor: pointer; font-weight: 600; font-size: 1rem; list-style: none; display: flex; justify-content: space-between; align-items: center; }
-.faq-item summary.faq-q::after { content: "+"; font-size: 1.4rem; color: var(--accent); transition: transform 0.2s; }
-.faq-item[open] summary.faq-q::after { transform: rotate(45deg); }
-.faq-item p.faq-a { padding: 0 1.5rem 1.25rem; color: var(--text-muted); line-height: 1.7; margin: 0; }
-
-    /* Touch target accessibility — minimum 44x44px */
-    button, .plan-btn, [role="button"], input[type="submit"], input[type="button"],
-    input[type="checkbox"], input[type="radio"], select, summary, .tab-btn,
-    .hamburger-btn, .close-btn, .modal-close, .copy-btn, .toggle-btn {
-      min-height: 44px;
-      min-width: 44px;
-    }
-    a.plan-btn, .plan-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      text-decoration: none;
-    }
-</style>
   <meta name="theme-color" content="#0f172a">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta property="og:site_name" content="TruthLens Pro">
@@ -828,20 +45,21 @@ footer {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"TruthLens Pro","description":"Unlimited AI content detection for journalists and researchers","offers":{"@type":"Offer","price":"12.00","priceCurrency":"USD","priceSpecification":{"@type":"RecurringCharge","billingDuration":"P1M"},"availability":"https://schema.org/InStock","url":"https://buy.stripe.com/eVq28t0NBdH24aDaXjcwg00"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"TruthLens Enterprise","description":"Unlimited AI content detection with API access for teams and platforms","offers":{"@type":"Offer","price":"49.00","priceCurrency":"USD","priceSpecification":{"@type":"RecurringCharge","billingDuration":"P1M"},"availability":"https://schema.org/InStock","url":"mailto:sales@truthlensdetect.com"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"TruthLens Pro","url":"https://truthlensdetect.com/","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://truthlensdetect.com/?q={search_term_string}"},"query-input":"required name=search_term_string"}}</script>
+  <link rel="stylesheet" href="/assets/main.css">
 </head>
 <body>
-  <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:9999;background:#1a1a2e;color:#fff;padding:8px 16px;border-radius:4px;text-decoration:none;font-weight:600" onfocus="this.style.cssText=this.style.cssText.replace('left:-9999px','left:16px');this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-9999px';this.style.width='1px';this.style.height='1px'">Skip to main content</a>
+  <a href="#main-content" class="skip-link ist-zg51ic" onfocus="this.style.cssText=this.style.cssText.replace('left:-9999px','left:16px');this.style.width='auto';this.style.height='auto'" onblur="this.style.left='-9999px';this.style.width='1px';this.style.height='1px'">Skip to main content</a>
 
-<!-- ═══ TOPBAR ═══ -->
+<!-- âââ TOPBAR âââ -->
 <header role="banner">
 <nav class="topbar" aria-label="Main navigation">
   <div class="topbar-logo">Truth<em>Lens</em><sup>PRO</sup></div>
   <div class="topbar-right" id="topbarRight"><button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNavDrawer" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
-    <button type="button" class="topbar-btn tb-ghost" onclick="openModal('privacyOverlay')" style="display:flex;align-items:center;gap:0.35rem;color:var(--green);border-color:rgba(26,122,74,0.3);">🔒 Privacy</button>
+    <button type="button" class="topbar-btn tb-ghost" onclick="openModal('privacyOverlay')" class="ist-1gic06e">ð Privacy</button>
     <a href="/blog/" class="topbar-btn tb-ghost">Blog</a>
       <button type="button" class="topbar-btn tb-ghost" onclick="openModal('plansOverlay')">Pricing</button>
     <button type="button" class="topbar-btn tb-ghost" onclick="openAuthModal('signin')">Sign in</button>
-    <button type="button" class="topbar-btn tb-fill" onclick="openAuthModal('signup')">Get started free →</button>
+    <button type="button" class="topbar-btn tb-fill" onclick="openAuthModal('signup')">Get started free â</button>
       <button class="hamburger-btn" id="hamburgerBtn2"type="button" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
   </div>
 
@@ -849,20 +67,20 @@ footer {
         <a href="/blog/" class="topbar-btn tb-ghost">Blog</a>
     <button type="button" class="topbar-btn tb-ghost" onclick="openModal('plansOverlay');toggleMobileNav()">Pricing</button>
     <button type="button" class="topbar-btn tb-ghost" onclick="openAuthModal('signin');toggleMobileNav()">Sign in</button>
-    <button type="button" class="topbar-btn tb-primary" onclick="openAuthModal('signup');toggleMobileNav()">Get started free →</button>
+    <button type="button" class="topbar-btn tb-primary" onclick="openAuthModal('signup');toggleMobileNav()">Get started free â</button>
   </div>
 </nav>
 </header>
 <main id="main-content">
 
-<!-- ═══ HERO ═══ -->
+<!-- âââ HERO âââ -->
 <div class="hero-section">
-  <div style="display:flex;align-items:center;justify-content:center;gap:0.75rem;flex-wrap:wrap;margin-bottom:1.5rem;">
-    <div class="hero-eyebrow" style="margin-bottom:0"><span class="dot"></span>Powered by Claude AI</div>
-    <div class="hero-eyebrow" style="margin-bottom:0;border-color:rgba(26,122,74,0.35);background:#f0fdf6;color:#1a7a4a;cursor:pointer;" onclick="openModal('privacyOverlay')">🔒 Zero data selling — ever</div>
+  <div class="ist-3vl0s6">
+    <div class="hero-eyebrow ist-3ocpgz"><span class="dot"></span>Powered by Claude AI</div>
+    <div class="hero-eyebrow ist-1u3xh50" onclick="openModal('privacyOverlay')">ð Zero data selling â ever</div>
   </div>
   <h1>Spot what's <span class="strike">real</span> <br>in seconds</h1>
-  <p>Paste text, upload images or video, or scan any URL — TruthLens detects AI-generated content with forensic-grade analysis.</p>
+  <p>Paste text, upload images or video, or scan any URL â TruthLens detects AI-generated content with forensic-grade analysis.</p>
   <div class="stats-row">
     <div class="stat-item"><div class="num">2.4M+</div><div class="lbl">Scans done</div></div>
     <div class="stat-divider"></div>
@@ -876,22 +94,22 @@ footer {
   </div>
 </div>
 
-<!-- ═══ APP ═══ -->
+<!-- âââ APP âââ -->
 <div class="app-container">
 
   <!-- Input Type Tabs -->
   <div class="input-tabs">
     <button type="button" class="input-tab active" onclick="switchPanel('text')">
-      <span class="ti-icon">📝</span> Text
+      <span class="ti-icon">ð</span> Text
     </button>
     <button type="button" class="input-tab" onclick="switchPanel('url')">
-      <span class="ti-icon">🔗</span> URL
+      <span class="ti-icon">ð</span> URL
     </button>
     <button type="button" class="input-tab" onclick="switchPanel('image')">
-      <span class="ti-icon">🖼️</span> Image
+      <span class="ti-icon">ð¼ï¸</span> Image
     </button>
     <button type="button" class="input-tab pro-locked" onclick="switchPanel('video')">
-      <span class="ti-icon">🎬</span> Video
+      <span class="ti-icon">ð¬</span> Video
       <span class="pro-lock">PRO</span>
     </button>
   </div>
@@ -899,33 +117,33 @@ footer {
   <!-- TEXT PANEL -->
   <div class="panel active" id="panel-text">
     <div class="text-area-wrap">
-      <textarea id="textInput" placeholder="Paste an article, email, essay, social post, or any text you want to verify for AI generation…" aria-label="Paste an article, email, essay, social post, or any text you want to verify for AI generation…" maxlength="10000" oninput="updateCharCount()"></textarea>
+      <textarea id="textInput" placeholder="Paste an article, email, essay, social post, or any text you want to verify for AI generationâ¦" aria-label="Paste an article, email, essay, social post, or any text you want to verify for AI generationâ¦" maxlength="10000" oninput="updateCharCount()"></textarea>
     </div>
     <div class="textarea-toolbar">
       <span class="char-count"><span id="charCount">0</span>/10,000</span>
-      <button type="button" class="paste-btn" onclick="pasteFromClipboard()">📋 Paste from clipboard</button>
+      <button type="button" class="paste-btn" onclick="pasteFromClipboard()">ð Paste from clipboard</button>
     </div>
   </div>
 
   <!-- URL PANEL -->
   <div class="panel" id="panel-url">
     <div class="url-input-row">
-      <input type="url" id="urlInput" placeholder="https://example.com/article — paste any webpage URL" aria-label="Webpage URL to analyze" />
-      <button type="button" class="url-fetch-btn" onclick="fetchURL()">Fetch →</button>
+      <input type="url" id="urlInput" placeholder="https://example.com/article â paste any webpage URL" aria-label="Webpage URL to analyze" />
+      <button type="button" class="url-fetch-btn" onclick="fetchURL()">Fetch â</button>
     </div>
     <div class="url-tips">
       <h2>Works great with</h2>
       <div class="url-tip-list">
-        <div class="url-tip"><span class="tc">📰</span> News articles (CNN, NYT, BBC, Reuters…)</div>
-        <div class="url-tip"><span class="tc">📝</span> Blog posts &amp; Medium articles</div>
-        <div class="url-tip"><span class="tc">🐦</span> Social media posts &amp; threads</div>
-        <div class="url-tip"><span class="tc">📄</span> Product descriptions &amp; landing pages</div>
-        <div class="url-tip"><span class="tc">🎓</span> Academic papers &amp; research summaries</div>
+        <div class="url-tip"><span class="tc">ð°</span> News articles (CNN, NYT, BBC, Reutersâ¦)</div>
+        <div class="url-tip"><span class="tc">ð</span> Blog posts &amp; Medium articles</div>
+        <div class="url-tip"><span class="tc">ð¦</span> Social media posts &amp; threads</div>
+        <div class="url-tip"><span class="tc">ð</span> Product descriptions &amp; landing pages</div>
+        <div class="url-tip"><span class="tc">ð</span> Academic papers &amp; research summaries</div>
       </div>
     </div>
-    <div id="fetchedTextArea" style="display:none; margin-top:1rem;">
-      <div style="font-size:0.78rem; font-weight:700; color:var(--muted); margin-bottom:0.4rem; text-transform:uppercase; letter-spacing:0.06em;">Fetched content preview</div>
-      <textarea id="fetchedText" aria-label="Fetched URL content" style="width:100%; min-height:160px; padding:1rem; background:var(--surface); border:1.5px solid var(--border); border-radius:12px; font-family:'Cabinet Grotesk',sans-serif; font-size:0.88rem; color:var(--ink); line-height:1.6; resize:vertical; outline:none;" readonly></textarea>
+    <div id="fetchedTextArea" class="ist-11pruto">
+      <div class="ist-1yoe9xk">Fetched content preview</div>
+      <textarea id="fetchedText" aria-label="Fetched URL content" class="ist-1vst4jl" readonly></textarea>
     </div>
   </div>
 
@@ -936,11 +154,11 @@ footer {
       ondragover="dz(event,'imageDropZone')"
       ondragleave="dzl('imageDropZone')"
       ondrop="dzDrop(event,'imgFile','imageDropZone')">
-      <span class="dz-icon">🖼️</span>
+      <span class="dz-icon">ð¼ï¸</span>
       <h2>Drop your image here</h2>
-      <p>or <span class="browse-link">browse files</span> — PNG, JPG, WEBP, GIF up to 20MB</p>
+      <p>or <span class="browse-link">browse files</span> â PNG, JPG, WEBP, GIF up to 20MB</p>
     </div>
-    <input type="file" id="imgFile" accept="image/*" style="display:none" aria-label="Upload image for analysis" onchange="loadPreview('imgFile','imgPreview','imageDropZone')">
+    <input type="file" id="imgFile" accept="image/*" class="ist-uydnfn" aria-label="Upload image for analysis" onchange="loadPreview('imgFile','imgPreview','imageDropZone')">
     <div class="preview-area" id="imgPreview"></div>
   </div>
 
@@ -951,35 +169,35 @@ footer {
       ondragover="dz(event,'videoDropZone')"
       ondragleave="dzl('videoDropZone')"
       ondrop="requirePro()">
-      <span class="dz-icon">🎬</span>
+      <span class="dz-icon">ð¬</span>
       <p>Video detection is a Pro feature</p>
       <p>Upgrade to detect AI-generated video, deepfakes, and synthetic media</p>
-      <button type="button" onclick="event.stopPropagation();openModal('plansOverlay')" style="margin-top:1rem;padding:0.6rem 1.4rem;background:var(--accent);border:none;border-radius:8px;color:#fff;font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:0.88rem;cursor:pointer;">Upgrade to Pro →</button>
+      <button type="button" onclick="event.stopPropagation();openModal('plansOverlay')" class="ist-1msvrrn">Upgrade to Pro â</button>
     </div>
-    <input type="file" id="vidFile" accept="video/*" style="display:none" aria-label="Upload video for analysis" onchange="loadPreview('vidFile','vidPreview','videoDropZone','video')">
+    <input type="file" id="vidFile" accept="video/*" class="ist-uydnfn" aria-label="Upload video for analysis" onchange="loadPreview('vidFile','vidPreview','videoDropZone','video')">
     <div class="preview-area" id="vidPreview"></div>
   </div>
 
   <!-- CTA -->
   <div class="analyze-cta">
     <button type="button" class="analyze-main-btn" id="mainAnalyzeBtn" onclick="runAnalysis()">
-      <span>🔍</span> <span id="analyzeLabel">Analyze Content</span>
+      <span>ð</span> <span id="analyzeLabel">Analyze Content</span>
     </button>
   </div>
   <div class="daily-counter" id="dailyCounter">
-    <span id="scansLeft">5</span> free scans remaining today ·
+    <span id="scansLeft">5</span> free scans remaining today Â·
     <span class="upgrade-nudge" onclick="openModal('plansOverlay')">Upgrade for unlimited</span>
   </div>
 
   <!-- Loading -->
   <div class="loading-state" id="loadingState">
-    <div class="scan-anim"><span class="scan-icon">🔍</span></div>
+    <div class="scan-anim"><span class="scan-icon">ð</span></div>
     <div class="loading-steps">
-      <div class="loading-step" id="ls0">Extracting content…</div>
-      <div class="loading-step" id="ls1">Scanning linguistic fingerprints…</div>
-      <div class="loading-step" id="ls2">Measuring entropy & burstiness…</div>
-      <div class="loading-step" id="ls3">Cross-referencing AI model signatures…</div>
-      <div class="loading-step" id="ls4">Generating forensic report…</div>
+      <div class="loading-step" id="ls0">Extracting contentâ¦</div>
+      <div class="loading-step" id="ls1">Scanning linguistic fingerprintsâ¦</div>
+      <div class="loading-step" id="ls2">Measuring entropy & burstinessâ¦</div>
+      <div class="loading-step" id="ls3">Cross-referencing AI model signaturesâ¦</div>
+      <div class="loading-step" id="ls4">Generating forensic reportâ¦</div>
     </div>
   </div>
 
@@ -987,7 +205,7 @@ footer {
   <div class="results-area" id="resultsArea" aria-live="polite"></div>
 
   <!-- History -->
-  <div class="history-section" id="historySection" style="display:none">
+  <div class="history-section" id="historySection" class="ist-uydnfn">
     <div class="history-header">
       <h3>Recent scans</h3>
       <span class="clear-hist" onclick="clearHistory()">Clear all</span>
@@ -997,7 +215,7 @@ footer {
 
 </div>
 
-<!-- ═══ HOW IT WORKS ═══ -->
+<!-- âââ HOW IT WORKS âââ -->
 <div class="how-section">
   <h2 class="section-label" role="heading" aria-level="2">How it works</h2>
   <div class="how-grid">
@@ -1007,62 +225,62 @@ footer {
   </div>
 </div>
 
-<!-- ═══ PRIVACY BANNER ═══ -->
+<!-- âââ PRIVACY BANNER âââ -->
 <div class="privacy-banner">
   <div class="privacy-banner-inner">
-    <span class="pb-shield">🛡️</span>
+    <span class="pb-shield">ð¡ï¸</span>
     <div class="pb-text">
-      <h2>We earn money from subscriptions — not from selling you.</h2>
+      <h2>We earn money from subscriptions â not from selling you.</h2>
       <p>Unlike ad-supported platforms, TruthLens has exactly one business model: people who find us useful pay us directly. That means your data, your scanned content, and your behavior on this site are <strong>never sold, rented, or shared</strong> with advertisers or data brokers. What you scan stays between you and our AI.</p>
       <div class="pb-badges">
-        <span class="pb-badge">✓ No data sales</span>
-        <span class="pb-badge">✓ No ad tracking</span>
-        <span class="pb-badge">✓ Content not stored</span>
-        <span class="pb-badge">✓ No third-party sharing</span>
-        <span class="pb-badge">✓ Delete anytime</span>
-        <span class="pb-badge" style="cursor:pointer;" onclick="openModal('privacyOverlay')">→ Full privacy pledge</span>
+        <span class="pb-badge">â No data sales</span>
+        <span class="pb-badge">â No ad tracking</span>
+        <span class="pb-badge">â Content not stored</span>
+        <span class="pb-badge">â No third-party sharing</span>
+        <span class="pb-badge">â Delete anytime</span>
+        <span class="pb-badge ist-1wc3lz9" onclick="openModal('privacyOverlay')">â Full privacy pledge</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══ REVENUE / MONEY ═══ -->
-<div style="max-width:860px;margin:2.5rem auto 0;padding:0 1.5rem;">
+<!-- âââ REVENUE / MONEY âââ -->
+<div class="ist-0dvt62">
   <div class="money-section">
     <div class="money-inner">
       <div class="money-grid">
         <div class="money-left">
-          <h2 class="section-label" style="color:rgba(255,255,255,0.4)">Built for you</h2>
+          <h2 class="section-label ist-1swoefl">Built for you</h2>
           <h3>Everything you need, right out of the box</h3>
-          <p>TruthLens is built to be genuinely useful from day one. Whether you’re verifying a single article or running thousands of scans via API, every tier is designed to grow with you.</p>
+          <p>TruthLens is built to be genuinely useful from day one. Whether youâre verifying a single article or running thousands of scans via API, every tier is designed to grow with you.</p>
         </div>
         <div class="revenue-streams">
           <div class="revenue-item">
-            <span class="rev-icon">💳</span>
+            <span class="rev-icon">ð³</span>
             <div class="rev-info">
               <div class="rev-name">Pro Subscriptions</div>
-              <div class="rev-amt">$12/mo · unlimited scans</div>
+              <div class="rev-amt">$12/mo Â· unlimited scans</div>
             </div>
           </div>
           <div class="revenue-item">
-            <span class="rev-icon">🏢</span>
+            <span class="rev-icon">ð¢</span>
             <div class="rev-info">
               <div class="rev-name">Enterprise Licenses</div>
-              <div class="rev-amt">$49–499/mo · teams & API</div>
+              <div class="rev-amt">$49â499/mo Â· teams & API</div>
             </div>
           </div>
           <div class="revenue-item">
-            <span class="rev-icon">⚡</span>
+            <span class="rev-icon">â¡</span>
             <div class="rev-info">
               <div class="rev-name">API Pay-per-scan</div>
               <div class="rev-amt">$0.01/scan for developers</div>
             </div>
           </div>
-          <div class="revenue-item" style="border-color:rgba(26,122,74,0.3);background:rgba(26,122,74,0.06);">
-            <span class="rev-icon">🛡️</span>
+          <div class="revenue-item ist-o9rmhc">
+            <span class="rev-icon">ð¡ï¸</span>
             <div class="rev-info">
-              <div class="rev-name" style="color:#1a7a4a;">Privacy-First Trust</div>
-              <div class="rev-amt" style="color:#2a9a5a;">No data selling = higher retention & word-of-mouth</div>
+              <div class="rev-name ist-4qo4bv">Privacy-First Trust</div>
+              <div class="rev-amt ist-9sxy83">No data selling = higher retention & word-of-mouth</div>
             </div>
           </div>
             <div class="rev-info">
@@ -1076,20 +294,20 @@ footer {
   </div>
 </div>
 
-<!-- ═══ SUPPORT BOT ═══ -->
+<!-- âââ SUPPORT BOT âââ -->
 <button type="button" class="chat-bubble" aria-label="Open support chat" onclick="toggleChat()" id="chatBubble">
-  💬
+  ð¬
   <span class="notif">1</span>
 </button>
 
 <div class="chat-window" id="chatWindow">
   <div class="chat-header">
-    <div class="bot-avatar">🤖</div>
+    <div class="bot-avatar">ð¤</div>
     <div class="bot-info">
       <div class="bot-name">TruthLens Support</div>
-      <div class="bot-status">● Online — AI powered</div>
+      <div class="bot-status">â Online â AI powered</div>
     </div>
-    <button type="button" class="close-chat" aria-label="Close chat" onclick="toggleChat()">✕</button>
+    <button type="button" class="close-chat" aria-label="Close chat" onclick="toggleChat()">â</button>
   </div>
   <div class="chat-messages" id="chatMessages"></div>
   <div class="chat-suggestions" id="chatSuggestions">
@@ -1099,8 +317,8 @@ footer {
     <span class="chat-suggestion" onclick="sendSuggestion(this)">Is my data safe?</span>
   </div>
   <div class="chat-input-row">
-    <input class="chat-input" id="chatInput" placeholder="Ask anything…" aria-label="Chat message" onkeydown="if(event.key==='Enter')sendChat()">
-    <button type="button" class="chat-send" aria-label="Send message" onclick="sendChat()">→</button>
+    <input class="chat-input" id="chatInput" placeholder="Ask anythingâ¦" aria-label="Chat message" onkeydown="if(event.key==='Enter')sendChat()">
+    <button type="button" class="chat-send" aria-label="Send message" onclick="sendChat()">â</button>
   </div>
 </div>
 
@@ -1116,17 +334,17 @@ footer {
     </div>
     <div class="sp-cards">
       <div class="sp-card">
-        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <div class="stars" aria-label="5 out of 5 stars">âââââ</div>
         <q>We run every student submission through TruthLens Pro before grading. The false-positive rate is low enough that we can act on results with confidence.</q>
         <div class="author"><strong>Dr. M. Okonkwo</strong>Associate Professor, University of Leeds</div>
       </div>
       <div class="sp-card">
-        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <q>I fact-check viral images daily. TruthLens Pro catches compressed deepfakes that other tools miss entirely — the JPEG resilience is the difference-maker.</q>
+        <div class="stars" aria-label="5 out of 5 stars">âââââ</div>
+        <q>I fact-check viral images daily. TruthLens Pro catches compressed deepfakes that other tools miss entirely â the JPEG resilience is the difference-maker.</q>
         <div class="author"><strong>Priya S.</strong>Investigative journalist, digital media</div>
       </div>
       <div class="sp-card">
-        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <div class="stars" aria-label="5 out of 5 stars">âââââ</div>
         <q>The API integration was done in an afternoon. We're now screening 50,000+ content pieces a day and our moderation accuracy has improved measurably.</q>
         <div class="author"><strong>Engineering team</strong>Mid-size content platform</div>
       </div>
@@ -1134,11 +352,11 @@ footer {
   </div>
 </section>
 
-<!-- ═══ PRICING SECTION ═══ -->
+<!-- âââ PRICING SECTION âââ -->
 <section class="pricing-section" id="pricing" aria-labelledby="pricingHeading">
-  <div style="max-width:860px;margin:0 auto;padding:3rem 1.5rem 1rem;">
-    <h2 class="section-label" id="pricingHeading" style="text-align:center;margin-bottom:.5rem;">Simple, transparent pricing</h2>
-    <p style="text-align:center;color:var(--muted);margin-bottom:2rem;">Start free. Upgrade when you need more.</p>
+  <div class="ist-1rhovax">
+    <h2 class="section-label" id="pricingHeading" class="ist-d8yrum">Simple, transparent pricing</h2>
+    <p class="ist-1cf77jq">Start free. Upgrade when you need more.</p>
     <div class="plans-grid">
       <div class="plan-card">
         <div class="plan-name">Free</div>
@@ -1171,7 +389,7 @@ footer {
           <li>30-day scan history</li>
           <li>Email support</li>
         </ul>
-        <a class="plan-btn filled" href="https://buy.stripe.com/eVq28t0NBdH24aDaXjcwg00" target="_blank" rel="noopener noreferrer">Get Pro →</a>
+        <a class="plan-btn filled" href="https://buy.stripe.com/eVq28t0NBdH24aDaXjcwg00" target="_blank" rel="noopener noreferrer">Get Pro â</a>
       </div>
       <div class="plan-card">
         <div class="plan-name">Enterprise</div>
@@ -1190,7 +408,7 @@ footer {
         <a class="plan-btn outline" href="mailto:sales@truthlensdetect.com">Contact us</a>
       </div>
     </div>
-    <p style="text-align:center;font-size:.85rem;color:var(--muted);margin-top:1.5rem;">All plans include our Privacy Pledge — we never sell your data or train on your submissions.</p>
+    <p class="ist-cno3w3">All plans include our Privacy Pledge â we never sell your data or train on your submissions.</p>
   </div>
 </section>
 
@@ -1200,7 +418,7 @@ footer {
     <div class="faq-list">
       <details class="faq-item">
         <summary class="faq-q">How does TruthLens detect AI-generated text?</summary>
-        <p class="faq-a">TruthLens analyzes multiple linguistic signals simultaneously — including perplexity (how predictable the word choices are), burstiness (variation in sentence length), hedging language patterns, and vocabulary diversity. AI-generated text scores low on perplexity and burstiness because language models produce statistically averaged output. Human writing is messier, more varied, and less predictable. Our detection engine was trained on millions of verified human and AI text samples across GPT-4, Claude, Gemini, and Llama models.</p>
+        <p class="faq-a">TruthLens analyzes multiple linguistic signals simultaneously â including perplexity (how predictable the word choices are), burstiness (variation in sentence length), hedging language patterns, and vocabulary diversity. AI-generated text scores low on perplexity and burstiness because language models produce statistically averaged output. Human writing is messier, more varied, and less predictable. Our detection engine was trained on millions of verified human and AI text samples across GPT-4, Claude, Gemini, and Llama models.</p>
       </details>
       <details class="faq-item">
         <summary class="faq-q">What content formats does TruthLens support?</summary>
@@ -1208,11 +426,11 @@ footer {
       </details>
       <details class="faq-item">
         <summary class="faq-q">How accurate is TruthLens compared to other AI detectors?</summary>
-        <p class="faq-a">TruthLens achieves 94% accuracy across our benchmark test suite, which covers content generated by GPT-4, Claude, Gemini, Llama, and Mistral. Short texts under 200 words and heavily human-edited AI content are harder to classify reliably — this is a known limitation of all current detectors. We recommend using TruthLens as one signal among several for high-stakes decisions like academic integrity reviews or editorial fact-checking.</p>
+        <p class="faq-a">TruthLens achieves 94% accuracy across our benchmark test suite, which covers content generated by GPT-4, Claude, Gemini, Llama, and Mistral. Short texts under 200 words and heavily human-edited AI content are harder to classify reliably â this is a known limitation of all current detectors. We recommend using TruthLens as one signal among several for high-stakes decisions like academic integrity reviews or editorial fact-checking.</p>
       </details>
       <details class="faq-item">
         <summary class="faq-q">Is my content stored or used to train models?</summary>
-        <p class="faq-a">No. Content you submit is processed in memory and discarded immediately after the scan. We do not store your text, images, or video on our servers, and we never use submitted content to train or fine-tune any model. Your scan history lives only in your browser's local storage and is never transmitted to us. This is a core part of our Privacy Pledge — zero data selling, ever.</p>
+        <p class="faq-a">No. Content you submit is processed in memory and discarded immediately after the scan. We do not store your text, images, or video on our servers, and we never use submitted content to train or fine-tune any model. Your scan history lives only in your browser's local storage and is never transmitted to us. This is a core part of our Privacy Pledge â zero data selling, ever.</p>
       </details>
       <details class="faq-item">
         <summary class="faq-q">What is the difference between the Free, Pro, and Enterprise plans?</summary>
@@ -1229,102 +447,102 @@ footer {
 <footer>
   <div class="footer-logo">Truth<em>Lens</em></div>
   <div class="footer-links">
-    <a href="/privacy/" >🔒 Privacy Pledge</a>
+    <a href="/privacy/" >ð Privacy Pledge</a>
     <a href="/terms/">Terms</a>
-    <a href="/privacy/#ccpa" style="color:inherit">Do Not Sell My Info</a>
-    <a href="/api/" style="opacity:0.6;color:inherit;text-decoration:none">API Docs</a>
-    <a href="/blog/" style="opacity:0.6;color:inherit;text-decoration:none">Blog</a> 
+    <a href="/privacy/#ccpa" class="ist-14ehxct">Do Not Sell My Info</a>
+    <a href="/api/" class="ist-3od4ou">API Docs</a>
+    <a href="/blog/" class="ist-3od4ou">Blog</a> 
     <a href="#pricing" onclick="openModal('plansOverlay');return false">Pricing</a>
   </div>
-  <div class="footer-right">© 2026 TruthLens · We never sell your data</div>
+  <div class="footer-right">Â© 2026 TruthLens Â· We never sell your data</div>
 </footer>
 
     <script src="/main.js" defer></script>
 <script>window.addEventListener('load',function(){if(location.hash==='#pricing')openModal('plansOverlay');});</script>
 
   <!-- GDPR Cookie Consent Banner -->
-  <div id="ck-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:99999;background:#1a1a2e;color:#e0e0e0;padding:1rem 1.5rem;box-shadow:0 -4px 20px rgba(0,0,0,0.4);font-family:inherit;border-top:1px solid #333">
-    <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
-      <p style="margin:0;font-size:0.875rem;flex:1;min-width:260px">
-        We use analytics to improve your experience. By clicking “Accept”, you consent to analytics cookies. You can
-        <a href="/privacy/" style="color:#6c8fff;text-decoration:underline">Privacy Policy</a>.
+  <div id="ck-banner" class="ist-yac4lh">
+    <div class="ist-ofk0iy">
+      <p class="ist-4z611k">
+        We use analytics to improve your experience. By clicking âAcceptâ, you consent to analytics cookies. You can
+        <a href="/privacy/" class="ist-b1huj7">Privacy Policy</a>.
       </p>
-      <div style="display:flex;gap:0.75rem;flex-shrink:0">
-        <button type="button" onclick="ckDecline()" style="background:transparent;border:1px solid #555;color:#aaa;padding:0.5rem 1.1rem;border-radius:6px;cursor:pointer;font-size:0.85rem">Decline</button>
-        <button type="button" onclick="ckAccept()" style="background:#6c8fff;border:none;color:#fff;padding:0.5rem 1.25rem;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:600">Accept</button>
+      <div class="ist-125e0qz">
+        <button type="button" onclick="ckDecline()" class="ist-1cb1lku">Decline</button>
+        <button type="button" onclick="ckAccept()" class="ist-130vdf2">Accept</button>
       </div>
     </div>
   </div>
   
-<div id="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1827;border-top:1px solid #2d2b45;padding:16px 24px;z-index:9999;font-size:14px;color:#ccc;">
-  <p style="margin:0 0 10px">We use <strong>functional cookies</strong> (required) and <strong>analytics cookies</strong> (optional, Google Analytics) to improve your experience. <a href="/privacy/" style="color:#6c8fff;text-decoration:underline">Privacy Policy</a></p>
-  <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-    <label style="display:flex;align-items:center;gap:6px;cursor:pointer;min-height:44px;"><input type="checkbox" id="cookie-functional" aria-label="Functional (required)" checked disabled style="width:16px;height:16px"> Functional (required)</label>
-    <label style="display:flex;align-items:center;gap:6px;cursor:pointer;min-height:44px;"><input type="checkbox" id="cookie-analytics" aria-label="Analytics cookies" style="width:16px;height:16px"> Analytics</label>
-    <button type="button" onclick="acceptSelectedCookies()" style="background:#5a4fcf;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;min-height:44px;font-weight:600;">Save Preferences</button>
-    <button type="button" onclick="acceptAllCookies()" style="background:#7c3aed;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;min-height:44px;font-weight:600;">Accept All</button>
-    <button type="button" onclick="rejectAllCookies()" style="background:transparent;color:#aaa;border:1px solid #555;padding:10px 20px;border-radius:6px;cursor:pointer;min-height:44px;">Reject All</button>
+<div id="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" class="ist-1423js8">
+  <p class="ist-7fa8pm">We use <strong>functional cookies</strong> (required) and <strong>analytics cookies</strong> (optional, Google Analytics) to improve your experience. <a href="/privacy/" class="ist-b1huj7">Privacy Policy</a></p>
+  <div class="ist-8tnub0">
+    <label class="ist-63x5qt"><input type="checkbox" id="cookie-functional" aria-label="Functional (required)" checked disabled class="ist-1184glj"> Functional (required)</label>
+    <label class="ist-63x5qt"><input type="checkbox" id="cookie-analytics" aria-label="Analytics cookies" class="ist-1184glj"> Analytics</label>
+    <button type="button" onclick="acceptSelectedCookies()" class="ist-1jxel3l">Save Preferences</button>
+    <button type="button" onclick="acceptAllCookies()" class="ist-1meep8b">Accept All</button>
+    <button type="button" onclick="rejectAllCookies()" class="ist-1mcuqhp">Reject All</button>
   </div>
 </div>
-<!-- ═══ PRIVACY PLEDGE MODAL ═══ -->
+<!-- âââ PRIVACY PLEDGE MODAL âââ -->
 <div class="overlay" inert id="privacyOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Our Privacy Pledge">
   <div class="modal privacy-modal">
-    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('privacyOverlay')">✕</button>
-    <h2>🔒 Our Privacy Pledge</h2>
+    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('privacyOverlay')">â</button>
+    <h2>ð Our Privacy Pledge</h2>
     <p class="modal-sub">Written in plain English, not legalese. This is what we actually do with your data.</p>
     <div class="privacy-commitment">
       <div class="pc-item">
-        <span class="pc-icon">🚫</span>
+        <span class="pc-icon">ð«</span>
         <div class="pc-text">
           <h3>We never sell your data. Ever.</h3>
-          <p>Your name, email, and the content you scan are yours. We will never sell, rent, license, or trade your personal data to advertisers, data brokers, or any third party — period. Our business model is subscriptions, not you.</p>
+          <p>Your name, email, and the content you scan are yours. We will never sell, rent, license, or trade your personal data to advertisers, data brokers, or any third party â period. Our business model is subscriptions, not you.</p>
         </div>
       </div>
       <div class="pc-item">
-        <span class="pc-icon">🗑️</span>
+        <span class="pc-icon">ðï¸</span>
         <div class="pc-text">
           <h3>Scanned content is not stored or trained on</h3>
           <p>The text, images, and videos you submit for analysis are sent to our AI engine and then discarded. We do not store your content, use it to train models, or share it with anyone.</p>
         </div>
       </div>
       <div class="pc-item">
-        <span class="pc-icon">📧</span>
+        <span class="pc-icon">ð§</span>
         <div class="pc-text">
           <h3>No spam. No marketing to third parties.</h3>
-          <p>We only email you about your account — receipts, security alerts, and product updates if you opt in. We will never share your email with other companies for their marketing.</p>
+          <p>We only email you about your account â receipts, security alerts, and product updates if you opt in. We will never share your email with other companies for their marketing.</p>
         </div>
       </div>
       <div class="pc-item">
-        <span class="pc-icon">🍪</span>
+        <span class="pc-icon">ðª</span>
         <div class="pc-text">
           <h3>Minimal, functional cookies only</h3>
           <p>We use cookies strictly to keep you logged in and remember your preferences. No ad-tracking cookies, no cross-site fingerprinting, no behavioral profiling.</p>
         </div>
       </div>
       <div class="pc-item">
-        <span class="pc-icon">🗂️</span>
+        <span class="pc-icon">ðï¸</span>
         <div class="pc-text">
           <h3>You control your data</h3>
-          <p>Request a full export of your data at any time. Delete your account and all associated data in one click. No "processing period," no friction — immediate and complete.</p>
+          <p>Request a full export of your data at any time. Delete your account and all associated data in one click. No "processing period," no friction â immediate and complete.</p>
         </div>
       </div>
     </div>
     <div class="privacy-seal">
-      <p>🛡️ TruthLens earns money through subscriptions — not by monetizing your personal data. That's the whole model.</p>
+      <p>ð¡ï¸ TruthLens earns money through subscriptions â not by monetizing your personal data. That's the whole model.</p>
     </div>
   </div>
 </div>
 
-<!-- ═══ AUTH MODAL ═══ -->
+<!-- âââ AUTH MODAL âââ -->
 <div class="overlay" inert id="authOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="authTitle">
   <div class="modal" id="authModal" aria-label="Create account">
-    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('authOverlay')">✕</button>
+    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('authOverlay')">â</button>
     <h2 id="authTitle">Create account</h2>
     <p class="modal-sub" id="authSub">Join 50,000+ users detecting AI content</p>
 
     <div class="social-btns">
-      <button type="button" class="social-btn" aria-label="Sign in with Google" onclick="socialLogin('Google')">🌐 Google</button>
-      <button type="button" class="social-btn" aria-label="Sign in with Twitter/X" onclick="socialLogin('Twitter/X')">𝕏 Twitter/X</button>
+      <button type="button" class="social-btn" aria-label="Sign in with Google" onclick="socialLogin('Google')">ð Google</button>
+      <button type="button" class="social-btn" aria-label="Sign in with Twitter/X" onclick="socialLogin('Twitter/X')">ð Twitter/X</button>
     </div>
     <div class="divider"><span></span><p>or email</p><span></span></div>
 
@@ -1340,20 +558,20 @@ footer {
     </div>
     <div class="form-field">
       <label>Password</label>
-      <input type="password" id="authPassword" placeholder="••••••••" aria-label="Password" autocomplete="current-password" maxlength="128">
+      <input type="password" id="authPassword" placeholder="â¢â¢â¢â¢â¢â¢â¢â¢" aria-label="Password" autocomplete="current-password" maxlength="128">
     </div>
-    <button type="button" class="btn-primary" onclick="submitAuth()" id="authSubmitBtn">Create free account →</button>
+    <button type="button" class="btn-primary" onclick="submitAuth()" id="authSubmitBtn">Create free account â</button>
     <div class="modal-switch" id="authSwitch">
       Already have an account? <button type="button" class="link-btn" onclick="toggleAuthMode()">Sign in</button>
     </div>
     <div class="auth-privacy-note">
-      🔒 We never sell your data. No ads. No third-party sharing. <a href="/privacy/" onclick="closeModal('authOverlay');openModal('privacyOverlay')" style="color:#0e7a40;cursor:pointer;text-decoration:underline;font-weight:800;">Our pledge →</a>
+      ð We never sell your data. No ads. No third-party sharing. <a href="/privacy/" onclick="closeModal('authOverlay');openModal('privacyOverlay')" class="ist-sn3i5t">Our pledge â</a>
     </div>
   </div>
 </div>
 <div class="overlay" inert id="plansOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Upgrade TruthLens">
-  <div class="modal plans-modal" style="max-width:820px">
-    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('plansOverlay')">✕</button>
+  <div class="modal plans-modal ist-166626o">
+    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('plansOverlay')">â</button>
     <h2>Upgrade TruthLens</h2>
     <p class="modal-sub">Unlock unlimited scans, video detection, and priority results</p>
     <div class="plans-grid">
@@ -1388,7 +606,7 @@ footer {
           <li>30-day scan history</li>
           <li>Email support</li>
         </ul>
-        <a class="plan-btn filled" href="https://buy.stripe.com/eVq28t0NBdH24aDaXjcwg00" target="_blank" rel="noopener noreferrer">Start Pro — $12/mo →</a>
+        <a class="plan-btn filled" href="https://buy.stripe.com/eVq28t0NBdH24aDaXjcwg00" target="_blank" rel="noopener noreferrer">Start Pro â $12/mo â</a>
       </div>
       <div class="plan-card">
         <div class="plan-name">Enterprise</div>
@@ -1404,48 +622,48 @@ footer {
           <li>Unlimited scan history</li>
           <li>Priority + SLA support</li>
         </ul>
-        <button type="button" class="plan-btn outline"  onclick="window.location.href='mailto:sales@truthlensdetect.com'">Contact sales →</button>
+        <button type="button" class="plan-btn outline"  onclick="window.location.href='mailto:sales@truthlensdetect.com'">Contact sales â</button>
       </div>
     </div>
-    <div style="margin-top:1.5rem;padding:0.9rem 1.2rem;background:#f0fdf6;border:1.5px solid #a0d4b5;border-radius:12px;display:flex;align-items:center;gap:0.8rem;">
-      <span style="font-size:1.2rem;">🔒</span>
-      <p style="font-size:0.78rem;color:#1a7a4a;font-weight:700;">All plans: zero data selling, zero ad tracking, zero third-party sharing. <a href="/privacy/" onclick="closeModal('plansOverlay');openModal('privacyOverlay')" style="text-decoration:underline;cursor:pointer;color:#0e5c32;">Read our full privacy pledge →</a></p>
+    <div class="ist-1tdf1jv">
+      <span class="ist-1e9qifu">ð</span>
+      <p class="ist-cc44oe">All plans: zero data selling, zero ad tracking, zero third-party sharing. <a href="/privacy/" onclick="closeModal('plansOverlay');openModal('privacyOverlay')" class="ist-10r507">Read our full privacy pledge â</a></p>
     </div>
   </div>
 </div>
 <div class="overlay" inert id="shareOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Share Result">
   <div class="modal">
-    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('shareOverlay')">✕</button>
+    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('shareOverlay')">â</button>
     <h2>Share Result</h2>
-    <p class="modal-sub">Spread awareness — let others know about this content</p>
+    <p class="modal-sub">Spread awareness â let others know about this content</p>
     <div class="share-preview-card" id="sharePreviewCard">
-      <div class="sp-title" id="shareVerdictTitle">—</div>
+      <div class="sp-title" id="shareVerdictTitle">â</div>
       <div class="sp-sub" id="shareVerdictSub">via TruthLens AI Detector</div>
     </div>
     <div class="share-grid">
       <div class="share-btn-item" onclick="shareToX()">
-        <span class="icon">𝕏</span><span class="lbl">Twitter/X</span>
+        <span class="icon">ð</span><span class="lbl">Twitter/X</span>
       </div>
       <div class="share-btn-item" onclick="shareToLinkedIn()">
-        <span class="icon">💼</span><span class="lbl">LinkedIn</span>
+        <span class="icon">ð¼</span><span class="lbl">LinkedIn</span>
       </div>
       <div class="share-btn-item" onclick="shareToFacebook()">
-        <span class="icon">📘</span><span class="lbl">Facebook</span>
+        <span class="icon">ð</span><span class="lbl">Facebook</span>
       </div>
       <div class="share-btn-item" onclick="shareToReddit()">
-        <span class="icon">🔴</span><span class="lbl">Reddit</span>
+        <span class="icon">ð´</span><span class="lbl">Reddit</span>
       </div>
       <div class="share-btn-item" onclick="shareToWhatsApp()">
-        <span class="icon">💬</span><span class="lbl">WhatsApp</span>
+        <span class="icon">ð¬</span><span class="lbl">WhatsApp</span>
       </div>
       <div class="share-btn-item" onclick="shareToTelegram()">
-        <span class="icon">✈️</span><span class="lbl">Telegram</span>
+        <span class="icon">âï¸</span><span class="lbl">Telegram</span>
       </div>
       <div class="share-btn-item" onclick="shareNative()">
-        <span class="icon">📤</span><span class="lbl">More</span>
+        <span class="icon">ð¤</span><span class="lbl">More</span>
       </div>
       <div class="share-btn-item" onclick="downloadReport()">
-        <span class="icon">📄</span><span class="lbl">PDF Report</span>
+        <span class="icon">ð</span><span class="lbl">PDF Report</span>
       </div>
     </div>
     <div class="share-link-row">
@@ -1455,9 +673,9 @@ footer {
   </div>
 </div>
 
-<!-- ═══ TRUST STRIP ═══ -->
+<!-- âââ TRUST STRIP âââ -->
 <div class="trust-strip">
-  🔒 Your data is never sold to third parties &nbsp;·&nbsp; No ad tracking &nbsp;·&nbsp; Scanned content is never stored &nbsp;·&nbsp;
+  ð Your data is never sold to third parties &nbsp;Â·&nbsp; No ad tracking &nbsp;Â·&nbsp; Scanned content is never stored &nbsp;Â·&nbsp;
   <button type="button" class="link-btn" onclick="openModal('privacyOverlay')">Read our privacy pledge</button>
 </div>
 
