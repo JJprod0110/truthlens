@@ -766,3 +766,72 @@ if ('serviceWorker' in navigator) {
       .catch(() => {});
   });
 }
+
+
+// ═══════════════════════════════════════════════════════════════════
+// Event delegation — replaces all inline onclick/oninput attributes.
+// Fully CSP-compliant: no inline handlers, all logic in this file.
+// ═══════════════════════════════════════════════════════════════════
+(function () {
+  'use strict';
+
+  function tl_openModal_toggleMobileNav(p)      { openModal(p); toggleMobileNav(); }
+  function tl_openAuthModal_toggleMobileNav(p)  { openAuthModal(p); toggleMobileNav(); }
+  function tl_closeModal_openModal(p, p2)        { closeModal(p); openModal(p2); }
+  function tlImgUpload() { var el = document.getElementById('imgFile'); if (el) el.click(); }
+
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-action]');
+    if (!el) return;
+    var fn = el.getAttribute('data-action');
+    var p  = el.getAttribute('data-param')  || undefined;
+    var p2 = el.getAttribute('data-param2') || undefined;
+    if (el.getAttribute('data-stop')    === '1') e.stopPropagation();
+    if (el.getAttribute('data-prevent') === '1') e.preventDefault();
+
+    switch (fn) {
+      case 'openModal':                        openModal(p); break;
+      case 'closeModal':                       closeModal(p); break;
+      case 'openAuthModal':                    openAuthModal(p); break;
+      case 'toggleMobileNav':                  toggleMobileNav(); break;
+      case 'toggleChat':                       toggleChat(); break;
+      case 'toggleAuthMode':                   toggleAuthMode(); break;
+      case 'switchPanel':                      switchPanel(p); break;
+      case 'socialLogin':                      socialLogin(p); break;
+      case 'submitAuth':                       submitAuth(); break;
+      case 'runAnalysis':                      runAnalysis(); break;
+      case 'fetchURL':                         fetchURL(); break;
+      case 'clearHistory':                     clearHistory(); break;
+      case 'pasteFromClipboard':               pasteFromClipboard(); break;
+      case 'copyLink':                         copyLink(); break;
+      case 'downloadReport':                   downloadReport(); break;
+      case 'shareNative':                      shareNative(); break;
+      case 'shareToX':                         shareToX(); break;
+      case 'shareToFacebook':                  shareToFacebook(); break;
+      case 'shareToLinkedIn':                  shareToLinkedIn(); break;
+      case 'shareToWhatsApp':                  shareToWhatsApp(); break;
+      case 'shareToTelegram':                  shareToTelegram(); break;
+      case 'shareToReddit':                    shareToReddit(); break;
+      case 'sendChat':                         sendChat(); break;
+      case 'sendSuggestion':                   sendSuggestion(el); break;
+      case 'requirePro':                       requirePro(p); break;
+      case 'acceptAllCookies':                 acceptAllCookies(); break;
+      case 'acceptSelectedCookies':            acceptSelectedCookies(); break;
+      case 'rejectAllCookies':                 rejectAllCookies(); break;
+      case 'ckAccept':                         ckAccept(); break;
+      case 'ckDecline':                        ckDecline(); break;
+      case 'navigate':                         if (p) window.location.href = p; break;
+      case 'tlImgUpload':                      tlImgUpload(); break;
+      case 'tl_openModal_toggleMobileNav':     tl_openModal_toggleMobileNav(p); break;
+      case 'tl_openAuthModal_toggleMobileNav': tl_openAuthModal_toggleMobileNav(p); break;
+      case 'tl_closeModal_openModal':          tl_closeModal_openModal(p, p2); break;
+    }
+  });
+
+  document.addEventListener('input', function (e) {
+    var el = e.target.closest('[data-oninput]');
+    if (!el) return;
+    var fn = el.getAttribute('data-oninput');
+    if (fn === 'updateCharCount' && typeof updateCharCount === 'function') updateCharCount();
+  });
+}());
