@@ -81,6 +81,13 @@ from = "/pricing/"
 to = "/#pricing"
 status = 301
 
+# Proxy hero SVG for ai-detection-accuracy (force fresh serve)
+[[redirects]]
+from = "/blog/ai-detection-accuracy/hero.svg"
+to = "https://raw.githubusercontent.com/JJprod0110/truthlens/main/blog/ai-detection-accuracy/hero.svg"
+status = 200
+force = true
+
 # 404 catch-all -- serve branded 404 page for any unmatched path (must be last)
 [[redirects]]
 from = "/*"
