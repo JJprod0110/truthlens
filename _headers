@@ -21,3 +21,6 @@
 
 /sw.js
  Cache-Control: no-cache, no-store, must-revalidate
+
+/og-preview.png
+  Cache-Control: public, max-age=604800
