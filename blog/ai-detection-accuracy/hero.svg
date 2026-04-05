@@ -93,4 +93,5 @@
   <text x="1035" y="514" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#4b5280">Independent benchmark · March 2026</text>
   <text x="600" y="590" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="700" fill="white" opacity="0.9">Accuracy Comparison · TruthLens Pro</text>
   <rect x="0" y="0" width="1200" height="4" fill="url(#accent1)"/>
+<!-- v2 -->
 </svg>
