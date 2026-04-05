@@ -2,14 +2,14 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ð</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>How AI Generates Deepfake Images â TruthLens Pro</title>
+<title>How AI Generates Deepfake Images — TruthLens Pro</title>
 <link rel="canonical" href="https://truthlensdetect.com/blog/deepfake-images-explained/">
 <meta name="description" content="AI image synthesis has reached photorealistic quality. Learn how GAN and diffusion systems generate deepfakes, and the artifacts they leave behind.">
-<meta property="og:title" content="Deepfake Images Explained: How AI Generates Fake Photos â TruthLens Pro Blog">
+<meta property="og:title" content="Deepfake Images Explained: How AI Generates Fake Photos — TruthLens Pro Blog">
 <meta property="og:description" content="From GAN-generated faces to diffusion model landscapes, AI image synthesis has reached photorealistic quality. Learn how these systems work.">
 <meta property="og:url" content="https://truthlensdetect.com/blog/deepfake-images-explained/">
 <meta property="og:type" content="article">
@@ -17,8 +17,8 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Deepfake Images Explained: How AI Generates Fake Photos â TruthLens Pro Blog">
-<meta name="twitter:description" content="How AI generates photorealistic fake imagesâand how detection works.">
+<meta name="twitter:title" content="Deepfake Images Explained: How AI Generates Fake Photos — TruthLens Pro Blog">
+<meta name="twitter:description" content="How AI generates photorealistic fake images—and how detection works.">
 <meta name="twitter:image" content="https://truthlensdetect.com/og-preview.png">
 <meta name="twitter:site" content="@truthlenspro">
 <meta name="robots" content="index, follow">
@@ -49,14 +49,14 @@
 </nav>
 <main id="main-content">
   <div class="article-wrap">
-    <a href="/blog/" class="back-link">â Back to Blog</a>
+    <a href="/blog/" class="back-link">← Back to Blog</a>
     <header class="article-header">
       <h1>Deepfake Images Explained: How AI Generates Fake Photos</h1>
       <div class="article-meta">
         <span>By TruthLens Team</span>
-        <span aria-hidden="true">Â·</span>
+        <span aria-hidden="true">·</span>
         <time datetime="2026-02-28">February 28, 2026</time>
-        <span aria-hidden="true">Â·</span>
+        <span aria-hidden="true">·</span>
         <span>5 min read</span>
       </div>
     </header>
@@ -85,12 +85,12 @@
       <meta itemprop="datePublished" content="2026-02-28">
       <meta itemprop="author" content="TruthLens Team">
 
-      <p>In 2025, a photorealistic image of a person, place, or event can be generated in secondsâfor free, by anyone. The technology behind this is not magic; it is mathematics applied at enormous scale. Understanding how AI image synthesis works is the foundation for understanding how to detect it.</p>
+      <p>In 2025, a photorealistic image of a person, place, or event can be generated in seconds—for free, by anyone. The technology behind this is not magic; it is mathematics applied at enormous scale. Understanding how AI image synthesis works is the foundation for understanding how to detect it.</p>
 
       <h2 id="two-dominant-architectures">The Two Dominant Architectures</h2>
       <p>Most AI-generated images today come from one of two model families: <strong>Generative Adversarial Networks (GANs)</strong> and <strong>Diffusion Models</strong>. They work differently and leave different artifacts.</p>
 
-      <p><strong>GANs</strong> pit two neural networks against each otherâa generator that creates images and a discriminator that tries to spot the fakes. Through millions of training rounds, the generator learns to produce images the discriminator cannot distinguish from real photographs. The result is fast, high-resolution synthesis, but GANs tend to struggle with complex scenes and fine details like hands, teeth, and text.</p>
+      <p><strong>GANs</strong> pit two neural networks against each other—a generator that creates images and a discriminator that tries to spot the fakes. Through millions of training rounds, the generator learns to produce images the discriminator cannot distinguish from real photographs. The result is fast, high-resolution synthesis, but GANs tend to struggle with complex scenes and fine details like hands, teeth, and text.</p>
 
       <p><strong>Diffusion models</strong> (used by Stable Diffusion, DALL-E, Midjourney, and others) take a different approach: they learn to reverse a process of adding noise to an image. Starting from pure static, the model iteratively removes noise according to a text prompt until a coherent image emerges. Diffusion models produce more varied and photorealistic results than GANs for many categories of image, but they require more compute per generation.</p>
 
@@ -114,44 +114,44 @@
       <div class="callout"><p>Artifacts are becoming subtler with each model generation. StyleGAN3 largely fixed the "watery" motion artifacts of StyleGAN2. SDXL improved hands significantly over earlier Stable Diffusion versions. Detectors must retrain regularly to keep pace.</p></div>
 
       <h2 id="pixel-level-vs-semantic-analysis">Pixel-Level Analysis vs. Semantic Analysis</h2>
-      <p>Detection tools use two broad approaches. <strong>Pixel-level analysis</strong> looks at the raw frequency spectrum of an imageâAI-generated images have characteristic patterns in their DCT (Discrete Cosine Transform) coefficients that differ from photos taken by cameras. This is fast and model-agnostic but can be fooled by lossy compression (JPEG, social media resizing) that removes high-frequency detail.</p>
+      <p>Detection tools use two broad approaches. <strong>Pixel-level analysis</strong> looks at the raw frequency spectrum of an image—AI-generated images have characteristic patterns in their DCT (Discrete Cosine Transform) coefficients that differ from photos taken by cameras. This is fast and model-agnostic but can be fooled by lossy compression (JPEG, social media resizing) that removes high-frequency detail.</p>
 
       <p><strong>Semantic analysis</strong> uses a classifier trained on known AI-generated and real images to spot holistic patterns. This approach is more robust to compression but requires large training datasets and degrades when a new model architecture is released that differs from its training distribution.</p>
 
       <p>TruthLens Pro combines both methods with an ensemble approach, cross-checking pixel statistics against semantic patterns to produce a higher-confidence result than either method alone.</p>
 
       <h2 id="face-swap-variant">The Face-Swap Variant</h2>
-      <p>Deepfakes in the narrower original senseâvideo or image face swapsâuse a separate pipeline: an encoder-decoder architecture that maps one person's facial geometry onto another's in real time. These are technically different from generative synthesis but produce similar artifacts: unnatural skin tone at the face boundary, loss of fine wrinkles near the swap edge, and frame-to-frame temporal inconsistency in video.</p>
+      <p>Deepfakes in the narrower original sense—video or image face swaps—use a separate pipeline: an encoder-decoder architecture that maps one person's facial geometry onto another's in real time. These are technically different from generative synthesis but produce similar artifacts: unnatural skin tone at the face boundary, loss of fine wrinkles near the swap edge, and frame-to-frame temporal inconsistency in video.</p>
 
       <h2 id="what-you-can-do-now">What You Can Do Now</h2>
       <ul>
         <li>Upload any suspicious image to TruthLens Pro for an instant AI probability score</li>
         <li>Right-click and reverse image search to check if the image appears elsewhere in a different context</li>
-        <li>Zoom into hands, teeth, and background textâthese are still the fastest manual tells</li>
+        <li>Zoom into hands, teeth, and background text—these are still the fastest manual tells</li>
         <li>Check image metadata (EXIF data) for camera make/model; AI-generated images typically have none</li>
         <li>For video, look for temporal artifacts: unnatural blinking patterns, edge flickering at the hairline</li>
       </ul>
 
       <div class="cta-box">
         <h3>Verify any image in seconds</h3>
-        <p>Upload an image to TruthLens Pro and get a pixel-level authenticity analysis with a confidence scoreâfree, no sign-up required.</p>
-        <a href="/#detect">Analyze Image Free â</a>
+        <p>Upload an image to TruthLens Pro and get a pixel-level authenticity analysis with a confidence score—free, no sign-up required.</p>
+        <a href="/#detect">Analyze Image Free →</a>
       </div>
 
       <h2 id="how-training-data-shapes-output">How Training Data Shapes Model Output</h2>
-      <p>The quality and diversity of training data is the single largest determinant of a generative model's output quality. Early GAN models trained on limited datasets like CelebA (about 200,000 celebrity faces) produced convincing faces but failed immediately when asked for non-face content. Modern diffusion models like DALL-E 3 and Stable Diffusion XL trained on billions of image-caption pairs scraped from the internet, giving them far broader coverageâbut also introducing biases baked into that data.</p>
+      <p>The quality and diversity of training data is the single largest determinant of a generative model's output quality. Early GAN models trained on limited datasets like CelebA (about 200,000 celebrity faces) produced convincing faces but failed immediately when asked for non-face content. Modern diffusion models like DALL-E 3 and Stable Diffusion XL trained on billions of image-caption pairs scraped from the internet, giving them far broader coverage—but also introducing biases baked into that data.</p>
       <p>For detectors, this matters because a model trained on a narrow distribution of content will leave narrow, predictable artifacts. A model trained on diverse data will produce more varied artifacts that require correspondingly diverse training sets to detect. TruthLens Pro continuously adds samples from newly released model versions to its training queue precisely to keep pace with this moving target.</p>
-      <p>One underappreciated consequence of large training sets is <strong>memorization</strong>: generative models sometimes reproduce near-exact copies of training images when prompted similarly to a training example. This is both a copyright concern and a detection signalâif reverse image search returns a near-match, the "AI-generated" image may actually be a slightly modified real photograph.</p>
+      <p>One underappreciated consequence of large training sets is <strong>memorization</strong>: generative models sometimes reproduce near-exact copies of training images when prompted similarly to a training example. This is both a copyright concern and a detection signal—if reverse image search returns a near-match, the "AI-generated" image may actually be a slightly modified real photograph.</p>
 
       <h2 id="how-deepfakes-are-used">How Deepfakes Are Used in the Real World</h2>
-      <p>AI-generated imagery is used across a wide spectrum from benign creative applications to active harm. On the benign end: concept art for games and films, stock image generation, personalized avatars, and product visualization. These use cases are growing and largely uncontroversialâthe images are clearly labeled as AI-generated by their creators.</p>
-      <p>The harmful end of the spectrum is more serious. <strong>Non-consensual intimate imagery</strong> (NCII) is one of the most prevalent harmsâAI tools are used to generate sexualized images of real individuals without consent, overwhelmingly targeting women. <strong>Political disinformation</strong> is another: fabricated images of political figures in compromising situations or at fake events have been used to influence elections and inflame conflicts. <strong>Financial fraud</strong> via deepfake video calls impersonating executives has cost companies hundreds of millions of dollars.</p>
-      <p>A 2024 report from the AI Incident Database found that AI image manipulation was involved in approximately 38% of documented AI-related harmsâmaking it the single largest category by incident count. Detection tools like TruthLens Pro represent one layer of defense, but platform-level policies, watermarking standards, and legislative action are equally necessary.</p>
+      <p>AI-generated imagery is used across a wide spectrum from benign creative applications to active harm. On the benign end: concept art for games and films, stock image generation, personalized avatars, and product visualization. These use cases are growing and largely uncontroversial—the images are clearly labeled as AI-generated by their creators.</p>
+      <p>The harmful end of the spectrum is more serious. <strong>Non-consensual intimate imagery</strong> (NCII) is one of the most prevalent harms—AI tools are used to generate sexualized images of real individuals without consent, overwhelmingly targeting women. <strong>Political disinformation</strong> is another: fabricated images of political figures in compromising situations or at fake events have been used to influence elections and inflame conflicts. <strong>Financial fraud</strong> via deepfake video calls impersonating executives has cost companies hundreds of millions of dollars.</p>
+      <p>A 2024 report from the AI Incident Database found that AI image manipulation was involved in approximately 38% of documented AI-related harms—making it the single largest category by incident count. Detection tools like TruthLens Pro represent one layer of defense, but platform-level policies, watermarking standards, and legislative action are equally necessary.</p>
 
       <h2 id="emerging-standards-watermarking-c2pa">Emerging Standards: Watermarking and C2PA</h2>
-      <p>The content provenance problemâknowing whether an image was taken by a camera or generated by AIâhas prompted several industry standards efforts. The Coalition for Content Provenance and Authenticity (C2PA) defines an open standard for embedding cryptographically signed metadata into image files, recording their origin and edit history. Adobe's Content Credentials initiative and Leica's camera line both support C2PA. When an image carries a valid C2PA manifest, its origin is verifiable without any AI detection at all.</p>
-      <p>Google DeepMind's <strong>SynthID</strong> embeds an imperceptible watermark directly into the pixel data of AI-generated images. Unlike metadata (which is trivially stripped), SynthID watermarks survive moderate JPEG compression, cropping, and color adjustments. The approach is not foolproofâadversarial attacks can remove themâbut it significantly raises the cost of laundering AI-generated imagery as authentic.</p>
-      <p>Until these standards achieve widespread adoption, detection tools remain the primary line of defense for most users encountering images of unknown provenance. Combining multiple signalsâC2PA metadata when available, pixel-level analysis, semantic classification, and reverse image searchâgives the highest confidence result.</p>
+      <p>The content provenance problem—knowing whether an image was taken by a camera or generated by AI—has prompted several industry standards efforts. The Coalition for Content Provenance and Authenticity (C2PA) defines an open standard for embedding cryptographically signed metadata into image files, recording their origin and edit history. Adobe's Content Credentials initiative and Leica's camera line both support C2PA. When an image carries a valid C2PA manifest, its origin is verifiable without any AI detection at all.</p>
+      <p>Google DeepMind's <strong>SynthID</strong> embeds an imperceptible watermark directly into the pixel data of AI-generated images. Unlike metadata (which is trivially stripped), SynthID watermarks survive moderate JPEG compression, cropping, and color adjustments. The approach is not foolproof—adversarial attacks can remove them—but it significantly raises the cost of laundering AI-generated imagery as authentic.</p>
+      <p>Until these standards achieve widespread adoption, detection tools remain the primary line of defense for most users encountering images of unknown provenance. Combining multiple signals—C2PA metadata when available, pixel-level analysis, semantic classification, and reverse image search—gives the highest confidence result.</p>
     </article>
   </div>
 </main>
@@ -173,7 +173,7 @@
   <ul class="ist-1wnkl99">
     <li class="ist-1be1ynf"><a href="/blog/how-to-detect-ai-writing/">How to Detect AI Writing: A Complete Guide</a></li>
     <li class="ist-1be1ynf"><a href="/blog/ai-detection-accuracy/">AI Detection Accuracy: How TruthLens Pro Compares</a></li>
-    <li><a href="/">Try TruthLens Pro â Free AI Content Detector</a></li>
+    <li><a href="/">Try TruthLens Pro — Free AI Content Detector</a></li>
   </ul>
 </section>
 </footer>
