@@ -2,7 +2,7 @@
   "id": "/",
   "name": "TruthLens Pro",
   "short_name": "TruthLens",
-  "description": "AI-powered content authenticity detector â spot AI-generated text, images, and video in seconds.",
+  "description": "AI-powered content authenticity detector — spot AI-generated text, images, and video in seconds.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -84,7 +84,7 @@
       "sizes": "1200x630",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "TruthLens Pro â AI Content Detector"
+      "label": "TruthLens Pro — AI Content Detector"
     }
   ]
 }
