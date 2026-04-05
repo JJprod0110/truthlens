@@ -54,20 +54,20 @@
 <header role="banner">
 <nav class="topbar" aria-label="Main navigation">
   <div class="topbar-logo">Truth<em>Lens</em><sup>PRO</sup></div>
-  <div class="topbar-right" id="topbarRight"><button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNavDrawer" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
-    <button type="button" class="topbar-btn tb-ghost" onclick="openModal('privacyOverlay')" class="ist-1gic06e">🔒 Privacy</button>
+  <div class="topbar-right" id="topbarRight"><button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNavDrawer" data-action="toggleMobileNav"><span></span><span></span><span></span></button>
+    <button type="button" class="topbar-btn tb-ghost" data-action="openModal" data-param="privacyOverlay" class="ist-1gic06e">🔒 Privacy</button>
     <a href="/blog/" class="topbar-btn tb-ghost">Blog</a>
-      <button type="button" class="topbar-btn tb-ghost" onclick="openModal('plansOverlay')">Pricing</button>
-    <button type="button" class="topbar-btn tb-ghost" onclick="openAuthModal('signin')">Sign in</button>
-    <button type="button" class="topbar-btn tb-fill" onclick="openAuthModal('signup')">Get started free →</button>
-      <button class="hamburger-btn" id="hamburgerBtn2"type="button" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+      <button type="button" class="topbar-btn tb-ghost" data-action="openModal" data-param="plansOverlay">Pricing</button>
+    <button type="button" class="topbar-btn tb-ghost" data-action="openAuthModal" data-param="signin">Sign in</button>
+    <button type="button" class="topbar-btn tb-fill" data-action="openAuthModal" data-param="signup">Get started free →</button>
+      <button class="hamburger-btn" id="hamburgerBtn2"type="button" aria-label="Toggle navigation menu" aria-expanded="false" data-action="toggleMobileNav"><span></span><span></span><span></span></button>
   </div>
 
   <div class="mobile-nav-drawer" id="mobileNavDrawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
         <a href="/blog/" class="topbar-btn tb-ghost">Blog</a>
-    <button type="button" class="topbar-btn tb-ghost" onclick="openModal('plansOverlay');toggleMobileNav()">Pricing</button>
-    <button type="button" class="topbar-btn tb-ghost" onclick="openAuthModal('signin');toggleMobileNav()">Sign in</button>
-    <button type="button" class="topbar-btn tb-primary" onclick="openAuthModal('signup');toggleMobileNav()">Get started free →</button>
+    <button type="button" class="topbar-btn tb-ghost" data-action="tl_openModal_toggleMobileNav" data-param="plansOverlay">Pricing</button>
+    <button type="button" class="topbar-btn tb-ghost" data-action="tl_openAuthModal_toggleMobileNav" data-param="signin">Sign in</button>
+    <button type="button" class="topbar-btn tb-primary" data-action="tl_openAuthModal_toggleMobileNav" data-param="signup">Get started free →</button>
   </div>
 </nav>
 </header>
@@ -77,7 +77,7 @@
 <div class="hero-section">
   <div class="ist-3vl0s6">
     <div class="hero-eyebrow ist-3ocpgz"><span class="dot"></span>Powered by Claude AI</div>
-    <div class="hero-eyebrow ist-1u3xh50" onclick="openModal('privacyOverlay')">🔒 Zero data selling — ever</div>
+    <div class="hero-eyebrow ist-1u3xh50" data-action="openModal" data-param="privacyOverlay">🔒 Zero data selling — ever</div>
   </div>
   <h1>Spot what's <span class="strike">real</span> <br>in seconds</h1>
   <p>Paste text, upload images or video, or scan any URL — TruthLens detects AI-generated content with forensic-grade analysis.</p>
@@ -99,16 +99,16 @@
 
   <!-- Input Type Tabs -->
   <div class="input-tabs">
-    <button type="button" class="input-tab active" onclick="switchPanel('text')">
+    <button type="button" class="input-tab active" data-action="switchPanel" data-param="text">
       <span class="ti-icon">📝</span> Text
     </button>
-    <button type="button" class="input-tab" onclick="switchPanel('url')">
+    <button type="button" class="input-tab" data-action="switchPanel" data-param="url">
       <span class="ti-icon">🔗</span> URL
     </button>
-    <button type="button" class="input-tab" onclick="switchPanel('image')">
+    <button type="button" class="input-tab" data-action="switchPanel" data-param="image">
       <span class="ti-icon">🖼️</span> Image
     </button>
-    <button type="button" class="input-tab pro-locked" onclick="switchPanel('video')">
+    <button type="button" class="input-tab pro-locked" data-action="switchPanel" data-param="video">
       <span class="ti-icon">🎬</span> Video
       <span class="pro-lock">PRO</span>
     </button>
@@ -117,11 +117,11 @@
   <!-- TEXT PANEL -->
   <div class="panel active" id="panel-text">
     <div class="text-area-wrap">
-      <textarea id="textInput" placeholder="Paste an article, email, essay, social post, or any text you want to verify for AI generation…" aria-label="Paste an article, email, essay, social post, or any text you want to verify for AI generation…" maxlength="10000" oninput="updateCharCount()"></textarea>
+      <textarea id="textInput" placeholder="Paste an article, email, essay, social post, or any text you want to verify for AI generation…" aria-label="Paste an article, email, essay, social post, or any text you want to verify for AI generation…" maxlength="10000" data-oninput="updateCharCount"></textarea>
     </div>
     <div class="textarea-toolbar">
       <span class="char-count"><span id="charCount">0</span>/10,000</span>
-      <button type="button" class="paste-btn" onclick="pasteFromClipboard()">📋 Paste from clipboard</button>
+      <button type="button" class="paste-btn" data-action="pasteFromClipboard">📋 Paste from clipboard</button>
     </div>
   </div>
 
@@ -129,7 +129,7 @@
   <div class="panel" id="panel-url">
     <div class="url-input-row">
       <input type="url" id="urlInput" placeholder="https://example.com/article — paste any webpage URL" aria-label="Webpage URL to analyze" />
-      <button type="button" class="url-fetch-btn" onclick="fetchURL()">Fetch →</button>
+      <button type="button" class="url-fetch-btn" data-action="fetchURL">Fetch →</button>
     </div>
     <div class="url-tips">
       <h2>Works great with</h2>
@@ -150,7 +150,7 @@
   <!-- IMAGE PANEL -->
   <div class="panel" id="panel-image">
     <div class="drop-zone" id="imageDropZone"
-      onclick="document.getElementById('imgFile').click()"
+      data-action="tlImgUpload"
       ondragover="dz(event,'imageDropZone')"
       ondragleave="dzl('imageDropZone')"
       ondrop="dzDrop(event,'imgFile','imageDropZone')">
@@ -165,14 +165,14 @@
   <!-- VIDEO PANEL -->
   <div class="panel" id="panel-video">
     <div class="drop-zone" id="videoDropZone"
-      onclick="requirePro()"
+      data-action="requirePro"
       ondragover="dz(event,'videoDropZone')"
       ondragleave="dzl('videoDropZone')"
       ondrop="requirePro()">
       <span class="dz-icon">🎬</span>
       <p>Video detection is a Pro feature</p>
       <p>Upgrade to detect AI-generated video, deepfakes, and synthetic media</p>
-      <button type="button" onclick="event.stopPropagation();openModal('plansOverlay')" class="ist-1msvrrn">Upgrade to Pro →</button>
+      <button type="button" data-action="openModal" data-param="plansOverlay" data-stop="1" class="ist-1msvrrn">Upgrade to Pro →</button>
     </div>
     <input type="file" id="vidFile" accept="video/*" class="ist-uydnfn" aria-label="Upload video for analysis" onchange="loadPreview('vidFile','vidPreview','videoDropZone','video')">
     <div class="preview-area" id="vidPreview"></div>
@@ -180,13 +180,13 @@
 
   <!-- CTA -->
   <div class="analyze-cta">
-    <button type="button" class="analyze-main-btn" id="mainAnalyzeBtn" onclick="runAnalysis()">
+    <button type="button" class="analyze-main-btn" id="mainAnalyzeBtn" data-action="runAnalysis">
       <span>🔍</span> <span id="analyzeLabel">Analyze Content</span>
     </button>
   </div>
   <div class="daily-counter" id="dailyCounter">
     <span id="scansLeft">5</span> free scans remaining today ·
-    <span class="upgrade-nudge" onclick="openModal('plansOverlay')">Upgrade for unlimited</span>
+    <span class="upgrade-nudge" data-action="openModal" data-param="plansOverlay">Upgrade for unlimited</span>
   </div>
 
   <!-- Loading -->
@@ -208,7 +208,7 @@
   <div class="history-section" id="historySection" class="ist-uydnfn">
     <div class="history-header">
       <h3>Recent scans</h3>
-      <span class="clear-hist" onclick="clearHistory()">Clear all</span>
+      <span class="clear-hist" data-action="clearHistory">Clear all</span>
     </div>
     <div class="history-list" id="historyList"></div>
   </div>
@@ -238,7 +238,7 @@
         <span class="pb-badge">✓ Content not stored</span>
         <span class="pb-badge">✓ No third-party sharing</span>
         <span class="pb-badge">✓ Delete anytime</span>
-        <span class="pb-badge ist-1wc3lz9" onclick="openModal('privacyOverlay')">→ Full privacy pledge</span>
+        <span class="pb-badge ist-1wc3lz9" data-action="openModal" data-param="privacyOverlay">→ Full privacy pledge</span>
       </div>
     </div>
   </div>
@@ -295,7 +295,7 @@
 </div>
 
 <!-- ═══ SUPPORT BOT ═══ -->
-<button type="button" class="chat-bubble" aria-label="Open support chat" onclick="toggleChat()" id="chatBubble">
+<button type="button" class="chat-bubble" aria-label="Open support chat" data-action="toggleChat" id="chatBubble">
   💬
   <span class="notif">1</span>
 </button>
@@ -307,18 +307,18 @@
       <div class="bot-name">TruthLens Support</div>
       <div class="bot-status">● Online — AI powered</div>
     </div>
-    <button type="button" class="close-chat" aria-label="Close chat" onclick="toggleChat()">✕</button>
+    <button type="button" class="close-chat" aria-label="Close chat" data-action="toggleChat">✕</button>
   </div>
   <div class="chat-messages" id="chatMessages"></div>
   <div class="chat-suggestions" id="chatSuggestions">
-    <span class="chat-suggestion" onclick="sendSuggestion(this)">How accurate is it?</span>
-    <span class="chat-suggestion" onclick="sendSuggestion(this)">What's in Pro?</span>
-    <span class="chat-suggestion" onclick="sendSuggestion(this)">How do I cancel?</span>
-    <span class="chat-suggestion" onclick="sendSuggestion(this)">Is my data safe?</span>
+    <span class="chat-suggestion" data-action="sendSuggestion">How accurate is it?</span>
+    <span class="chat-suggestion" data-action="sendSuggestion">What's in Pro?</span>
+    <span class="chat-suggestion" data-action="sendSuggestion">How do I cancel?</span>
+    <span class="chat-suggestion" data-action="sendSuggestion">Is my data safe?</span>
   </div>
   <div class="chat-input-row">
     <input class="chat-input" id="chatInput" placeholder="Ask anything…" aria-label="Chat message" onkeydown="if(event.key==='Enter')sendChat()">
-    <button type="button" class="chat-send" aria-label="Send message" onclick="sendChat()">→</button>
+    <button type="button" class="chat-send" aria-label="Send message" data-action="sendChat">→</button>
   </div>
 </div>
 
@@ -452,7 +452,7 @@
     <a href="/privacy/#ccpa" class="ist-14ehxct">Do Not Sell My Info</a>
     <a href="/api/" class="ist-3od4ou">API Docs</a>
     <a href="/blog/" class="ist-3od4ou">Blog</a> 
-    <a href="#pricing" onclick="openModal('plansOverlay');return false">Pricing</a>
+    <a href="#pricing" data-action="openModal" data-param="plansOverlay">Pricing</a>
   </div>
   <div class="footer-right">© 2026 TruthLens · We never sell your data</div>
 </footer>
@@ -468,8 +468,8 @@
         <a href="/privacy/" class="ist-b1huj7">Privacy Policy</a>.
       </p>
       <div class="ist-125e0qz">
-        <button type="button" onclick="ckDecline()" class="ist-1cb1lku">Decline</button>
-        <button type="button" onclick="ckAccept()" class="ist-130vdf2">Accept</button>
+        <button type="button" data-action="ckDecline" class="ist-1cb1lku">Decline</button>
+        <button type="button" data-action="ckAccept" class="ist-130vdf2">Accept</button>
       </div>
     </div>
   </div>
@@ -479,15 +479,15 @@
   <div class="ist-8tnub0">
     <label class="ist-63x5qt"><input type="checkbox" id="cookie-functional" aria-label="Functional (required)" checked disabled class="ist-1184glj"> Functional (required)</label>
     <label class="ist-63x5qt"><input type="checkbox" id="cookie-analytics" aria-label="Analytics cookies" class="ist-1184glj"> Analytics</label>
-    <button type="button" onclick="acceptSelectedCookies()" class="ist-1jxel3l">Save Preferences</button>
-    <button type="button" onclick="acceptAllCookies()" class="ist-1meep8b">Accept All</button>
-    <button type="button" onclick="rejectAllCookies()" class="ist-1mcuqhp">Reject All</button>
+    <button type="button" data-action="acceptSelectedCookies" class="ist-1jxel3l">Save Preferences</button>
+    <button type="button" data-action="acceptAllCookies" class="ist-1meep8b">Accept All</button>
+    <button type="button" data-action="rejectAllCookies" class="ist-1mcuqhp">Reject All</button>
   </div>
 </div>
 <!-- ═══ PRIVACY PLEDGE MODAL ═══ -->
 <div class="overlay" inert id="privacyOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Our Privacy Pledge">
   <div class="modal privacy-modal">
-    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('privacyOverlay')">✕</button>
+    <button type="button" class="modal-close" aria-label="Close" data-action="closeModal" data-param="privacyOverlay">✕</button>
     <h2>🔒 Our Privacy Pledge</h2>
     <p class="modal-sub">Written in plain English, not legalese. This is what we actually do with your data.</p>
     <div class="privacy-commitment">
@@ -536,13 +536,13 @@
 <!-- ═══ AUTH MODAL ═══ -->
 <div class="overlay" inert id="authOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="authTitle">
   <div class="modal" id="authModal" aria-label="Create account">
-    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('authOverlay')">✕</button>
+    <button type="button" class="modal-close" aria-label="Close" data-action="closeModal" data-param="authOverlay">✕</button>
     <h2 id="authTitle">Create account</h2>
     <p class="modal-sub" id="authSub">Join 50,000+ users detecting AI content</p>
 
     <div class="social-btns">
-      <button type="button" class="social-btn" aria-label="Sign in with Google" onclick="socialLogin('Google')">🌐 Google</button>
-      <button type="button" class="social-btn" aria-label="Sign in with Twitter/X" onclick="socialLogin('Twitter/X')">𝕏 Twitter/X</button>
+      <button type="button" class="social-btn" aria-label="Sign in with Google" data-action="socialLogin" data-param="Google">🌐 Google</button>
+      <button type="button" class="social-btn" aria-label="Sign in with Twitter/X" data-action="socialLogin" data-param="Twitter/X">𝕏 Twitter/X</button>
     </div>
     <div class="divider"><span></span><p>or email</p><span></span></div>
 
@@ -560,18 +560,18 @@
       <label>Password</label>
       <input type="password" id="authPassword" placeholder="••••••••" aria-label="Password" autocomplete="current-password" maxlength="128">
     </div>
-    <button type="button" class="btn-primary" onclick="submitAuth()" id="authSubmitBtn">Create free account →</button>
+    <button type="button" class="btn-primary" data-action="submitAuth" id="authSubmitBtn">Create free account →</button>
     <div class="modal-switch" id="authSwitch">
-      Already have an account? <button type="button" class="link-btn" onclick="toggleAuthMode()">Sign in</button>
+      Already have an account? <button type="button" class="link-btn" data-action="toggleAuthMode">Sign in</button>
     </div>
     <div class="auth-privacy-note">
-      🔒 We never sell your data. No ads. No third-party sharing. <a href="/privacy/" onclick="closeModal('authOverlay');openModal('privacyOverlay')" class="ist-sn3i5t">Our pledge →</a>
+      🔒 We never sell your data. No ads. No third-party sharing. <a href="/privacy/" data-action="tl_closeModal_openModal" data-param="authOverlay" data-param2="privacyOverlay" class="ist-sn3i5t">Our pledge →</a>
     </div>
   </div>
 </div>
 <div class="overlay" inert id="plansOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Upgrade TruthLens">
   <div class="modal plans-modal ist-166626o">
-    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('plansOverlay')">✕</button>
+    <button type="button" class="modal-close" aria-label="Close" data-action="closeModal" data-param="plansOverlay">✕</button>
     <h2>Upgrade TruthLens</h2>
     <p class="modal-sub">Unlock unlimited scans, video detection, and priority results</p>
     <div class="plans-grid">
@@ -589,7 +589,7 @@
           <li class="no">Scan history</li>
           <li class="no">Priority support</li>
         </ul>
-        <button type="button" class="plan-btn outline" onclick="closeModal('plansOverlay')">Current plan</button>
+        <button type="button" class="plan-btn outline" data-action="closeModal" data-param="plansOverlay">Current plan</button>
       </div>
       <div class="plan-card popular">
         <div class="popular-tag">MOST POPULAR</div>
@@ -622,18 +622,18 @@
           <li>Unlimited scan history</li>
           <li>Priority + SLA support</li>
         </ul>
-        <button type="button" class="plan-btn outline"  onclick="window.location.href='mailto:sales@truthlensdetect.com'">Contact sales →</button>
+        <button type="button" class="plan-btn outline"  data-action="navigate" data-param="mailto:sales@truthlensdetect.com">Contact sales →</button>
       </div>
     </div>
     <div class="ist-1tdf1jv">
       <span class="ist-1e9qifu">🔒</span>
-      <p class="ist-cc44oe">All plans: zero data selling, zero ad tracking, zero third-party sharing. <a href="/privacy/" onclick="closeModal('plansOverlay');openModal('privacyOverlay')" class="ist-10r507">Read our full privacy pledge →</a></p>
+      <p class="ist-cc44oe">All plans: zero data selling, zero ad tracking, zero third-party sharing. <a href="/privacy/" data-action="tl_closeModal_openModal" data-param="plansOverlay" data-param2="privacyOverlay" class="ist-10r507">Read our full privacy pledge →</a></p>
     </div>
   </div>
 </div>
 <div class="overlay" inert id="shareOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Share Result">
   <div class="modal">
-    <button type="button" class="modal-close" aria-label="Close" onclick="closeModal('shareOverlay')">✕</button>
+    <button type="button" class="modal-close" aria-label="Close" data-action="closeModal" data-param="shareOverlay">✕</button>
     <h2>Share Result</h2>
     <p class="modal-sub">Spread awareness — let others know about this content</p>
     <div class="share-preview-card" id="sharePreviewCard">
@@ -641,34 +641,34 @@
       <div class="sp-sub" id="shareVerdictSub">via TruthLens AI Detector</div>
     </div>
     <div class="share-grid">
-      <div class="share-btn-item" onclick="shareToX()">
+      <div class="share-btn-item" data-action="shareToX">
         <span class="icon">𝕏</span><span class="lbl">Twitter/X</span>
       </div>
-      <div class="share-btn-item" onclick="shareToLinkedIn()">
+      <div class="share-btn-item" data-action="shareToLinkedIn">
         <span class="icon">💼</span><span class="lbl">LinkedIn</span>
       </div>
-      <div class="share-btn-item" onclick="shareToFacebook()">
+      <div class="share-btn-item" data-action="shareToFacebook">
         <span class="icon">📘</span><span class="lbl">Facebook</span>
       </div>
-      <div class="share-btn-item" onclick="shareToReddit()">
+      <div class="share-btn-item" data-action="shareToReddit">
         <span class="icon">🔴</span><span class="lbl">Reddit</span>
       </div>
-      <div class="share-btn-item" onclick="shareToWhatsApp()">
+      <div class="share-btn-item" data-action="shareToWhatsApp">
         <span class="icon">💬</span><span class="lbl">WhatsApp</span>
       </div>
-      <div class="share-btn-item" onclick="shareToTelegram()">
+      <div class="share-btn-item" data-action="shareToTelegram">
         <span class="icon">✈️</span><span class="lbl">Telegram</span>
       </div>
-      <div class="share-btn-item" onclick="shareNative()">
+      <div class="share-btn-item" data-action="shareNative">
         <span class="icon">📤</span><span class="lbl">More</span>
       </div>
-      <div class="share-btn-item" onclick="downloadReport()">
+      <div class="share-btn-item" data-action="downloadReport">
         <span class="icon">📄</span><span class="lbl">PDF Report</span>
       </div>
     </div>
     <div class="share-link-row">
       <input class="share-link-input" id="shareLinkInput" aria-label="Share link URL" value="https://truthlensdetect.com/r/a8x2k9" readonly>
-      <button type="button" class="copy-btn" onclick="copyLink()">Copy link</button>
+      <button type="button" class="copy-btn" data-action="copyLink">Copy link</button>
     </div>
   </div>
 </div>
@@ -676,7 +676,7 @@
 <!-- ═══ TRUST STRIP ═══ -->
 <div class="trust-strip">
   🔒 Your data is never sold to third parties &nbsp;·&nbsp; No ad tracking &nbsp;·&nbsp; Scanned content is never stored &nbsp;·&nbsp;
-  <button type="button" class="link-btn" onclick="openModal('privacyOverlay')">Read our privacy pledge</button>
+  <button type="button" class="link-btn" data-action="openModal" data-param="privacyOverlay">Read our privacy pledge</button>
 </div>
 
 </html>
