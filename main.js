@@ -1,3 +1,4 @@
+(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap';document.head.appendChild(l);})();
 // Run pricing modal auto-open if navigated via hash
 if(document.readyState !== 'loading') {
   if(location.hash==='#pricing')openModal('plansOverlay');
