@@ -1143,3 +1143,8 @@ h1 { color: var(--ink); }
 
 /* footer links .ist-3od4ou: opacity 0.6 composites to 2.6:1 → opacity:1 = 5.5:1 */
 .ist-3od4ou { opacity: 1; }
+
+
+/* === WCAG AA pass 3: topbar nav buttons ===
+   .topbar-btn.tb-ghost: ink #1a1814 on dark navy #111128 = ~1.1:1 → white = 17.5:1 */
+.topbar-btn.tb-ghost { color: #ffffff; }
