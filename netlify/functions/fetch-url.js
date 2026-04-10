@@ -1,5 +1,4 @@
 const https = require('https');
-const http = require('http');
 
 // In-memory rate limiter (per instance, best-effort)
 const rateLimitMap = new Map();
@@ -17,6 +16,14 @@ function isRateLimited(ip) {
   entry.count++;
   rateLimitMap.set(ip, entry);
   return false;
+}
+
+// Returns true if hostname resolves to a private/internal address (SSRF risk)
+function isPrivateHostname(hostname) {
+  return (
+    /^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[01])\.|169\.254\.|0\.0\.0\.0)/.test(hostname) ||
+    hostname === '::1'
+  );
 }
 
 exports.handler = async (event) => {
@@ -49,14 +56,15 @@ exports.handler = async (event) => {
 
   try {
     const { url } = JSON.parse(event.body);
-    if (!url || !url.startsWith('http')) {
-      return { statusCode: 400, body: JSON.stringify({ error: 'Invalid URL' }) };
+
+    // HTTPS-only: reject plain HTTP and other schemes
+    if (!url || !url.startsWith('https://')) {
+      return { statusCode: 400, body: JSON.stringify({ error: 'Only HTTPS URLs are allowed' }) };
     }
 
-    // Block private/internal URLs
+    // Block private/internal URLs before the first request
     const parsed = new URL(url);
-    const hostname = parsed.hostname;
-    if (/^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[01])\.|169\.254\.|0\.0\.0\.0)/.test(hostname) || hostname === '::1') {
+    if (isPrivateHostname(parsed.hostname)) {
       return { statusCode: 400, body: JSON.stringify({ error: 'Private URLs not allowed' }) };
     }
 
@@ -76,9 +84,9 @@ exports.handler = async (event) => {
 
 function fetchUrl(url, redirectCount = 0) {
   if (redirectCount > 3) return Promise.reject(new Error('Too many redirects'));
+
   return new Promise((resolve, reject) => {
-    const lib = url.startsWith('https') ? https : http;
-    const req = lib.get(
+    const req = https.get(
       url,
       {
         headers: {
@@ -89,10 +97,29 @@ function fetchUrl(url, redirectCount = 0) {
       },
       (res) => {
         if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
-          return resolve(fetchUrl(res.headers.location, redirectCount + 1));
+          const redirectUrl = res.headers.location;
+
+          // Re-validate redirect destination to prevent SSRF via open redirects
+          if (!redirectUrl.startsWith('https://')) {
+            return reject(new Error('Redirect to non-HTTPS URL blocked'));
+          }
+          try {
+            const redirectParsed = new URL(redirectUrl);
+            if (isPrivateHostname(redirectParsed.hostname)) {
+              return reject(new Error('Redirect to private URL blocked'));
+            }
+          } catch {
+            return reject(new Error('Invalid redirect URL'));
+          }
+
+          return resolve(fetchUrl(redirectUrl, redirectCount + 1));
         }
+
         let data = '';
-        res.on('data', (chunk) => { data += chunk; if (data.length > 500000) req.destroy(); });
+        res.on('data', (chunk) => {
+          data += chunk;
+          if (data.length > 500000) req.destroy();
+        });
         res.on('end', () => {
           const text = data
             .replace(/<script[\s\S]*?<\/script>/gi, '')
@@ -106,6 +133,9 @@ function fetchUrl(url, redirectCount = 0) {
       }
     );
     req.on('error', reject);
-    req.on('timeout', () => { req.destroy(); reject(new Error('Request timeout')); });
+    req.on('timeout', () => {
+      req.destroy();
+      reject(new Error('Request timeout'));
+    });
   });
 }
