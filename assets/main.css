@@ -1125,3 +1125,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 /* === WCAG AA: topbar logo must be light on dark nav (#111128) === */
 .topbar-logo { color: #ffffff; }
+
+
+/* === WCAG AA pass 2: all remaining contrast failures === */
+
+/* h1 is white on light bg (#f7f5f0) = 1.07:1 → dark ink = 16.9:1 */
+h1 { color: var(--ink); }
+
+/* upgrade-nudge: accent orange on light bg = 3.1:1 → darkened = 4.63:1 */
+.upgrade-nudge { color: #be3d0f; }
+
+/* privacy-banner h2: bright blue on mint = 2.7:1 → dark blue = 6.6:1 */
+.privacy-banner h2 { color: #1e48c8; }
+
+/* footer-logo em: accent orange on light bg = 3.0:1 → darkened = 4.63:1 */
+.footer-logo em { color: #be3d0f; }
+
+/* footer links .ist-3od4ou: opacity 0.6 composites to 2.6:1 → opacity:1 = 5.5:1 */
+.ist-3od4ou { opacity: 1; }
