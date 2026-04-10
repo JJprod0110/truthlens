@@ -52,8 +52,8 @@ function openAuthModal(mode) {
   document.getElementById('signupFields').style.display = isSignup ? 'block' : 'none';
   document.getElementById('authSubmitBtn').textContent = isSignup ? 'Create free account →' : 'Sign in →';
   document.getElementById('authSwitch').innerHTML = isSignup
-    ? 'Already have an account? <button type="button" class="link-btn" onclick="toggleAuthMode()">Sign in</button>'
-    : 'New here? <button type="button" class="link-btn" onclick="toggleAuthMode()">Create an account</button>';
+    ? 'Already have an account? <button type="button" class="link-btn" data-action="toggleAuthMode">Sign in</button>'
+    : 'New here? <button type="button" class="link-btn" data-action="toggleAuthMode">Create an account</button>';
   openModal('authOverlay');
 }
 function toggleAuthMode() {
@@ -123,6 +123,30 @@ function loginUser(name, email, plan, token) {
   renderTopbar();
   showToast(`Welcome, ${name}! 👋`);
   renderHistory();
+  // DOM event listeners (replacing removed inline on* handlers)
+  var sl = document.getElementById('skipLink');
+  if (sl) {
+    sl.addEventListener('focus', function() { this.style.left='16px'; this.style.width='auto'; this.style.height='auto'; });
+    sl.addEventListener('blur', function() { this.style.left='-9999px'; this.style.width='1px'; this.style.height='1px'; });
+  }
+  var idz = document.getElementById('imageDropZone');
+  if (idz) {
+    idz.addEventListener('dragover', function(e) { dz(e, 'imageDropZone'); });
+    idz.addEventListener('dragleave', function() { dzl('imageDropZone'); });
+    idz.addEventListener('drop', function(e) { dzDrop(e, 'imgFile', 'imageDropZone'); });
+  }
+  var imgInp = document.getElementById('imgFile');
+  if (imgInp) imgInp.addEventListener('change', function() { loadPreview('imgFile','imgPreview','imageDropZone'); });
+  var vdz = document.getElementById('videoDropZone');
+  if (vdz) {
+    vdz.addEventListener('dragover', function(e) { dz(e, 'videoDropZone'); });
+    vdz.addEventListener('dragleave', function() { dzl('videoDropZone'); });
+    vdz.addEventListener('drop', function() { requirePro(); });
+  }
+  var vidInp = document.getElementById('vidFile');
+  if (vidInp) vidInp.addEventListener('change', function() { loadPreview('vidFile','vidPreview','videoDropZone','video'); });
+  var ci = document.getElementById('chatInput');
+  if (ci) ci.addEventListener('keydown', function(e) { if (e.key === 'Enter') sendChat(); });
   try { localStorage.setItem('tl_user', JSON.stringify({ name, email, plan })); } catch(e) {}
 }
 
@@ -138,23 +162,23 @@ function renderTopbar() {
   if (!appState.user) {
     r.innerHTML = `
       <a href="/blog/" class="topbar-btn tb-ghost">Blog</a>
-      <button class="topbar-btn tb-ghost" onclick="openModal('plansOverlay')">Pricing</button>
-      <button class="topbar-btn tb-ghost" onclick="openAuthModal('signin')">Sign in</button>
-      <button class="topbar-btn tb-fill" onclick="openAuthModal('signup')">Get started free →</button>
-      <button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>`;
+      <button class="topbar-btn tb-ghost" data-action="openModal" data-param="plansOverlay">Pricing</button>
+      <button class="topbar-btn tb-ghost" data-action="openAuthModal" data-param="signin">Sign in</button>
+      <button class="topbar-btn tb-fill" data-action="openAuthModal" data-param="signup">Get started free →</button>
+      <button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" data-action="toggleMobileNav"><span></span><span></span><span></span></button>`;
   } else {
     const initial = appState.user.name[0].toUpperCase();
     const planTag = appState.plan === 'pro' ? 'PRO' : appState.plan === 'enterprise' ? 'TEAM' : 'FREE';
     r.innerHTML = `
-      <button class="topbar-btn tb-ghost" onclick="openModal('privacyOverlay')" style="display:flex;align-items:center;gap:0.35rem;color:var(--green);border-color:rgba(26,122,74,0.3);">🔒 Privacy</button>
+      <button class="topbar-btn tb-ghost" data-action="openModal" data-param="privacyOverlay" style="display:flex;align-items:center;gap:0.35rem;color:var(--green);border-color:rgba(26,122,74,0.3);">🔒 Privacy</button>
       <a href="/blog/" class="topbar-btn tb-ghost">Blog</a>
-      <button class="topbar-btn tb-ghost" onclick="openModal('plansOverlay')">Upgrade</button>
-      <div class="user-pill" onclick="openModal('plansOverlay')">
+      <button class="topbar-btn tb-ghost" data-action="openModal" data-param="plansOverlay">Upgrade</button>
+      <div class="user-pill" data-action="openModal" data-param="plansOverlay">
         <div class="user-avatar">${initial}</div>
         <span class="user-name">${appState.user.name.split(' ')[0]}</span>
         <span class="user-plan-tag ${appState.plan}">${planTag}</span>
       </div>
-      <button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>`;
+      <button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" data-action="toggleMobileNav"><span></span><span></span><span></span></button>`;
   }
 }
 
@@ -203,9 +227,9 @@ function loadPreview(inputId, previewId, zoneId, type) {
   const preview = document.getElementById(previewId);
   dzl(zoneId);
   if (type === 'video') {
-    preview.innerHTML = `<video src="${url}" controls class="preview-area" style="max-width:100%;max-height:260px;border-radius:12px;border:1.5px solid var(--border)"></video><div class="file-badge">🎬 ${f.name} <span class="remove" onclick="clearPreview('${previewId}','${inputId}')">✕</span></div>`;
+    preview.innerHTML = `<video src="${url}" controls class="preview-area" style="max-width:100%;max-height:260px;border-radius:12px;border:1.5px solid var(--border)"></video><div class="file-badge">🎬 ${f.name} <span class="remove" data-action="clearPreview" data-param="${previewId}" data-param2="${inputId}">✕</span></div>`;
   } else {
-    preview.innerHTML = `<img src="${url}" alt="" style="max-width:100%;max-height:260px;border-radius:12px;border:1.5px solid var(--border);object-fit:contain"><div class="file-badge">🖼️ ${f.name} <span class="remove" onclick="clearPreview('${previewId}','${inputId}')">✕</span></div>`;
+    preview.innerHTML = `<img src="${url}" alt="" style="max-width:100%;max-height:260px;border-radius:12px;border:1.5px solid var(--border);object-fit:contain"><div class="file-badge">🖼️ ${f.name} <span class="remove" data-action="clearPreview" data-param="${previewId}" data-param2="${inputId}">✕</span></div>`;
   }
   document.getElementById(zoneId).style.display = 'none';
 }
@@ -507,8 +531,8 @@ function displayResults(r, type) {
           </div>
         </div>
         <div class="verdict-actions">
-          <button class="v-action-btn va-share" onclick="openShareModal()">↗ Share</button>
-          <button class="v-action-btn va-save" onclick="saveResult()">⬇ Save</button>
+          <button class="v-action-btn va-share" data-action="openShareModal">↗ Share</button>
+          <button class="v-action-btn va-save" data-action="saveResult">⬇ Save</button>
         </div>
       </div>
 
@@ -525,7 +549,7 @@ function displayResults(r, type) {
       <div class="analysis-box">${r.summary}</div>
     </div>
 
-    <button onclick="resetScan()" style="width:100%;margin-top:0.7rem;padding:0.8rem;border:1.5px solid var(--border);border-radius:10px;background:transparent;font-family:'Cabinet Grotesk',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;color:var(--muted);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--ink)';this.style.color='var(--ink)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">← Analyze another piece of content</button>
+    <button data-action="resetScan" style="width:100%;margin-top:0.7rem;padding:0.8rem;border:1.5px solid var(--border);border-radius:10px;background:transparent;font-family:'Cabinet Grotesk',sans-serif;font-size:0.88rem;font-weight:700;cursor:pointer;color:var(--muted);transition:all 0.2s;">← Analyze another piece of content</button>
   `;
   area.classList.add('active');
 
@@ -824,6 +848,10 @@ if ('serviceWorker' in navigator) {
       case 'ckDecline':                        ckDecline(); break;
       case 'navigate':                         if (p) window.location.href = p; break;
       case 'tlImgUpload':                      tlImgUpload(); break;
+      case 'openShareModal': openShareModal(); break;
+      case 'saveResult': saveResult(); break;
+      case 'resetScan': resetScan(); break;
+      case 'clearPreview': clearPreview(p, p2); break;
       case 'tl_openModal_toggleMobileNav':     tl_openModal_toggleMobileNav(p); break;
       case 'tl_openAuthModal_toggleMobileNav': tl_openAuthModal_toggleMobileNav(p); break;
       case 'tl_closeModal_openModal':          tl_closeModal_openModal(p, p2); break;
