@@ -16,6 +16,7 @@ let appState = {
   history: JSON.parse(localStorage.getItem('tl_history') || '[]'),
   authMode: 'signup'
 };
+let _authToken = null; // kept off window.appState to prevent exposure
 
 /* ── MOBILE NAV ── */
 function toggleMobileNav() {
@@ -116,7 +117,8 @@ async function socialLogin(provider) {
 }
 
 function loginUser(name, email, plan, token) {
-  appState.user = { name, email, token };
+  appState.user = { name, email };
+  _authToken = token;
   appState.plan = plan;
   renderTopbar();
   showToast(`Welcome, ${name}! 👋`);
@@ -371,7 +373,7 @@ ${content.substring(0, 5000)}
 
   const res = await fetch("/.netlify/functions/analyze", {
     method: "POST",
-    headers: { "Content-Type": "application/json", "Authorization": "Bearer " + (appState.user && appState.user.token || "") },
+    headers: { "Content-Type": "application/json", "Authorization": "Bearer " + (_authToken || "") },
     body: JSON.stringify({
       model: "claude-sonnet-4-20250514",
       max_tokens: 1000,
@@ -415,7 +417,7 @@ Return ONLY valid JSON (no markdown):
 
   const res = await fetch("/.netlify/functions/analyze", {
     method: "POST",
-    headers: { "Content-Type": "application/json", "Authorization": "Bearer " + (appState.user && appState.user.token || "") },
+    headers: { "Content-Type": "application/json", "Authorization": "Bearer " + (_authToken || "") },
     body: JSON.stringify({
       model: "claude-sonnet-4-20250514",
       max_tokens: 1000,
