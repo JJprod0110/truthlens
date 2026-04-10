@@ -6,7 +6,7 @@
 //   4. Supabase JWT verification — validates the bearer token and reads the user's plan
 //
 // No frontend changes required; the existing request format (model + messages) is
-// preserved.  Optionally, the frontend can send "Authorization: Bearer <token>" to
+// preserved. Optionally, the frontend can send "Authorization: Bearer <token>" to
 // enable per-user limits instead of per-IP limits.
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -22,10 +22,9 @@ const PLAN_LIMITS = {
   pro: 500,
   enterprise: 99999,
 };
-
 const ANON_LIMIT = 5; // unauthenticated / IP-only
 
-// In-memory rate store.  Resets on function cold-start, but that is intentional:
+// In-memory rate store. Resets on function cold-start, but that is intentional:
 // it acts as a sliding-window guard without needing an external DB.
 const rateStore = new Map();
 
@@ -43,12 +42,12 @@ function checkRate(key, limit) {
 }
 
 exports.handler = async function (event) {
-  // ── Method guard ──────────────────────────────────────────────────────────
+  // ── Method guard ────────────────────────────────────────────────────────────
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  // ── Parse body ────────────────────────────────────────────────────────────
+  // ── Parse body ──────────────────────────────────────────────────────────────
   let body;
   try {
     body = JSON.parse(event.body);
@@ -56,9 +55,9 @@ exports.handler = async function (event) {
     return { statusCode: 400, body: 'Bad Request' };
   }
 
-  const { model, messages, max_tokens } = body;
+  const { model, messages, max_tokens, system } = body;
 
-  // ── 1. Validate messages ──────────────────────────────────────────────────
+  // ── 1. Validate messages ─────────────────────────────────────────────────────
   if (!Array.isArray(messages) || messages.length < 1 || messages.length > 2) {
     return {
       statusCode: 400,
@@ -67,7 +66,7 @@ exports.handler = async function (event) {
     };
   }
 
-  // ── 2. Content size cap (60 KB) ───────────────────────────────────────────
+  // ── 2. Content size cap (60 KB) ──────────────────────────────────────────────
   if (JSON.stringify(messages).length > 60_000) {
     return {
       statusCode: 400,
@@ -76,13 +75,11 @@ exports.handler = async function (event) {
     };
   }
 
-  // ── 3. Whitelist model ────────────────────────────────────────────────────
-  //  Never let the client choose an arbitrary/expensive model.
-  const safeModel = ALLOWED_MODELS.includes(model)
-    ? model
-    : 'claude-haiku-4-5-20251001';
+  // ── 3. Whitelist model ───────────────────────────────────────────────────────
+  // Never let the client choose an arbitrary/expensive model.
+  const safeModel = ALLOWED_MODELS.includes(model) ? model : 'claude-haiku-4-5-20251001';
 
-  // ── 4. JWT verification (optional — falls back to IP if absent) ───────────
+  // ── 4. JWT verification (optional — falls back to IP if absent) ─────────────
   let rateKey = null;
   let limit = ANON_LIMIT;
 
@@ -90,9 +87,9 @@ exports.handler = async function (event) {
   if (rawAuth.startsWith('Bearer ')) {
     const token = rawAuth.slice(7);
     try {
-      const supabaseUrl =
-        process.env.SUPABASE_URL;
-      const supabaseKey = process.env.SUPABASE_ANON_KEY; if (!supabaseUrl || !supabaseKey) throw new Error('Supabase env vars not set');
+      const supabaseUrl = process.env.SUPABASE_URL;
+      const supabaseKey = process.env.SUPABASE_ANON_KEY;
+      if (!supabaseUrl || !supabaseKey) throw new Error('Supabase env vars not set');
 
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 3000);
@@ -126,19 +123,18 @@ exports.handler = async function (event) {
     limit = ANON_LIMIT;
   }
 
-  // ── 5. Enforce rate limit ─────────────────────────────────────────────────
+  // ── 5. Enforce rate limit ────────────────────────────────────────────────────
   if (!checkRate(rateKey, limit)) {
     return {
       statusCode: 429,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        error:
-          'Scan limit reached. Please upgrade your plan or try again tomorrow.',
+        error: 'Scan limit reached. Please upgrade your plan or try again tomorrow.',
       }),
     };
   }
 
-  // ── 6. Call Anthropic with validated, server-controlled parameters ─────────
+  // ── 6. Call Anthropic with validated, server-controlled parameters ───────────
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -151,6 +147,7 @@ exports.handler = async function (event) {
         model: safeModel,
         max_tokens: Math.min(Number(max_tokens) || 1024, 2048), // cap at 2048
         messages,
+        ...(system && typeof system === 'string' ? { system: system.slice(0, 10000) } : {}),
       }),
     });
 
