@@ -490,7 +490,7 @@ body.pg-main {
   background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px;
   padding: 1.5rem; position: relative;
 }
-.how-num { font-size: 3rem; font-weight: 900; color: #8c8680; letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.8rem; }
+faq-q { font-size: 3rem; font-weight: 900; color: #8c8680; letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.8rem; }
 .how-card h4 { font-size: 0.95rem; font-weight: 800; margin-bottom: 0.4rem; }
 .how-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
 
@@ -1122,3 +1122,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .ist-1703st0 { margin-bottom:1rem;font-size:1.1rem;color:#ccc }
 .ist-1v2htbo { position:absolute;top:-40px;left:0;background:#005fcc;color:#fff;padding:8px 16px;z-index:9999;text-decoration:none;border-radius:0 0 4px 0;transition:top .2s }
 .ist-0k4xy2 { position:absolute;top:-40px;left:0;background:#6c63ff;color:#fff;padding:8px 16px;text-decoration:none;z-index:10000;border-radius:0 0 4px 0;transition:top .2s }
+
+/* === WCAG AA: topbar logo must be light on dark nav (#111128) === */
+.topbar-logo { color: #ffffff; }
