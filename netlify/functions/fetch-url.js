@@ -20,9 +20,21 @@ function isRateLimited(ip) {
 
 // Returns true if hostname resolves to a private/internal address (SSRF risk)
 function isPrivateHostname(hostname) {
+  // Strip IPv6 brackets so [::1] and ::1 are both caught
+  const h = hostname.startsWith('[') && hostname.endsWith(']')
+    ? hostname.slice(1, -1)
+    : hostname;
   return (
-    /^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[01])\.|169\.254\.|0\.0\.0\.0)/.test(hostname) ||
-    hostname === '::1'
+    // IPv4 private / loopback / link-local ranges
+    /^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[01])\.|169\.254\.|0\.0\.0\.0)/.test(h) ||
+    // IPv6 loopback
+    h === '::1' ||
+    // IPv6-mapped IPv4 private ranges
+    /^::ffff:(127\.|10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[01])\.|169\.254\.|0\.0\.0\.0)/i.test(h) ||
+    // Link-local IPv6 fe80::/10
+    /^fe[89ab][0-9a-f]:/i.test(h) ||
+    // Unique-local IPv6 fc00::/7
+    /^f[cd][0-9a-f]{2}:/i.test(h)
   );
 }
 
@@ -54,20 +66,34 @@ exports.handler = async (event) => {
     };
   }
 
+  // Parse body - return 400 for malformed JSON
+  let url;
   try {
-    const { url } = JSON.parse(event.body);
+    const body = JSON.parse(event.body);
+    url = body.url;
+  } catch {
+    return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON body' }) };
+  }
 
-    // HTTPS-only: reject plain HTTP and other schemes
-    if (!url || !url.startsWith('https://')) {
-      return { statusCode: 400, body: JSON.stringify({ error: 'Only HTTPS URLs are allowed' }) };
-    }
+  // HTTPS-only: reject plain HTTP and other schemes
+  if (!url || !url.startsWith('https://')) {
+    return { statusCode: 400, body: JSON.stringify({ error: 'Only HTTPS URLs are allowed' }) };
+  }
 
-    // Block private/internal URLs before the first request
-    const parsed = new URL(url);
-    if (isPrivateHostname(parsed.hostname)) {
-      return { statusCode: 400, body: JSON.stringify({ error: 'Private URLs not allowed' }) };
-    }
+  // Validate URL structure - return 400 for malformed input, not 500
+  let parsedUrl;
+  try {
+    parsedUrl = new URL(url);
+  } catch {
+    return { statusCode: 400, body: JSON.stringify({ error: 'Invalid URL' }) };
+  }
 
+  // Block private/internal URLs before the first request
+  if (isPrivateHostname(parsedUrl.hostname)) {
+    return { statusCode: 400, body: JSON.stringify({ error: 'Private URLs not allowed' }) };
+  }
+
+  try {
     const text = await fetchUrl(url);
     return {
       statusCode: 200,
@@ -77,14 +103,18 @@ exports.handler = async (event) => {
       },
       body: JSON.stringify({ text }),
     };
-  } catch (e) {
-    return { statusCode: 500, body: JSON.stringify({ error: e.message }) };
+  } catch {
+    // Never expose raw Node.js error messages to clients
+    return {
+      statusCode: 502,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'Failed to fetch URL' }),
+    };
   }
 };
 
 function fetchUrl(url, redirectCount = 0) {
   if (redirectCount > 3) return Promise.reject(new Error('Too many redirects'));
-
   return new Promise((resolve, reject) => {
     const req = https.get(
       url,
@@ -98,7 +128,6 @@ function fetchUrl(url, redirectCount = 0) {
       (res) => {
         if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
           const redirectUrl = res.headers.location;
-
           // Re-validate redirect destination to prevent SSRF via open redirects
           if (!redirectUrl.startsWith('https://')) {
             return reject(new Error('Redirect to non-HTTPS URL blocked'));
@@ -111,10 +140,8 @@ function fetchUrl(url, redirectCount = 0) {
           } catch {
             return reject(new Error('Invalid redirect URL'));
           }
-
           return resolve(fetchUrl(redirectUrl, redirectCount + 1));
         }
-
         let data = '';
         res.on('data', (chunk) => {
           data += chunk;
