@@ -196,6 +196,7 @@ function switchPanel(tab) {
   document.getElementById('loadingState').classList.remove('active');
   const labels = { text:'Analyze Text', url:'Analyze URL', image:'Analyze Image', video:'Analyze Video' };
   document.getElementById('analyzeLabel').textContent = labels[tab]; document.querySelector('.analyze-cta').style.display = tab === 'video' ? 'none' : '';
+  document.getElementById('panel-'+tab).scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 
 /* ── CHAR COUNT ── */
