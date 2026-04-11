@@ -34,12 +34,14 @@ function toggleMobileNav() {
 
 /* ── MODAL ── */
 function openModal(id) {
+  document.body.style.overflow = 'hidden';
   const el = document.getElementById(id);
   el.removeAttribute('inert');
   el.classList.add('open');
   el.setAttribute('aria-hidden', 'false');
 }
 function closeModal(id) {
+  document.body.style.overflow = '';
   const el = document.getElementById(id);
   el.classList.remove('open');
   el.setAttribute('aria-hidden', 'true');
@@ -142,7 +144,7 @@ function loginUser(name, email, plan, token) {
   if (vdz) {
     vdz.addEventListener('dragover', function(e) { dz(e, 'videoDropZone'); });
     vdz.addEventListener('dragleave', function() { dzl('videoDropZone'); });
-        vdz.addEventListener('drop', function(e) { e.preventDefault(); requirePro(); });
+            vdz.addEventListener('drop', function(e) { e.preventDefault(); if (!requirePro()) return; dzDrop(e, 'vidFile', 'videoDropZone'); });
   }
   var vidInp = document.getElementById('vidFile');
   if (vidInp) vidInp.addEventListener('change', function() { loadPreview('vidFile','vidPreview','videoDropZone','video'); });
@@ -196,7 +198,7 @@ function switchPanel(tab) {
   document.getElementById('loadingState').classList.remove('active');
   const labels = { text:'Analyze Text', url:'Analyze URL', image:'Analyze Image', video:'Analyze Video' };
   document.getElementById('analyzeLabel').textContent = labels[tab]; document.querySelector('.analyze-cta').style.display = tab === 'video' ? 'none' : '';
-  document.getElementById('panel-'+tab).scrollIntoView({behavior:'smooth', block:'nearest'});
+  window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 /* ── CHAR COUNT ── */
@@ -346,7 +348,7 @@ async function doAnalyze(type, text, file) {
     if (type === 'image' && file) {
       result = await analyzeImage(file);
     } else {
-      const content = text || `File: ${file?.name}`;
+            const content = type === 'video' && file ? `Video file submitted:\nFilename: ${file.name}\nFile size: ${(file.size/1024/1024).toFixed(2)} MB\nFile type: ${file.type}` : (text || `File: ${file?.name}`);
       result = await analyzeText(content, type);
     }
     appState.lastResult = { ...result, type, timestamp: Date.now(), input: text?.substring(0,80) || file?.name };
@@ -481,7 +483,7 @@ function showLoading(type) {
     text: ['Parsing text…','Measuring perplexity…','Checking vocabulary fingerprint…','Evaluating sentence patterns…','Generating verdict…'],
     url: ['Parsing fetched content…','Stripping boilerplate…','Analyzing article body…','Cross-checking AI signals…','Finalizing report…'],
     image: ['Decoding image…','Scanning texture patterns…','Checking edge artifacts…','Evaluating lighting physics…','Rendering verdict…'],
-    video: ['Reading video metadata…','Sampling keyframes…','Analyzing compression…','Checking temporal coherence…','Generating report…']
+            video: ['Extracting file metadata…','Analyzing file properties…','Checking known AI patterns…','Evaluating digital signatures…','Generating report…'],
   };
   const m = msgs[type] || msgs.text;
   m.forEach((msg, idx) => { if (steps[idx]) steps[idx].textContent = msg; });
@@ -777,8 +779,8 @@ Be warm, concise, and helpful. If you can't resolve something, offer to escalate
 }
 
 /* ── INIT ── */
-renderHistory();
-renderTopbar();
+renderHistory()
+renderTopbar()
 
 // Close overlays on backdrop click
 document.querySelectorAll('.overlay').forEach(o => {
@@ -857,7 +859,8 @@ if ('serviceWorker' in navigator) {
       case 'ckAccept':                         ckAccept(); break;
       case 'ckDecline':                        ckDecline(); break;
       case 'navigate':                         if (p) window.location.href = p; break;
-      case 'tlImgUpload':                      tlImgUpload(); break;
+        case 'tlVidUpload': document.getElementById('vidFile').click(); break;
+              case 'tlImgUpload':                      tlImgUpload(); break;
       case 'openShareModal': openShareModal(); break;
       case 'saveResult': saveResult(); break;
       case 'resetScan': resetScan(); break;
