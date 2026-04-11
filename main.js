@@ -142,7 +142,7 @@ function loginUser(name, email, plan, token) {
   if (vdz) {
     vdz.addEventListener('dragover', function(e) { dz(e, 'videoDropZone'); });
     vdz.addEventListener('dragleave', function() { dzl('videoDropZone'); });
-    vdz.addEventListener('drop', function() { requirePro(); });
+        vdz.addEventListener('drop', function(e) { e.preventDefault(); requirePro(); });
   }
   var vidInp = document.getElementById('vidFile');
   if (vidInp) vidInp.addEventListener('change', function() { loadPreview('vidFile','vidPreview','videoDropZone','video'); });
@@ -784,6 +784,14 @@ renderTopbar();
 document.querySelectorAll('.overlay').forEach(o => {
   o.addEventListener('click', e => { if (e.target === o) closeModal(o.id); });
 });
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+      ['plansOverlay', 'authOverlay', 'shareOverlay', 'privacyOverlay'].forEach(function(id) {
+            var el = document.getElementById(id);
+                  if (el && el.classList.contains('open')) closeModal(id);
+                      });
+                        }
+                        });
 
 
 // Service Worker registration for PWA offline support
