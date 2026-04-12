@@ -33,12 +33,20 @@ function toggleMobileNav() {
 }
 
 /* ── MODAL ── */
-function openModal(id) {
+var _modalTrigger = null;
+var _lastClickedEl = null;
+function openModal(id, trigger) {
+    _modalTrigger = trigger || _lastClickedEl || document.activeElement || null;
   document.body.style.overflow = 'hidden';
   const el = document.getElementById(id);
   el.removeAttribute('inert');
   el.classList.add('open');
   el.setAttribute('aria-hidden', 'false');
+    requestAnimationFrame(function() {
+          var f = el.querySelector('button:not([disabled]),[href],input:not([disabled]),[tabindex]:not([tabindex="-1"])');
+              if (f) f.focus();
+                });
+  
 }
 function closeModal(id) {
   document.body.style.overflow = '';
@@ -46,6 +54,7 @@ function closeModal(id) {
   el.classList.remove('open');
   el.setAttribute('aria-hidden', 'true');
   el.setAttribute('inert', '');
+    _modalTrigger && document.body.contains(_modalTrigger) && (_modalTrigger.focus(), _modalTrigger = null);
 }
 function openAuthModal(mode) {
   appState.authMode = mode;
@@ -824,11 +833,12 @@ if ('serviceWorker' in navigator) {
     var fn = el.getAttribute('data-action');
     var p  = el.getAttribute('data-param')  || undefined;
     var p2 = el.getAttribute('data-param2') || undefined;
+    _lastClickedEl = el;
     if (el.getAttribute('data-stop')    === '1') e.stopPropagation();
     if (el.getAttribute('data-prevent') === '1') e.preventDefault();
 
     switch (fn) {
-      case 'openModal':                        openModal(p); break;
+      case 'openModal':                        openModal(p, el); break;
       case 'closeModal':                       closeModal(p); break;
       case 'openAuthModal':                    openAuthModal(p); break;
       case 'toggleMobileNav':                  toggleMobileNav(); break;
