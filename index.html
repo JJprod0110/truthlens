@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ð</text></svg>">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Detect AI-generated text, images, and video in seconds. TruthLens Pro uses forensic-grade AI analysis to expose fakes. Free to start, no signup needed.">
     <meta property="og:title" content="TruthLens Pro — AI Content Detector">
@@ -43,12 +43,12 @@
 <body class="pg-main">
   <a href="#main-content" class="skip-link ist-zg51ic" id="skipLink">Skip to main content</a>
 
-<!-- âââ TOPBAR âââ -->
+<!-- ═══ TOPBAR ═══ -->
 <header role="banner">
 <nav class="topbar" aria-label="Main navigation">
   <div class="topbar-logo">Truth<em>Lens</em><sup>PRO</sup></div>
   <div class="topbar-right" id="topbarRight"><button class="hamburger-btn" id="hamburgerBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNavDrawer" data-action="toggleMobileNav"><span></span><span></span><span></span></button>
-    <button type="button" class="topbar-btn tb-ghost" data-action="openModal" data-param="privacyOverlay" class="ist-1gic06e">ð Privacy</button>
+    <button type="button" class="topbar-btn tb-ghost" data-action="openModal" data-param="privacyOverlay" class="ist-1gic06e">🔒 Privacy</button>
     <a href="/blog/" class="topbar-btn tb-ghost">Blog</a>
       <button type="button" class="topbar-btn tb-ghost" data-action="openModal" data-param="plansOverlay">Pricing</button>
     <button type="button" class="topbar-btn tb-ghost" data-action="openAuthModal" data-param="signin">Sign in</button>
@@ -66,11 +66,11 @@
 </header>
 <main id="main-content">
 
-<!-- âââ HERO âââ -->
+<!-- ═══ HERO ═══ -->
 <div class="hero-section">
   <div class="ist-3vl0s6">
     <div class="hero-eyebrow ist-3ocpgz"><span class="dot"></span>Powered by Claude AI</div>
-    <div class="hero-eyebrow ist-1u3xh50" data-action="openModal" data-param="privacyOverlay">ð Zero data selling — ever</div>
+    <div class="hero-eyebrow ist-1u3xh50" data-action="openModal" data-param="privacyOverlay">🔒 Zero data selling — ever</div>
   </div>
   <h1>Spot what's <span class="strike">real</span> <br>in seconds</h1>
   <p>Paste text, upload images or video, or scan any URL — TruthLens detects AI-generated content with forensic-grade analysis.</p>
@@ -87,22 +87,22 @@
   </div>
 </div>
 
-<!-- âââ APP âââ -->
+<!-- ═══ APP ═══ -->
 <div class="app-container">
 
   <!-- Input Type Tabs -->
   <div class="input-tabs">
     <button type="button" class="input-tab active" data-action="switchPanel" data-param="text">
-      <span class="ti-icon">ð</span> Text
+      <span class="ti-icon">📝</span> Text
     </button>
     <button type="button" class="input-tab" data-action="switchPanel" data-param="url">
-      <span class="ti-icon">ð</span> URL
+      <span class="ti-icon">🔗</span> URL
     </button>
     <button type="button" class="input-tab" data-action="switchPanel" data-param="image">
-      <span class="ti-icon">ð¼ï¸</span> Image
+      <span class="ti-icon">🖼️</span> Image
     </button>
     <button type="button" class="input-tab pro-locked" data-action="switchPanel" data-param="video">
-      <span class="ti-icon">ð¬</span> Video
+      <span class="ti-icon">🎬</span> Video
       <span class="pro-lock">PRO</span>
     </button>
   </div>
@@ -114,7 +114,7 @@
     </div>
     <div class="textarea-toolbar">
       <span class="char-count"><span id="charCount">0</span>/10,000</span>
-      <button type="button" class="paste-btn" data-action="pasteFromClipboard">ð Paste from clipboard</button>
+      <button type="button" class="paste-btn" data-action="pasteFromClipboard">📋 Paste from clipboard</button>
     </div>
   </div>
 
@@ -127,11 +127,11 @@
     <div class="url-tips">
       <h2>Works great with</h2>
       <div class="url-tip-list">
-        <div class="url-tip"><span class="tc">ð°</span> News articles (CNN, NYT, BBC, Reuters…)</div>
-        <div class="url-tip"><span class="tc">ð</span> Blog posts &amp; Medium articles</div>
-        <div class="url-tip"><span class="tc">ð¦</span> Social media posts &amp; threads</div>
-        <div class="url-tip"><span class="tc">ð</span> Product descriptions &amp; landing pages</div>
-        <div class="url-tip"><span class="tc">ð</span> Academic papers &amp; research summaries</div>
+        <div class="url-tip"><span class="tc">📰</span> News articles (CNN, NYT, BBC, Reuters…)</div>
+        <div class="url-tip"><span class="tc">📝</span> Blog posts &amp; Medium articles</div>
+        <div class="url-tip"><span class="tc">🐦</span> Social media posts &amp; threads</div>
+        <div class="url-tip"><span class="tc">📄</span> Product descriptions &amp; landing pages</div>
+        <div class="url-tip"><span class="tc">🎓</span> Academic papers &amp; research summaries</div>
       </div>
     </div>
     <div id="fetchedTextArea" class="ist-11pruto">
@@ -144,7 +144,7 @@
   <div class="panel" id="panel-image">
     <div class="drop-zone" id="imageDropZone"
       data-action="tlImgUpload">
-      <span class="dz-icon">ð¼ï¸</span>
+      <span class="dz-icon">🖼️</span>
       <h2>Drop your image here</h2>
       <p>or <span class="browse-link">browse files</span> — PNG, JPG, WEBP, GIF up to 20MB</p>
     </div>
@@ -156,7 +156,7 @@
   <div class="panel" id="panel-video">
     <div class="drop-zone" id="videoDropZone"
       data-action="requirePro">
-      <span class="dz-icon">ð¬</span>
+      <span class="dz-icon">🎬</span>
       <p>Video detection is a Pro feature</p>
       <p>Upgrade to detect AI-generated video, deepfakes, and synthetic media</p>
       <button type="button" data-action="openModal" data-param="plansOverlay" data-stop="1" class="ist-1msvrrn">Upgrade to Pro →</button>
@@ -168,17 +168,17 @@
   <!-- CTA -->
   <div class="analyze-cta">
     <button type="button" class="analyze-main-btn" id="mainAnalyzeBtn" data-action="runAnalysis">
-      <span>ð</span> <span id="analyzeLabel">Analyze Content</span>
+      <span>🔍</span> <span id="analyzeLabel">Analyze Content</span>
     </button>
   </div>
   <div class="daily-counter" id="dailyCounter">
-    <span id="scansLeft">5</span> free scans remaining today Â·
+    <span id="scansLeft">5</span> free scans remaining today ·
     <span class="upgrade-nudge" data-action="openModal" data-param="plansOverlay">Upgrade for unlimited</span>
   </div>
 
   <!-- Loading -->
   <div class="loading-state" id="loadingState">
-    <div class="scan-anim"><span class="scan-icon">ð</span></div>
+    <div class="scan-anim"><span class="scan-icon">🔍</span></div>
     <div class="loading-steps">
       <div class="loading-step" id="ls0">Extracting content…</div>
       <div class="loading-step" id="ls1">Scanning linguistic fingerprints…</div>
@@ -202,7 +202,7 @@
 
 </div>
 
-<!-- âââ HOW IT WORKS âââ -->
+<!-- ═══ HOW IT WORKS ═══ -->
 <div class="how-section">
   <h2 class="section-label" role="heading" aria-level="2">How it works</h2>
   <div class="how-grid">
@@ -212,26 +212,26 @@
   </div>
 </div>
 
-<!-- âââ PRIVACY BANNER âââ -->
+<!-- ═══ PRIVACY BANNER ═══ -->
 <div class="privacy-banner">
   <div class="privacy-banner-inner">
-    <span class="pb-shield">ð¡ï¸</span>
+    <span class="pb-shield">🛡️</span>
     <div class="pb-text">
       <h2>We earn money from subscriptions — not from selling you.</h2>
       <p>Unlike ad-supported platforms, TruthLens has exactly one business model: people who find us useful pay us directly. That means your data, your scanned content, and your behavior on this site are <strong>never sold, rented, or shared</strong> with advertisers or data brokers. What you scan stays between you and our AI.</p>
       <div class="pb-badges">
-        <span class="pb-badge">â No data sales</span>
-        <span class="pb-badge">â No ad tracking</span>
-        <span class="pb-badge">â Content not stored</span>
-        <span class="pb-badge">â No third-party sharing</span>
-        <span class="pb-badge">â Delete anytime</span>
+        <span class="pb-badge">✓ No data sales</span>
+        <span class="pb-badge">✓ No ad tracking</span>
+        <span class="pb-badge">✓ Content not stored</span>
+        <span class="pb-badge">✓ No third-party sharing</span>
+        <span class="pb-badge">✓ Delete anytime</span>
         <span class="pb-badge ist-1wc3lz9" data-action="openModal" data-param="privacyOverlay">→ Full privacy pledge</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- âââ REVENUE / MONEY âââ -->
+<!-- ═══ REVENUE / MONEY ═══ -->
 <div class="ist-0dvt62">
   <div class="money-section">
     <div class="money-inner">
@@ -243,28 +243,28 @@
         </div>
         <div class="revenue-streams">
           <div class="revenue-item">
-            <span class="rev-icon">ð³</span>
+            <span class="rev-icon">💳</span>
             <div class="rev-info">
               <div class="rev-name">Pro Subscriptions</div>
-              <div class="rev-amt">$12/mo Â· unlimited scans</div>
+              <div class="rev-amt">$12/mo · unlimited scans</div>
             </div>
           </div>
           <div class="revenue-item">
-            <span class="rev-icon">ð¢</span>
+            <span class="rev-icon">🏢</span>
             <div class="rev-info">
               <div class="rev-name">Enterprise Licenses</div>
-              <div class="rev-amt">$49–499/mo Â· teams & API</div>
+              <div class="rev-amt">$49–499/mo · teams & API</div>
             </div>
           </div>
           <div class="revenue-item">
-            <span class="rev-icon">â¡</span>
+            <span class="rev-icon">⚡</span>
             <div class="rev-info">
               <div class="rev-name">API Pay-per-scan</div>
               <div class="rev-amt">$0.01/scan for developers</div>
             </div>
           </div>
           <div class="revenue-item ist-o9rmhc">
-            <span class="rev-icon">ð¡ï¸</span>
+            <span class="rev-icon">🛡️</span>
             <div class="rev-info">
               <div class="rev-name ist-4qo4bv">Privacy-First Trust</div>
               <div class="rev-amt ist-9sxy83">No data selling = higher retention & word-of-mouth</div>
@@ -281,20 +281,20 @@
   </div>
 </div>
 
-<!-- âââ SUPPORT BOT âââ -->
+<!-- ═══ SUPPORT BOT ═══ -->
 <button type="button" class="chat-bubble" aria-label="Open support chat" data-action="toggleChat" id="chatBubble">
-  ð¬
+  💬
   <span class="notif">1</span>
 </button>
 
 <div class="chat-window" id="chatWindow">
   <div class="chat-header">
-    <div class="bot-avatar">ð¤</div>
+    <div class="bot-avatar">🤖</div>
     <div class="bot-info">
       <div class="bot-name">TruthLens Support</div>
-      <div class="bot-status">â Online — AI powered</div>
+      <div class="bot-status">● Online — AI powered</div>
     </div>
-    <button type="button" class="close-chat" aria-label="Close chat" data-action="toggleChat">â</button>
+    <button type="button" class="close-chat" aria-label="Close chat" data-action="toggleChat">✕</button>
   </div>
   <div class="chat-messages" id="chatMessages"></div>
   <div class="chat-suggestions" id="chatSuggestions">
@@ -321,17 +321,17 @@
     </div>
     <div class="sp-cards">
       <div class="sp-card">
-        <div class="stars" aria-label="5 out of 5 stars">âââââ</div>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
         <q>We run every student submission through TruthLens Pro before grading. The false-positive rate is low enough that we can act on results with confidence.</q>
         <div class="author"><strong>Dr. M. Okonkwo</strong>Associate Professor, University of Leeds</div>
       </div>
       <div class="sp-card">
-        <div class="stars" aria-label="5 out of 5 stars">âââââ</div>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
         <q>I fact-check viral images daily. TruthLens Pro catches compressed deepfakes that other tools miss entirely — the JPEG resilience is the difference-maker.</q>
         <div class="author"><strong>Priya S.</strong>Investigative journalist, digital media</div>
       </div>
       <div class="sp-card">
-        <div class="stars" aria-label="5 out of 5 stars">âââââ</div>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
         <q>The API integration was done in an afternoon. We're now screening 50,000+ content pieces a day and our moderation accuracy has improved measurably.</q>
         <div class="author"><strong>Engineering team</strong>Mid-size content platform</div>
       </div>
@@ -339,7 +339,7 @@
   </div>
 </section>
 
-<!-- âââ PRICING SECTION âââ -->
+<!-- ═══ PRICING SECTION ═══ -->
 <section class="pricing-section" id="pricing" aria-labelledby="pricingHeading">
   <div class="ist-1rhovax">
     <h2 class="section-label" id="pricingHeading" class="ist-d8yrum">Simple, transparent pricing</h2>
@@ -433,16 +433,16 @@
 </main>
 <footer>
   <div class="footer-logo">Truth<em>Lens</em></div>
-  <div class="footer-links">
-    <a href="/privacy/" >ð Privacy Pledge</a>
+  <div class="footer-links"
+    <a href="/privacy/" >🔒 Privacy Pledge</>
     <a href="/terms/">Terms</a>
     <a href="/privacy/#ccpa" class="ist-14ehxct">Do Not Sell My Info</a>
     <a href="/api/" class="ist-3od4ou">API Docs</a>
     <a href="/blog/" class="ist-3od4ou">Blog</a> 
     <a href="#pricing" data-action="openModal" data-param="plansOverlay">Pricing</a>
-  </div>
-  <div class="footer-right">Â© 2026 TruthLens Â· We never sell your data</div>
-</footer>
+  </div
+  <div class="footer-right">© 2026 TruthLens · We never sell your data</div>
+</footer
 
     <script src="/main.js" defer></script>
 
@@ -457,43 +457,43 @@
     <button type="button" data-action="rejectAllCookies" class="ist-1mcuqhp">Reject All</button>
   </div>
 </div>
-<!-- âââ PRIVACY PLEDGE MODAL âââ -->
+<!-- ═══ PRIVACY PLEDGE MODAL ═══ -->
 <div class="overlay" inert id="privacyOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Our Privacy Pledge">
   <div class="modal privacy-modal">
     <button type="button" class="modal-close" aria-label="Close" data-action="closeModal" data-param="privacyOverlay">&#x2715;</button>
-    <h2>ð Our Privacy Pledge</h2>
+    <h2>🔒 Our Privacy Pledge</h2>
     <p class="modal-sub">Written in plain English, not legalese. This is what we actually do with your data.</p>
     <div class="privacy-commitment">
       <div class="pc-item">
-        <span class="pc-icon">ð«</span>
+        <span class="pc-icon">🚫</span>
         <div class="pc-text">
           <h3>We never sell your data. Ever.</h3>
           <p>Your name, email, and the content you scan are yours. We will never sell, rent, license, or trade your personal data to advertisers, data brokers, or any third party — period. Our business model is subscriptions, not you.</p>
         </div>
       </div>
       <div class="pc-item">
-        <span class="pc-icon">ðï¸</span>
+        <span class="pc-icon">🗑️</span>
         <div class="pc-text">
           <h3>Scanned content is not stored or trained on</h3>
           <p>The text, images, and videos you submit for analysis are sent to our AI engine and then discarded. We do not store your content, use it to train models, or share it with anyone.</p>
         </div>
       </div>
       <div class="pc-item">
-        <span class="pc-icon">ð§</span>
+        <span class="pc-icon">📧</span>
         <div class="pc-text">
           <h3>No spam. No marketing to third parties.</h3>
           <p>We only email you about your account — receipts, security alerts, and product updates if you opt in. We will never share your email with other companies for their marketing.</p>
         </div>
       </div>
       <div class="pc-item">
-        <span class="pc-icon">ðª</span>
+        <span class="pc-icon">🍪</span>
         <div class="pc-text">
           <h3>Minimal, functional cookies only</h3>
           <p>We use cookies strictly to keep you logged in and remember your preferences. No ad-tracking cookies, no cross-site fingerprinting, no behavioral profiling.</p>
         </div>
       </div>
       <div class="pc-item">
-        <span class="pc-icon">ðï¸</span>
+        <span class="pc-icon">🗂️</span>
         <div class="pc-text">
           <h3>You control your data</h3>
           <p>Request a full export of your data at any time. Delete your account and all associated data in one click. No "processing period," no friction — immediate and complete.</p>
@@ -501,12 +501,12 @@
       </div>
     </div>
     <div class="privacy-seal">
-      <p>ð¡ï¸ TruthLens earns money through subscriptions — not by monetizing your personal data. That's the whole model.</p>
+      <p>🛡️ TruthLens earns money through subscriptions — not by monetizing your personal data. That's the whole model.</p>
     </div>
   </div>
 </div>
 
-<!-- âââ AUTH MODAL âââ -->
+<!-- ═══ AUTH MODAL ═══ -->
 <div class="overlay" inert id="authOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="authTitle">
   <div class="modal" id="authModal" aria-label="Create account">
     <button type="button" class="modal-close" aria-label="Close" data-action="closeModal" data-param="authOverlay">&#x2715;</button>
@@ -514,8 +514,8 @@
     <p class="modal-sub" id="authSub">Join 50,000+ users detecting AI content</p>
 
     <div class="social-btns">
-      <button type="button" class="social-btn" aria-label="Sign in with Google" data-action="socialLogin" data-param="Google">ð Google</button>
-      <button type="button" class="social-btn" aria-label="Sign in with Twitter/X" data-action="socialLogin" data-param="Twitter/X">ð Twitter/X</button>
+      <button type="button" class="social-btn" aria-label="Sign in with Google" data-action="socialLogin" data-param="Google">🌐 Google</button>
+      <button type="button" class="social-btn" aria-label="Sign in with Twitter/X" data-action="socialLogin" data-param="Twitter/X">𝕏 Twitter/X</button>
     </div>
     <div class="divider"><span></span><p>or email</p><span></span></div>
 
@@ -538,7 +538,7 @@
       Already have an account? <button type="button" class="link-btn" data-action="toggleAuthMode">Sign in</button>
     </div>
     <div class="auth-privacy-note">
-      ð We never sell your data. No ads. No third-party sharing. <a href="/privacy/" data-action="tl_closeModal_openModal" data-param="authOverlay" data-param2="privacyOverlay" class="ist-sn3i5t">Our pledge →</a>
+      🔒 We never sell your data. No ads. No third-party sharing. <a href="/privacy/" data-action="tl_closeModal_openModal" data-param="authOverlay" data-param2="privacyOverlay" class="ist-sn3i5t">Our pledge →</a>
     </div>
   </div>
 </div>
@@ -599,7 +599,7 @@
       </div>
     </div>
     <div class="ist-1tdf1jv">
-      <span class="ist-1e9qifu">ð</span>
+      <span class="ist-1e9qifu">🔒</span>
       <p class="ist-cc44oe">All plans: zero data selling, zero ad tracking, zero third-party sharing. <a href="/privacy/" data-action="tl_closeModal_openModal" data-param="plansOverlay" data-param2="privacyOverlay" class="ist-10r507">Read our full privacy pledge →</a></p>
     </div>
   </div>
@@ -615,28 +615,28 @@
     </div>
     <div class="share-grid">
       <div class="share-btn-item" data-action="shareToX">
-        <span class="icon">ð</span><span class="lbl">Twitter/X</span>
+        <span class="icon">𝕏</span><span class="lbl">Twitter/X</span>
       </div>
       <div class="share-btn-item" data-action="shareToLinkedIn">
-        <span class="icon">ð¼</span><span class="lbl">LinkedIn</span>
+        <span class="icon">💼</span><span class="lbl">LinkedIn</span>
       </div>
       <div class="share-btn-item" data-action="shareToFacebook">
-        <span class="icon">ð</span><span class="lbl">Facebook</span>
+        <span class="icon">📘</span><span class="lbl">Facebook</span>
       </div>
       <div class="share-btn-item" data-action="shareToReddit">
-        <span class="icon">ð´</span><span class="lbl">Reddit</span>
+        <span class="icon">🔴</span><span class="lbl">Reddit</span>
       </div>
       <div class="share-btn-item" data-action="shareToWhatsApp">
-        <span class="icon">ð¬</span><span class="lbl">WhatsApp</span>
+        <span class="icon">💬</span><span class="lbl">WhatsApp</span>
       </div>
       <div class="share-btn-item" data-action="shareToTelegram">
-        <span class="icon">âï¸</span><span class="lbl">Telegram</span>
+        <span class="icon">✈️</span><span class="lbl">Telegram</span>
       </div>
       <div class="share-btn-item" data-action="shareNative">
-        <span class="icon">ð¤</span><span class="lbl">More</span>
+        <span class="icon">📤</span><span class="lbl">More</span>
       </div>
       <div class="share-btn-item" data-action="downloadReport">
-        <span class="icon">ð</span><span class="lbl">PDF Report</span>
+        <span class="icon">📄</span><span class="lbl">PDF Report</span>
       </div>
     </div>
     <div class="share-link-row">
@@ -646,10 +646,11 @@
   </div>
 </div>
 
-<!-- âââ TRUST STRIP âââ -->
+<!-- ═══ TRUST STRIP ═══ -->
 <div class="trust-strip">
-  ð Your data is never sold to third parties &nbsp;Â·&nbsp; No ad tracking &nbsp;Â·&nbsp; Scanned content is never stored &nbsp;Â·&nbsp;
+  🔒 Your data is never sold to third parties &nbsp;·&nbsp; No ad tracking &nbsp;·&nbsp; Scanned content is never stored &nbsp;·&nbsp;
   <button type="button" class="link-btn" data-action="openModal" data-param="privacyOverlay">Read our privacy pledge</button>
 </div>
 
 </html>
+
