@@ -887,4 +887,9 @@ if ('serviceWorker' in navigator) {
     var fn = el.getAttribute('data-oninput');
     if (fn === 'updateCharCount' && typeof updateCharCount === 'function') updateCharCount();
   });
+  /* VIDEO DROP ZONE DRAG HANDLERS */
+  var _vdz = document.getElementById('videoDropZone');
+  _vdz && _vdz.addEventListener('dragover', function(e) { e.preventDefault(); _vdz.classList.add('dz-dragover'); });
+  _vdz && _vdz.addEventListener('dragleave', function(e) { _vdz.classList.remove('dz-dragover'); });
+  _vdz && _vdz.addEventListener('drop', function(e) { e.preventDefault(); _vdz.classList.remove('dz-dragover'); openModal('plansOverlay', _vdz); });
 }());
