@@ -581,7 +581,7 @@ function displayResults(r, type) {
 
   // Update share modal data
   document.getElementById('shareVerdictTitle').textContent = `${emoji} ${label} — ${prob}% AI probability`;
-  document.getElementById('shareVerdictSub').textContent = `Confidence: ${r.ai_probability >= 75 ? 'HIGH' : r.ai_probability >= 40 ? 'MEDIUM' : 'LOW'} · Analyzed by TruthLens`;
+  document.getElementById('shareVerdictSub').textContent = `Confidence: ${r.confidence} · Analyzed by TruthLens`;
 }
 
 function resetScan() {
@@ -608,14 +608,14 @@ function renderHistory() {
   const section = document.getElementById('historySection');
   if (!appState.history.length) { section.style.display = 'none'; return; }
   section.style.display = 'block';
-  list.innerHTML = appState.history.slice(0,5).map(h => {
+  list.innerHTML = appState.history.slice(0,5).map((h, i) => {
     const isAI = h.verdict?.includes('AI');
     const isHuman = h.verdict?.includes('HUMAN');
     const dotCls = isAI ? 'ai-gen' : isHuman ? 'human' : 'uncertain';
     const emoji = isAI?'🤖':isHuman?'👤':'🔍';
     const label = isAI ? 'AI Generated' : isHuman ? 'Human Created' : 'Uncertain';
     const dt = new Date(h.timestamp).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});    const preview = h.input ? h.input.substring(0,40) + (h.input.length>40?'…':'') : h.type;
-    return `<div class="history-item">
+    return `<div class="history-item" data-action="restoreHistory" data-param="${i}">
       <span class="hi-dot ${dotCls}"></span>
       <span class="hi-label">${emoji} ${label} · ${preview}</span>
       <span class="hi-meta">${h.ai_probability}% AI · ${dt}</span>
@@ -873,7 +873,7 @@ if ('serviceWorker' in navigator) {
               case 'tlImgUpload':                      tlImgUpload(); break;
       case 'openShareModal': setTimeout(openShareModal, 0); break;
       case 'saveResult': saveResult(); break;
-      case 'resetScan': resetScan(); break;
+      case 'resetScan': resetScan(); break;       case 'restoreHistory': { const h = appState.history.slice(0,5)[parseInt(p)]; if (h) displayResults(h, h.type); } break;
       case 'clearPreview': clearPreview(p, p2); break;
       case 'tl_openModal_toggleMobileNav':     tl_openModal_toggleMobileNav(p); break;
       case 'tl_openAuthModal_toggleMobileNav': tl_openAuthModal_toggleMobileNav(p); break;
