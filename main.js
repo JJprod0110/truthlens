@@ -871,7 +871,7 @@ if ('serviceWorker' in navigator) {
       case 'navigate':                         if (p) window.location.href = p; break;
         case 'tlVidUpload': document.getElementById('vidFile').click(); break;
               case 'tlImgUpload':                      tlImgUpload(); break;
-      case 'openShareModal': openShareModal(); break;
+      case 'openShareModal': setTimeout(openShareModal, 0); break;
       case 'saveResult': saveResult(); break;
       case 'resetScan': resetScan(); break;
       case 'clearPreview': clearPreview(p, p2); break;
