@@ -113,7 +113,8 @@ async function submitAuth() {
       if (data.error) { showToast(data.error.message || 'Login failed'); }
       else {
         const userName = data.user?.user_metadata?.full_name || email.split('@')[0];
-        loginUser(userName, email, 'free', data.access_token); showToast(appState.authMode === 'signup' ? 'Account created! Welcome to TruthLens.' : 'Welcome back!');
+        const plan = (data.user?.user_metadata?.plan || 'free').toLowerCase();
+            loginUser(userName, email, plan, data.access_token); showToast(appState.authMode === 'signup' ? 'Account created! Welcome to TruthLens.' : 'Welcome back!');
         closeModal('authOverlay');
       }
     }
