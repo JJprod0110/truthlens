@@ -88,6 +88,12 @@ to = "https://raw.githubusercontent.com/JJprod0110/truthlens/main/blog/ai-detect
 status = 200
 force = true
 
+# Allow Netlify Functions to pass through (must be above catch-all)
+[[redirects]]
+  from = "/.netlify/functions/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
 # 404 catch-all -- serve branded 404 page for any unmatched path (must be last)
 [[redirects]]
 from = "/*"
